@@ -3,8 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
-    
-	<h1>listAll.jsp loading test</h1>
+
+<h1>Chan & Bori's Board</h1>
+
 <table>
     <tr>
 		<th style="width: 10px">BNO</th>
@@ -17,7 +18,7 @@
 	<c:forEach items="${list}" var="boardVO">
 		<tr>
 			<td>${boardVO.bno}</td>
-			<td>${boardVO.title}</a></td>
+			<td>${boardVO.title}</td>
 			<td>${boardVO.writer}</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}" /></td>
 			<td><span class="badge bg-red">${boardVO.viewcnt}</span></td>
