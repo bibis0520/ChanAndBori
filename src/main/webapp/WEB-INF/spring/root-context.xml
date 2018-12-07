@@ -13,4 +13,29 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://35.189.158.41:3306/chanwithboridb?useSSL=false"></property> -->
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://35.189.158.41:3306/chanwithboridb?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
+		<property name="username" value="chanwithbori"></property>
+		<property name="password" value="1234"></property>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<context:component-scan base-package="com.chan.persistence"></context:component-scan>
+	<context:component-scan base-package="com.chan.service"></context:component-scan>
+	
+	
+	<mybatis-spring:scan base-package="com.chan.mapper" />
+	
 </beans>
