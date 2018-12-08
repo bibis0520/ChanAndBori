@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.chan.domain.BoardVO;
 import com.chan.service.BoardService;
 
 @Controller
@@ -20,13 +22,30 @@ public class BoardController {
 	@Inject
 	private BoardService service;
 	
-	//조회(listAll)
+	//게시물 리스트 페이지(listAll)
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
 	public void listAllGET(Model model) throws Exception{
 		
 		logger.info("listPageGET......Show Board's List");
 		
 		model.addAttribute("list", service.listAll());
-	}	
+	}
+	
+	//게시물 등록(register)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public void registerGET(BoardVO vo, Model model) throws Exception{
+		
+		logger.info("registerGET......");
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String registerPOST(BoardVO vo, RedirectAttributes rttr) throws Exception{
+		
+		logger.info("registerPOST......");
+		
+	    service.create(vo);
+	    
+	    return "redirect:/board/listAll";
+	}
 	
 }

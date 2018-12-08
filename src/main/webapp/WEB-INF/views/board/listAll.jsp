@@ -4,9 +4,16 @@
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
 
-<h1>Chan & Bori's Board</h1>
+<h1 style="margin-bottom:20px">Board</h1>
 
-<table>
+<div class="text-center" style="margin-bottom:20px">
+	<a href="/board/register">
+		<button class="btn btn-primary">새글등록</button>
+	</a>	
+</div>
+
+<table class="table table-bordered">
+
     <tr>
 		<th style="width: 10px">BNO</th>
 		<th>TITLE</th>
@@ -15,15 +22,16 @@
 		<th style="width: 40px">VIEWCNT</th>
 	</tr>
 	
-	<c:forEach items="${list}" var="boardVO">
-		<tr>
-			<td>${boardVO.bno}</td>
-			<td>${boardVO.title}</td>
-			<td>${boardVO.writer}</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}" /></td>
-			<td><span class="badge bg-red">${boardVO.viewcnt}</span></td>
-		</tr>
-	</c:forEach>
+  <c:forEach items="${list}" var="boardVO">
+	<tr>
+		<td>${boardVO.bno}</td>
+		<td>${boardVO.title}</td>
+		<td>${boardVO.writer}</td>
+		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}" /></td>
+		<td><span class="badge bg-red">${boardVO.viewcnt}</span></td>
+	</tr>
+  </c:forEach>
+	
 </table> 
    
 <%@ include file="../include/footer.jsp" %> 
