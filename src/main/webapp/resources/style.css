@@ -4,7 +4,12 @@
     margin : 0px;
     padding : 0px;
 }
-
+.m20{
+	margin:20px;
+}
+.overflow-a{
+	overflow:auto;
+}
 body { 
     width : 100%;
     position : relative;
