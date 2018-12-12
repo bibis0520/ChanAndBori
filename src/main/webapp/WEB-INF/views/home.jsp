@@ -4,8 +4,8 @@
 <%@ include file="include/header.jsp" %>
     
     <h3>아직 테스트중...</h3>
-    <img src="mainpic1.png" alt="">
-    <img src="mainpic2.jpg" alt="">
-    <img src="mainpic3.jpg" alt="">
+    <img src="../../../resources/images/mainpic1.png" alt="">
+    <img src="../../../resources/images/mainpic2.JPG" alt="">
+    <img src="../../../resources/images/mainpic3.JPG" alt="">
     
 <%@ include file="include/footer.jsp" %>    
