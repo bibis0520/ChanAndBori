@@ -1,30 +1,41 @@
-# Chan & Bori's Lifelog
+# <<<Chan & Bori's Lifelog>>>
 
-##### 프로젝트 명 : Chan & Bori's Lifelog
-##### 메인 목표 : 보리와 나의 일상을 기록할 간단한 게시판 구현
-##### 세부 구현 항목
-- 제목, 글, 작성자를 입력하여 게시물 등록
-- 등록된 게시물에 대한 조회, 수정, 삭제 구현
-- 게시물에 대한 댓글 등록 구현 ( Ajax )
-- 사진 파일 업로드
-- 로그인 처리 구현
-- 회원 가입 ( OAuth2 )
+##### 프로젝트 명 : Chan And Bori
 
-##### 개발 환경
-- Programming Language : Java, Html, CSS, JQuery
-- Framework : SpringToolSuite3(MVC2), Bootstrap
-- Server : ApacheTomcat(GCP), MySQL(GCP)
-- Deploy : Github, Jenkins(GCP)
+##### 메인 목표 : 보리와 나의 일상을 기록하는 게시판 구현하기
 
-##### 웹페이지 구성
+##### 개발 환경 :
+- OS : MacOS
+- Programming Languages : HTML5, CSS, Java, Javascript
+- Framework : STS(version3.9.6), Bootstrap(version3.3.7)
+- Server(by Google Cloud Platform) : ApacheTomcat(on CentOS), MySQL
+- Tools : Github, Jenkins(on Ubuntu)
+
+##### 세부 구현 내용 :
+- 제목, 글 내용, 작성자를 입력하여 게시물 등록
+- 게시물 List Page 구현( + pagination )
+- 각각의 게시물 조회, 수정, 삭제 구현
+- 회원가입 및 로그인 처리 구현( + OAuth2 )
+- 사진 파일 업로드 구현
+
+##### 웹 페이지 구성 :
 - "/"
+<img width="80%" height="80%" src="images/home.png">
 
-<img width="70%" height="70%" src="images/home.png">
+- "/board/listPage"
+<img width="80%" height="80%" src="images/listpage.png">
 
-- "/board"
+- "/board/register"
+<img width="80%" height="80%" src="images/register.png">
 
-<img width="70%" height="70%" src="images/board.png">
+- "/board/read"
+<img width="80%" height="80%" src="images/read.png">
 
-- "/photo"
+- "/board/modify"
+<img width="80%" height="80%" src="images/modify.png">
 
-<img width="70%" height="70%" src="images/photo.png">
+- "/login"
+<img width="80%" height="80%" src="images/login.png">
+
+- "/signup"
+<img width="80%" height="80%" src="images/signup.png">
