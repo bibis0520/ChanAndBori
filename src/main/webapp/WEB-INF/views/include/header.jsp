@@ -21,15 +21,19 @@
     <div class="wrapper">
         <div class="header">
             <div class="title">
-                <h1>Chan & Bori's Lifelog</h1>
-                <div class="icons">
-                    <a href="https://www.youtube.com/channel/UCkskqwtod2vp2UzgBs_aQIg?view_as=subscriber" target="_blank">
-                        <i class="fab fa-youtube icon"></i>
-                    </a>
-                    <a href="https://github.com/bibis0520" target="_blank">
-                        <i class="fab fa-github icon"></i>
-                    </a>
+                <div>
+                    <h1>Chan & Bori's Lifelog</h1>
                 </div>
+				<div>
+					<div class="icons">
+						<a href="https://www.youtube.com/channel/UCkskqwtod2vp2UzgBs_aQIg?view_as=subscriber" target="_blank">
+							<i class="fab fa-youtube icon"></i>
+						</a>
+						<a href="https://github.com/bibis0520" target="_blank">
+							<i class="fab fa-github icon"></i>
+						</a>
+					</div>
+				</div>
             </div>
             <div class="navigation">
                 <ul class="fl">

@@ -22,7 +22,10 @@ h3 {
 }
 
 /* === about youtube & github awesomefont === */
-.icons { text-align : center; }
+.icons { 
+    text-align : center; 
+    display:table-cell;
+}
 .icons a { 
     text-decoration : none; 
     font-size : 30px; 
@@ -38,12 +41,21 @@ h3 {
 
 /* === about header === */
 .header {
-    height : 200px;
+    height : 200px;     
 }        
 .title {
+    display: table;
+    width: 100%;
     height : 150px;
     line-height: 40px;  /* 제목과 awesomefont사이의 간격*/
 }
+.title div{
+    display: table-row;
+}
+.title h1{
+    display:table-cell;
+}
+
 .navigation { 
     background-color : navajowhite; 
     height: 50px;
@@ -86,7 +98,10 @@ img{
     text-align: center;
     position : absolute;
     bottom : 0;
+    display: table;
 }
 .footer p { 
-    font-weight: bold; 
+    font-weight: bold;
+    display:table-cell; 
+    vertical-align:middle; 
 }
