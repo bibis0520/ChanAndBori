@@ -21,10 +21,8 @@
     <div class="wrapper">
         <div class="header">
             <div class="title">
-                <div>
+				<div class="tr">
                     <h1>Chan & Bori's Lifelog</h1>
-                </div>
-				<div>
 					<div class="icons">
 						<a href="https://www.youtube.com/channel/UCkskqwtod2vp2UzgBs_aQIg?view_as=subscriber" target="_blank">
 							<i class="fab fa-youtube icon"></i>

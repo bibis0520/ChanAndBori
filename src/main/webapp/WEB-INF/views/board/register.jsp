@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
 
-<h1 style="margin-bottom:20px">New Board</h1>
+<h3>New Board</h3>
 
 <form method="post">
 

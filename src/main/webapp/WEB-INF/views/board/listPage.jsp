@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
 
-<h1 style="margin-bottom:20px">Board</h1>
+<h3>Board</h3>
 
 <div class="text-center" style="margin-bottom:20px">
 	<a href="/board/register">

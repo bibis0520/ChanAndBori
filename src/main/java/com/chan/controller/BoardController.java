@@ -23,7 +23,7 @@ public class BoardController {
 	private BoardService service;
 	
 	//게시물 리스트 페이지(listAll)
-	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
 	public void listAllGET(Model model) throws Exception{
 		
 		logger.info("listPageGET......Show Board's List");

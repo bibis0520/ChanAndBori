@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <%@ include file="include/header.jsp" %>
     
-    <h3>아직 테스트중...</h3>
+    <h3>안녕하세요! 보리와 저의 일상을 기록하는 공간입니다!</h3>
     <img src="../../../resources/images/mainpic1.png" alt="">
     <img src="../../../resources/images/mainpic2.JPG" alt="">
     <img src="../../../resources/images/mainpic3.JPG" alt="">
