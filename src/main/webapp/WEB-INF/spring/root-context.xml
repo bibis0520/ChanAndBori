@@ -15,7 +15,8 @@
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://35.189.158.41:3306/chanwithboridb?useSSL=false"></property>
+		<!-- <property name="url" value="jdbc:mysql://35.189.158.41:3306/chanwithboridb?useSSL=false"></property>  -->
+		<property name="url" value="jdbc:mysql://35.200.76.102:3306/chanwithboridb?useSSL=false"></property>
 		<!-- MySql Driver 6.0~ -->
 		<!-- <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>  -->
 		<!-- <property name="url" value="jdbc:mysql://35.189.158.41:3306/chanwithboridb?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>  -->
