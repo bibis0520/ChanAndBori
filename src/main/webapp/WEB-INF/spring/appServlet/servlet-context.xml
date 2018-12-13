@@ -21,8 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.chan.controller" />
-	
+	<context:component-scan base-package="com.chan.controller" />	
+	<!-- base-package 속성 값에 해당하는 패키지 내부의 클래스들을 조사 -->
+	<!-- 이는 <annotation-driven />과 결합하여 해당 패키지에 어노테이션 처리가된 컨트롤러를 작성만해주면 자동으로 인식하게 해준다. -->
 	
 	
 </beans:beans>

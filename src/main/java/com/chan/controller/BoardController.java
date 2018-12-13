@@ -28,7 +28,7 @@ public class BoardController {
 		
 		logger.info("listPageGET......Show Board's List");
 		
-		model.addAttribute("list", service.listAll());
+		model.addAttribute("list", service.listPage());
 	}
 	
 	//게시물 등록(register)
