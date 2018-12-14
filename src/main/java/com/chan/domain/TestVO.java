@@ -2,21 +2,22 @@ package com.chan.domain;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.chan.domain.BaseVO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import com.chan.domain.BaseVO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TestVO extends BaseVO{
+public class TestVO extends BaseVO {
+	
 	private Integer bno;
-	private String title;
-	private String content;
-	private String writer;
-	private Date regdate;
-	private int viewcnt;
+	private String  title;
+	private String  content;
+	private String  writer;
+	private Date    regdate;
+	private int     viewcnt;
 
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.chan.domain.TestVO;
 import com.chan.domain.search.TestSO;
 import com.chan.persistence.TestDAO;
-import com.chan.service.TestService;
 /**
  *  Class Name : testServiceImpl
  *  Description : 게시판 서비스 로직구현 클래스

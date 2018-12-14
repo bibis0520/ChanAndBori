@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chan.persistence.testDAO">
+	<resultMap id="resultForTestVo" type="com.chan.domain.TestVO">
+		<result column="BNO" 		jdbcType="NUMBER" 	property="bno"/>
+		<result column="TITLE" 	jdbcType="VARCHAR" 	property="title"/>
+	</resultMap>
+
+	<select id="selectBoardList" resultType="TestVO">
+		SELECT 	/* com.chan.persistence.testDAO.selectBoardList */
+						bno,
+						title,
+						content,
+						writer,
+						regdate,
+						viewcnt
+		FROM		tbl_board
+		WHERE		bno > 0
+		ORDER BY 	bno DESC,
+							regdate DESC
+	</select>
+
+	<select id="selectBoardListTotalCount" resultType="int">
+		SELECT 	/* com.chan.persistence.testDAO.selectBoardList */
+						bno,
+						title,
+						content,
+						writer,
+						regdate,
+						viewcnt
+		FROM		tbl_board
+		WHERE		bno > 0
+		ORDER BY 	bno DESC,
+							regdate DESC
+	</select>
+
+	<insert id="insertBoard">
+		INSERT  /* com.chan.persistence.testDAO.insertBoard */
+		INTO 		tbl_board
+						(
+							title,
+							content,
+							writer
+						)
+		VALUES (
+							#{title},
+							#{content},
+							#{writer}
+						)
+	</insert>
+</mapper>

@@ -2,6 +2,8 @@ package com.chan.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.chan.domain.TestVO;
 import com.chan.domain.search.TestSO;
 
@@ -10,7 +12,7 @@ public interface TestService {
 	/**
 	 *  Method Name : getBoardList
 	 *  Description : 게시물 목록 조회 서비스 인터페이스
-   *
+     *
 	 *  @param TestSO 게시물 검색조건
 	 *  @return List<TestVO> 게시판 목록데이터 반환
 	 */
