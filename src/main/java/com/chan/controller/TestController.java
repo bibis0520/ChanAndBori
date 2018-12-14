@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.chan.controller.ResultMap;
 import com.chan.domain.TestVO;
 import com.chan.domain.search.TestSO;
 import com.chan.service.TestService;
