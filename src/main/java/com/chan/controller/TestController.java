@@ -29,7 +29,8 @@ public class TestController {
 	private TestService testService;
 
 	@RequestMapping(value = "getBoardList", method = RequestMethod.POST)
-	@ResponseBody public Map<String, Object> getBoardList(@RequestBody @Valid TestSO searchVo){
+	@ResponseBody public Map<String, Object> getBoardList(@RequestBody TestSO searchVo){
+		//TO-DO @RequestBody @Valid TestSO searchVo 에서 에러가나서 @Valid 지워둠, 아래 마찬가지.
 		Map<String, Object> resultMap = new ResultMap();
 
 		resultMap.put(JSON_DATA_ROOT, testService.getBoardList(searchVo));
@@ -39,7 +40,7 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "saveBoard", method = RequestMethod.POST)
-	@ResponseBody public Map<String, Object> saveBoard(@RequestBody @Valid TestVO saveVo){
+	@ResponseBody public Map<String, Object> saveBoard(@RequestBody TestVO saveVo){
 	  testService.saveBoard(saveVo);
 
 	  return new ResultMap();
