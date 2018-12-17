@@ -22,7 +22,7 @@ public class DataSourceTest {
 
 		try (Connection con = ds.getConnection()) {
 
-			System.out.println(con);
+			System.out.println(con);	//com.mysql.jdbc.JDBC4Connection@4f2b503c
 
 		} catch (Exception e) {
 

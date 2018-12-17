@@ -116,3 +116,9 @@ img{
     display:table-cell; 
     vertical-align:middle; 
 }
+
+.carousel{
+    width:700px;
+    height:450px;
+    margin-top:60px;
+}
