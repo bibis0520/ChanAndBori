@@ -34,17 +34,10 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 
-<!-- dao - mapper temp
-	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.mapperScannerConfigurer">
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.chan.persistence" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
--->
 
-	<context:component-scan base-package="com.chan.persistence"></context:component-scan>
-	<context:component-scan base-package="com.chan.service"></context:component-scan>
-
-	<!-- mapper interface -->
-	<mybatis-spring:scan base-package="com.chan.mapper" />
-
+	<context:component-scan base-package="com.chan.service"/>
 </beans>

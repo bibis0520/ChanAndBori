@@ -5,7 +5,6 @@
 
 <mapper namespace="com.chan.persistence.testDAO">
 	<resultMap id="resultForTestVo" type="com.chan.domain.TestVO">
-		<result column="BNO" 		jdbcType="NUMBER" 	property="bno"/>
 		<result column="TITLE" 	jdbcType="VARCHAR" 	property="title"/>
 	</resultMap>
 
