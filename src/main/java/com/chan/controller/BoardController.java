@@ -2,11 +2,12 @@ package com.chan.controller;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +23,10 @@ public class BoardController {
 
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
-	@Autowired
+	@Inject
 	private BoardService service;
 	
-	//寃뚯떆臾� 由ъ뒪�듃 �럹�씠吏�(listAll)
+	// listPage
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
 	public void listAllGET(Model model) throws Exception{
 		
@@ -40,7 +41,7 @@ public class BoardController {
 		model.addAttribute("list", service.listPage());
 	}
 	
-	//寃뚯떆臾� �벑濡�(register)
+	// register
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(BoardVO vo, Model model) throws Exception{
 		
