@@ -2,6 +2,8 @@ package com.chan.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,13 @@ public class BoardController {
 	public void listAllGET(Model model) throws Exception{
 		
 		logger.info("listPageGET......Show Board's List");
-		List<BoardVO> rtb = service.listPage();
-		System.out.println(rtb);
+		List<BoardVO> rtn = service.listPage();
+		System.out.println("");
+		System.out.println(rtn);
+		for(BoardVO p : rtn) {
+			System.out.println(ToStringBuilder.reflectionToString(p,ToStringStyle.MULTI_LINE_STYLE));
+		}
+		System.out.println("");
 		model.addAttribute("list", service.listPage());
 	}
 	
