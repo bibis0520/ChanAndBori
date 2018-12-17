@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.chan.persistence.testDAO">
+<mapper namespace="com.chan.persistence.TestDAO">
 	<resultMap id="resultForTestVo" type="com.chan.domain.TestVO">
 		<result column="TITLE" 	jdbcType="VARCHAR" 	property="title"/>
 	</resultMap>
