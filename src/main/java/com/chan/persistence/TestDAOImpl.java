@@ -14,7 +14,7 @@ public class TestDAOImpl implements TestDAO {
 	@Inject
 	private SqlSession session;
 
-	private static final String NAMESPACE = "com.chan.persistence.testDAO";
+	private static final String NAMESPACE = "test_sqlMapper";
 	private static final String SELECT_BOARD_LIST = NAMESPACE + ".selectBoardList";
 	private static final String SELECT_BOARD_LIST_TOTAL_COUNT = NAMESPACE + ".selectBoardListTotalCount";
 	private static final String INSERT_BOARD = NAMESPACE + ".insertBoard";
