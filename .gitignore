@@ -85,7 +85,6 @@ local.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -99,18 +98,5 @@ hs_err_pid*
 ### Java-Web ###
 ## ignoring target file
 target/
-
-### Web ###
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.xhtml
 
 # End of https://www.gitignore.io/api/web,java,eclipse,java-web
