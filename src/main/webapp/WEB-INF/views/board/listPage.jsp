@@ -35,6 +35,7 @@
 <form id="pageRedirect" method="get" action="/board/viewRead" style="display:none;">
 	<input id="inputBno" type="hidden" name="bno" />
 </form>
+<a id="gotoRead"></a>
 <script>
 $(".boardRow").on('click', function(event){
 	/* console.error(arguments); */
@@ -47,7 +48,9 @@ $(".boardRow").on('click', function(event){
 	
 	var bno = $(this).children(".bno").text();
 	$("#inputBno").val(bno);
-	$("#pageRedirect").submit();
+	//$("#pageRedirect").submit();
+	$("#gotoRead").attr("href","/board/viewRead?bno=" + bno).click();
+	
 });	
 </script>
 <%@ include file="../include/footer.jsp" %> 

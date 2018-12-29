@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chan.domain.BoardVO;
@@ -60,11 +60,10 @@ public class BoardController {
 	    return "redirect:/board/listPage";
 	}
 	
-	@RequestMapping(value = "/viewRead", method = RequestMethod.POST)
-	public String viewRead(@RequestBody Integer bno, RedirectAttributes rttr) throws Exception{
+	@RequestMapping(value = "/viewRead", method = RequestMethod.GET)
+	public String viewRead(@RequestParam("bno") String bno, Model model, RedirectAttributes rttr) throws Exception{
 		logger.info("viewRead ...");
-		rttr.addAttribute(bno);
-		logger.info("viewRead ddd...");
+		model.addAttribute("bno", bno);
 		return "redirect:/board/read";
 	}
 	
