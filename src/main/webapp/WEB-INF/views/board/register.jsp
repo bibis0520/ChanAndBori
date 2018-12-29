@@ -5,7 +5,7 @@
 
 <h3>New Board</h3>
 
-<div>
+<div class="container">
 	<form class="overflow-a" method="post">
 	
 		<div class="form-group">
@@ -24,9 +24,9 @@
 		</div>
 		
 		<div class="text-center">
-			<button class="btn btn-primary" style="margin:5px" type="submit">등록</button>
-			<!-- To-Do취소버튼 누르면 게시물 등록되지 않고 단순히 리스트 페이지로만 되돌아가도록. -->
-			<a style="margin:5px" href="/board/listPage"><button class="btn btn-danger">취소</button></a>
+			<button class="btn btn-primary m5" type="submit">등록</button>
+			<!-- To-Do 취소버튼 누르면 게시물 등록되지 않고 단순히 리스트 페이지로만 되돌아가도록. -->
+			<a href="/board/listPage"><button class="btn btn-danger m5">취소</button></a>
 		</div>
 		
 	</form>

@@ -2,6 +2,7 @@ package com.chan.chanandbori;
 
 import javax.inject.Inject;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -33,8 +34,24 @@ public class BoardDAOTest {
 		
 		logger.info(vo.toString());	// INFO : com.chan.chanandbori.BoardDAOTest - BoardVO(bno=null, title=TestTitle, content=TestContent, writer=TestWriter, regdate=null, viewcnt=0)
 		
-		dao.create(vo);
-		
+		dao.create(vo);		
 	}
+	
+	@Ignore @Test
+	public void testUpdate() throws Exception{
+		BoardVO vo = new BoardVO();
+		
+		vo.setBno(404);
+		vo.setTitle("수정테스트");
+		vo.setContent("수정 콘텐츠");
+		
+		dao.update(vo);
+	}
+	
+	@Ignore @Test
+	public void testDelete() throws Exception{
+		
+		dao.delete(1);
+	}	
 
 }
