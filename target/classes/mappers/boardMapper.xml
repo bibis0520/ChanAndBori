@@ -32,7 +32,7 @@
 	</insert>
 
 <!-- 게시물 조회 -->	
-	<select id="read" resultType="resultForBoardVo">
+	<select id="read" resultMap="resultForBoardVo">
 		SELECT 
 			bno, title, content, writer, regdate, viewcnt 
 		FROM

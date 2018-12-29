@@ -22,8 +22,8 @@
 			<th style="width: 40px">VIEWCNT</th>
 		</tr>
 	  <c:forEach items="${list}" var="boardVO">
-		<tr>
-			<td>${boardVO.bno}</td>
+		<tr class="boardRow">
+			<td class="bno">${boardVO.bno}</td>
 			<td>${boardVO.title}</td>
 			<td>${boardVO.writer}</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}" /></td>
@@ -32,5 +32,22 @@
 	  </c:forEach>
 	</table>
 </div> 
-   
+<form id="pageRedirect" method="get" action="/board/viewRead" style="display:none;">
+	<input id="inputBno" type="hidden" name="bno" />
+</form>
+<script>
+$(".boardRow").on('click', function(event){
+	/* console.error(arguments); */
+	/* console.info(this); */
+	/* console.warn($(this)); */
+	console.info($(this).index);
+	console.info($(this).index());	/* 3 */
+	console.info($(this).children(".bno"));
+	console.info($(this).children(".bno").text());	/* 404 */
+	
+	var bno = $(this).children(".bno").text();
+	$("#inputBno").val(bno);
+	$("#pageRedirect").submit();
+});	
+</script>
 <%@ include file="../include/footer.jsp" %> 

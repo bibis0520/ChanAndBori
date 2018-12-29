@@ -6,7 +6,9 @@ import com.chan.domain.BoardVO;
 
 public interface BoardService {
 
-	public List<BoardVO> listPage() throws Exception;
+	List<BoardVO> listPage() throws Exception;
 	
-	public void create(BoardVO vo) throws Exception;
+	void create(BoardVO vo) throws Exception;
+	
+	BoardVO read(Integer bno) throws Exception;
 }
