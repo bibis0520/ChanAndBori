@@ -30,7 +30,7 @@ public class BoardDAOTest {
 		
 		vo.setTitle("123");
 		vo.setContent("1234");
-		vo.setWriter("123345");
+		vo.setRegiUserId("123345");
 		
 		logger.info(vo.toString());	// INFO : com.chan.chanandbori.BoardDAOTest - BoardVO(bno=null, title=TestTitle, content=TestContent, writer=TestWriter, regdate=null, viewcnt=0)
 		

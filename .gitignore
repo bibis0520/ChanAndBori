@@ -1,6 +1,9 @@
 # Created by https://www.gitignore.io/api/web,java,eclipse,java-web
 # Edit at https://www.gitignore.io/?templates=web,java,eclipse,java-web
 
+#about svn
+.svn
+
 ### Eclipse ###
 
 .metadata

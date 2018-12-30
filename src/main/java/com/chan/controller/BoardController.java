@@ -24,14 +24,14 @@ import com.chan.service.BoardService;
 public class BoardController {
 
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
+
 	@Inject
 	private BoardService service;
-	
+
 	// listPage
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
 	public void listAllGET(Model model) throws Exception{
-		
+
 		logger.info("listPageGET......Show Board's List");
 		List<BoardVO> rtn = service.listPage();
 		System.out.println("");
@@ -42,39 +42,39 @@ public class BoardController {
 		System.out.println("");
 		model.addAttribute("list", service.listPage());
 	}
-	
+
 	// register
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(BoardVO vo, Model model) throws Exception{
-		
+
 		logger.info("registerGET......");
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPOST(BoardVO vo, RedirectAttributes rttr) throws Exception{
-		
+
 		logger.info("registerPOST......");
-		
+
 	    service.create(vo);
-	    
+
 	    return "redirect:/board/listPage";
 	}
-	
+
 	@RequestMapping(value = "/viewRead", method = RequestMethod.GET)
 	public String viewRead(@RequestParam("bno") String bno, Model model, RedirectAttributes rttr) throws Exception{
 		logger.info("viewRead ...");
 		model.addAttribute("bno", bno);
 		return "redirect:/board/read";
 	}
-	
+
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void readGET(@PathVariable("bno") Integer bno, Model model, RedirectAttributes rttr) throws Exception{
-		
+
 		logger.info("readGET...");
-		
+
 		model.addAttribute(service.read(bno));
-		
-		
+
+
 	}
-	
+
 }

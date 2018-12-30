@@ -5,10 +5,16 @@
 
 <configuration>
 
+	<settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+
 	<!-- typeAlliases는 하위 요소로 <package>와 <typeAlias> 요소를 가질 수 있다. -->
 	<typeAliases>
 		<package name="com.chan.domain"/>
 	</typeAliases>
+
 
 <!-- 기본설정, 쿼리로그를위한 인터셉터
 	<settings>
@@ -25,4 +31,5 @@
 		<plugin interceptor="com.chan.log.MyBatisLogInterceptor" />
 	</plubing>
 -->
+
 </configuration>

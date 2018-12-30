@@ -11,12 +11,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseVO {
-	
-	private String regUserId;
-	private String regUserNm;
-	private Date   regDate;
 
+	private String regiUserId;
+	private Date regiDate;
 	private String modiUserId;
-	private String modiUserNm;
-	private Date   modiDate;
+	private Date modiDate;
 }

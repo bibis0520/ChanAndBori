@@ -1,27 +1,32 @@
 package com.chan.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
-public class BoardVO {
+public class BoardVO extends BaseVO{
 
+	private String boardId;
+	private String hrankBoardId;
 	private Integer bno;
+	private Integer seq;
 	private String title;
 	private String content;
-	private String writer;
-	private Date regdate;
-	private int viewcnt;
+	private Integer viewCnt;
 	
-//	create table tbl_board(
-//			bno int not null auto_increment,
-//		    title varchar(200) not null,
-//		    content text null,
-//		    writer varchar(50) not null,
-//		    regdate timestamp not null default now(),
-//		    viewcnt int default 0,
-//		    primary key(bno)
-//	);
+	
+//	CREATE TABLE TBL_BOARD(
+//		    BOARD_ID VARCHAR2(30),
+//		    HRANK_BOARD_ID VARCHAR2(30),
+//		    BNO NUMBER(10),
+//		    SEQ NUMBER(5),
+//		    TITLE VARCHAR2(200),
+//		    CONTENT CLOB,
+//		    REGI_USER_ID VARCHAR2(50),
+//		    REGI_DATE DATE,
+//		    MODI_USER_ID VARCHAR2(50), 
+//		    MODI_DATE DATE,    
+//		    VIEW_CNT NUMBER(3),
+//		    CONSTRAINT BOARD_PK PRIMARY KEY (BOARD_ID)
+//		);
 	
 }

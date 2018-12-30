@@ -9,7 +9,7 @@
 <div class="m20 overflow-a">
 	<a href="/board/register">
 		<button class="btn btn-primary fr">새글등록</button>
-	</a>	
+	</a>
 </div>
 
 <div>
@@ -25,13 +25,13 @@
 		<tr class="boardRow">
 			<td class="bno">${boardVO.bno}</td>
 			<td>${boardVO.title}</td>
-			<td>${boardVO.writer}</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}" /></td>
-			<td><span class="badge bg-red">${boardVO.viewcnt}</span></td>
+			<td>${boardVO.regiUserId}</td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regiDate}"/></td>
+			<td><span class="badge bg-red">${boardVO.viewCnt}</span></td>
 		</tr>
 	  </c:forEach>
 	</table>
-</div> 
+</div>
 <form id="pageRedirect" method="get" action="/board/viewRead" style="display:none;">
 	<input id="inputBno" type="hidden" name="bno" />
 </form>
@@ -45,12 +45,12 @@ $(".boardRow").on('click', function(event){
 	console.info($(this).index());	/* 3 */
 	console.info($(this).children(".bno"));
 	console.info($(this).children(".bno").text());	/* 404 */
-	
+
 	var bno = $(this).children(".bno").text();
 	$("#inputBno").val(bno);
 	//$("#pageRedirect").submit();
 	$("#gotoRead").attr("href","/board/viewRead?bno=" + bno).click();
-	
-});	
+
+});
 </script>
-<%@ include file="../include/footer.jsp" %> 
+<%@ include file="../include/footer.jsp" %>
