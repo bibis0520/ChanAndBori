@@ -11,10 +11,10 @@ import com.chan.persistence.BoardDAO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-	
+
 	@Inject
 	private BoardDAO dao;
-	
+
 	@Override
 	public List<BoardVO> listPage() throws Exception {
 
@@ -28,9 +28,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO read(Integer bno) throws Exception {
-		
-		return dao.read(bno);		
+	public BoardVO read(BoardVO searchVo) throws Exception {
+
+		return dao.read(searchVo);
 	}
 
 }

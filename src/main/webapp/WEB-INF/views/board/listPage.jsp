@@ -22,7 +22,7 @@
 			<th style="width: 40px">VIEWCNT</th>
 		</tr>
 	  <c:forEach items="${list}" var="boardVO">
-		<tr class="boardRow">
+		<tr class="boardRow" data-board-id="${boardVO.boardId}">
 			<td class="bno">${boardVO.bno}</td>
 			<td>${boardVO.title}</td>
 			<td>${boardVO.regiUserId}</td>
@@ -32,8 +32,8 @@
 	  </c:forEach>
 	</table>
 </div>
-<form id="pageRedirect" method="get" action="/board/viewRead" style="display:none;">
-	<input id="inputBno" type="hidden" name="bno" />
+<form id="pageRedirect" method="post" action="/board/viewRead" style="display:none;">
+	<input id="inpt_boardId" type="hidden" name="boardId" />
 </form>
 <a id="gotoRead"></a>
 <script>
@@ -46,11 +46,10 @@ $(".boardRow").on('click', function(event){
 	console.info($(this).children(".bno"));
 	console.info($(this).children(".bno").text());	/* 404 */
 
-	var bno = $(this).children(".bno").text();
-	$("#inputBno").val(bno);
-	//$("#pageRedirect").submit();
-	$("#gotoRead").attr("href","/board/viewRead?bno=" + bno).click();
-
+	console.info("$(this).data()",$(this).data());
+	console.info("$(this).data('boardId')",$(this).data("boardId"));
+	$("#inpt_boardId").val($(this).data("boardId"));
+	$("#pageRedirect").submit();
 });
 </script>
 <%@ include file="../include/footer.jsp" %>

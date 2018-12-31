@@ -6,64 +6,86 @@
 <mapper namespace="com.chan.persistence.BoardDAO">
 
 	<resultMap id="resultForBoardVo" type="com.chan.domain.BoardVO">
-		<result column="BNO" 			jdbcType="INTEGER" 		property="bno"/>
-		<result column="TITLE" 			jdbcType="VARCHAR" 		property="title"/>
-		<result column="CONTENT" 		jdbcType="VARCHAR" 		property="content"/>
-		<result column="REGI_USER_ID" 	jdbcType="VARCHAR" 		property="regiUserId"/>
-		<result column="REGI_DATE" 		jdbcType="TIMESTAMP" 	property="regiDate"/>
-		<result column="VIEW_CNT" 		jdbcType="INTEGER" 		property="viewCnt"/>
+		<result column="BOARD_ID"       jdbcType="VARCHAR"		property="boardId" />
+		<result column="HRANK_BOARD_ID" jdbcType="VARCHAR"		property="hrankBoardId" />
+		<result column="BNO"            jdbcType="INTEGER"		property="bno" />
+		<result column="SEQ"            jdbcType="INTEGER"		property="seq" />
+		<result column="TITLE"          jdbcType="VARCHAR"		property="title" />
+		<result column="CONTENT"        jdbcType="VARCHAR"		property="content" />
+		<result column="VIEW_CNT"		jdbcType="INTEGER"		property="viewCnt" />
+		<result column="REGI_USER_ID"   jdbcType="VARCHAR"		property="regiUserId" />
+		<result column="REGI_DATE"      jdbcType="TIMESTAMP"	property="regiDate" />
+		<result column="MODI_USER_ID"   jdbcType="VARCHAR"		property="modiUserId" />
+		<result column="MODI_DATE"      jdbcType="TIMESTAMP"	property="modiDate" />
 	</resultMap>
 
 <!-- 게시물 리스트 조회 -->
 	<select id="listPage" resultMap="resultForBoardVo">
-		SELECT
-			BNO, TITLE, CONTENT, REGI_USER_ID, REGI_DATE, VIEW_CNT
-		FROM
-			TBL_BOARD
-		ORDER BY
-			REGI_DATE DESC
+		SELECT		/* com.chan.persistence.BoardDAO.listPage */
+					BOARD_ID,
+					HRANK_BOARD_ID,
+					BNO,
+					SEQ,
+					TITLE,
+					CONTENT,
+					REGI_USER_ID,
+					REGI_DATE,
+					MODI_USER_ID,
+					MODI_DATE,
+					VIEW_CNT
+		FROM		TBL_BOARD
+		ORDER BY	REGI_DATE DESC
 	</select>
 
 <!-- 게시물 등록 -->
 	<insert id="create">
-		INSERT INTO TBL_BOARD
-                        (
-                                BOARD_ID,
-                                HRANK_BOARD_ID,
-                                BNO,
-                                SEQ,
-                                TITLE,
-                                CONTENT,
-                                REGI_USER_ID,
-                                REGI_DATE,
-                                MODI_USER_ID,
-                                MODI_DATE,
-                                VIEW_CNT
-                        )
+		INSERT INTO	/* com.chan.persistence.BoardDAO.create */
+		TBL_BOARD
+				(
+					BOARD_ID,
+					HRANK_BOARD_ID,
+					BNO,
+					SEQ,
+					TITLE,
+					CONTENT,
+					REGI_USER_ID,
+					REGI_DATE,
+					MODI_USER_ID,
+					MODI_DATE,
+					VIEW_CNT
+				)
 		VALUES
-                        (
-                                FUNC_GET_SEQ_30(),
-                                #{hrankBoardId},
-                                #{bno},
-                                #{seq},
-                                #{title},
-                                #{content},
-                                #{regiUserId},
-                                SYSDATE,
-                                #{modiUserId},
-                                SYSDATE,
-                                0
-                        )
+				(
+					FUNC_GET_SEQ_30(),
+					#{hrankBoardId},
+					#{bno},
+					#{seq},
+					#{title},
+					#{content},
+					#{regiUserId},
+					SYSDATE,
+					#{modiUserId},
+					SYSDATE,
+					0
+				)
 	</insert>
 
 <!-- 게시물 조회 -->
 	<select id="read" resultMap="resultForBoardVo">
-		SELECT
-			BNO, TITLE, CONTENT, REGI_USER_ID, REGI_DATE, VIEW_CNT
-		FROM
-			TBL_BOARD
-		WHERE
-			BNO = #{bno}
+		SELECT		/* com.chan.persistence.BoardDAO.read */
+					BOARD_ID,
+					HRANK_BOARD_ID,
+					BNO,
+					SEQ,
+					TITLE,
+					CONTENT,
+					REGI_USER_ID,
+					REGI_DATE,
+					MODI_USER_ID,
+					MODI_DATE,
+					VIEW_CNT
+		FROM		TBL_BOARD
+		WHERE		BOARD_ID = #{boardId}
 	</select>
 
 <!-- 게시물 수정 -->

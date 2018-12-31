@@ -10,10 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chan.domain.BoardVO;
@@ -60,21 +60,14 @@ public class BoardController {
 	    return "redirect:/board/listPage";
 	}
 
-	@RequestMapping(value = "/viewRead", method = RequestMethod.GET)
-	public String viewRead(@RequestParam("bno") String bno, Model model, RedirectAttributes rttr) throws Exception{
+	@RequestMapping(value = "/viewRead", method = RequestMethod.POST)
+	public ModelAndView viewRead(@ModelAttribute BoardVO boardVo) throws Exception{
 		logger.info("viewRead ...");
-		model.addAttribute("bno", bno);
-		return "redirect:/board/read";
+
+		ModelAndView view = new ModelAndView("/board/read");
+
+		view.addObject("boardVo", service.read(boardVo));
+
+		return view;
 	}
-
-	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void readGET(@PathVariable("bno") Integer bno, Model model, RedirectAttributes rttr) throws Exception{
-
-		logger.info("readGET...");
-
-		model.addAttribute(service.read(bno));
-
-
-	}
-
 }
