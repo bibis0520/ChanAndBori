@@ -5,7 +5,7 @@
 
 <mapper namespace="com.chan.persistence.BoardDAO">
 
-	<resultMap id="resultForBoardVo" type="com.chan.domain.BoardVO">
+	<resultMap id="resultForBoardVO" type="com.chan.domain.BoardVO">
 		<result column="BOARD_ID"       jdbcType="VARCHAR"		property="boardId" />
 		<result column="HRANK_BOARD_ID" jdbcType="VARCHAR"		property="hrankBoardId" />
 		<result column="BNO"            jdbcType="INTEGER"		property="bno" />
@@ -20,7 +20,7 @@
 	</resultMap>
 
 <!-- 게시물 리스트 조회 -->
-	<select id="listPage" resultMap="resultForBoardVo">
+	<select id="listPage" resultMap="resultForBoardVO">
 		SELECT		/* com.chan.persistence.BoardDAO.listPage */
 					BOARD_ID,
 					HRANK_BOARD_ID,
@@ -33,8 +33,10 @@
 					MODI_USER_ID,
 					MODI_DATE,
 					VIEW_CNT
-		FROM		TBL_BOARD
-		ORDER BY	REGI_DATE DESC
+		FROM
+					TBL_BOARD
+		ORDER BY
+					BNO DESC
 	</select>
 
 <!-- 게시물 등록 -->
@@ -58,7 +60,7 @@
 				(
 					FUNC_GET_SEQ_30(),
 					#{hrankBoardId},
-					#{bno},
+					SEQ_COMMON.NEXTVAL,
 					#{seq},
 					#{title},
 					#{content},
@@ -71,7 +73,7 @@
 	</insert>
 
 <!-- 게시물 조회 -->
-	<select id="read" resultMap="resultForBoardVo">
+	<select id="read" resultMap="resultForBoardVO">
 		SELECT		/* com.chan.persistence.BoardDAO.read */
 					BOARD_ID,
 					HRANK_BOARD_ID,
@@ -84,26 +86,28 @@
 					MODI_USER_ID,
 					MODI_DATE,
 					VIEW_CNT
-		FROM		TBL_BOARD
-		WHERE		BOARD_ID = #{boardId}
+		FROM
+					TBL_BOARD
+		WHERE
+					BOARD_ID = #{boardId}
 	</select>
 
 <!-- 게시물 수정 -->
 	<update id="update">
-		UPDATE
-			TBL_BOARD
+		UPDATE 		/* com.chan.persistence.BoardDAO.update */
+					TBL_BOARD
 		SET
-			TITLE = #{title}, CONTENT = #{content}
+					TITLE = #{title}, CONTENT = #{content}
 		WHERE
-			BNO = #{bno}
+					BNO = #{bno}
 	</update>
 
 <!-- 게시물 삭제 -->
 	<delete id="delete">
-		DELETE FROM
-			TBL_BOARD
+		DELETE FROM /* com.chan.persistence.BoardDAO.delete */
+					TBL_BOARD
 		WHERE
-			BNO = #{bno}
+					BNO = #{bno}
 	</delete>
 
 </mapper>

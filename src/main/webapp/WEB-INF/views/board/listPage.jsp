@@ -12,8 +12,9 @@
 	</a>
 </div>
 
-<div>
-	<table class="table table-bordered">
+<div class="container-fluid">
+	<table class="table table-bordered table-hover">
+	  <thead>
 		<tr>
 			<th style="width: 10px">BNO</th>
 			<th>TITLE</th>
@@ -21,35 +22,40 @@
 			<th>REGDATE</th>
 			<th style="width: 40px">VIEWCNT</th>
 		</tr>
+	  </thead>
+	  <tbody>
 	  <c:forEach items="${list}" var="boardVO">
 		<tr class="boardRow" data-board-id="${boardVO.boardId}">
-			<td class="bno">${boardVO.bno}</td>
+			<td>${boardVO.bno}</td>
 			<td>${boardVO.title}</td>
 			<td>${boardVO.regiUserId}</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regiDate}"/></td>
-			<td><span class="badge bg-red">${boardVO.viewCnt}</span></td>
+			<td><span class="badge badge-pill badge-dark">${boardVO.viewCnt}</span></td>
 		</tr>
 	  </c:forEach>
+	  </tbody>
 	</table>
 </div>
+
 <form id="pageRedirect" method="post" action="/board/viewRead" style="display:none;">
 	<input id="inpt_boardId" type="hidden" name="boardId" />
 </form>
-<a id="gotoRead"></a>
-<script>
-$(".boardRow").on('click', function(event){
-	/* console.error(arguments); */
-	/* console.info(this); */
-	/* console.warn($(this)); */
-	console.info($(this).index);
-	console.info($(this).index());	/* 3 */
-	console.info($(this).children(".bno"));
-	console.info($(this).children(".bno").text());	/* 404 */
 
-	console.info("$(this).data()",$(this).data());
-	console.info("$(this).data('boardId')",$(this).data("boardId"));
-	$("#inpt_boardId").val($(this).data("boardId"));
-	$("#pageRedirect").submit();
+<a id="gotoRead"></a>
+
+<script>
+$(document).ready(function(){
+
+	/* 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동 */
+	$(".boardRow").on('click', function(event){
+		console.info($(this).index());	/* 3 */
+		console.info($(this).children(".bno").text());	/* 404 */
+
+		console.info("$(this).data() => ",$(this).data());
+		console.info("$(this).data('boardId') => ",$(this).data("boardId"));
+		$("#inpt_boardId").val($(this).data("boardId"));
+		$("#pageRedirect").submit();
+	});
 });
 </script>
 <%@ include file="../include/footer.jsp" %>

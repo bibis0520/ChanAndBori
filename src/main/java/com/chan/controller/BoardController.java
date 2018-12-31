@@ -1,11 +1,7 @@
 package com.chan.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,22 +24,22 @@ public class BoardController {
 	@Inject
 	private BoardService service;
 
-	// listPage
+// listPage
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void listAllGET(Model model) throws Exception{
+	public void listPage(Model model) throws Exception{
 
 		logger.info("listPageGET......Show Board's List");
-		List<BoardVO> rtn = service.listPage();
-		System.out.println("");
-		System.out.println(rtn);
-		for(BoardVO p : rtn) {
-			System.out.println(ToStringBuilder.reflectionToString(p,ToStringStyle.MULTI_LINE_STYLE));
-		}
-		System.out.println("");
+//		List<BoardVO> rtn = service.listPage();
+//		System.out.println("");
+//		System.out.println(rtn);
+//		for(BoardVO p : rtn) {
+//			System.out.println(ToStringBuilder.reflectionToString(p,ToStringStyle.MULTI_LINE_STYLE));
+//		}
+//		System.out.println("");
 		model.addAttribute("list", service.listPage());
 	}
 
-	// register
+// register(CREATE)
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(BoardVO vo, Model model) throws Exception{
 
@@ -70,4 +66,11 @@ public class BoardController {
 
 		return view;
 	}
+
+//	@RequestMapping(value = "/read", method = RequestMethod.GET)
+//	public void viewRead(@RequestParam("bno") Integer bno, Model model) throws Exception{
+//		logger.info("readGET ...");
+//
+//		model.addAttribute(service.read(bno));
+//	}
 }
