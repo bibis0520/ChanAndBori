@@ -12,7 +12,7 @@
 	</a>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom:30px">
 	<table class="table table-bordered table-hover">
 	  <thead>
 		<tr>

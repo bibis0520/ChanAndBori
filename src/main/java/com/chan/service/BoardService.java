@@ -10,5 +10,5 @@ public interface BoardService {
 
 	void create(BoardVO vo) throws Exception;
 
-	BoardVO read(BoardVO searchVo) throws Exception;
+	BoardVO read(BoardVO searchVO) throws Exception;
 }

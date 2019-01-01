@@ -10,12 +10,12 @@ import lombok.EqualsAndHashCode;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BoardVO extends BaseVO{
 
-	private String boardId;
-	private String hrankBoardId;
+	private String  boardId;
+	private String  hrankBoardId;
 	private Integer bno;
 	private Integer seq;
-	private String title;
-	private String content;
+	private String  title;
+	private String  content;
 	private Integer viewCnt;
 
 

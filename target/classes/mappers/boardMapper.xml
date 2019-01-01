@@ -51,24 +51,18 @@
 					TITLE,
 					CONTENT,
 					REGI_USER_ID,
-					REGI_DATE,
-					MODI_USER_ID,
-					MODI_DATE,
-					VIEW_CNT
+					MODI_USER_ID
 				)
 		VALUES
 				(
 					FUNC_GET_SEQ_30(),
 					#{hrankBoardId},
-					SEQ_COMMON.NEXTVAL,
+					(SELECT NVL(MAX(BNO)+1, 1) FROM TBL_BOARD),
 					#{seq},
 					#{title},
 					#{content},
 					#{regiUserId},
-					SYSDATE,
-					#{modiUserId},
-					SYSDATE,
-					0
+					#{modiUserId}
 				)
 	</insert>
 

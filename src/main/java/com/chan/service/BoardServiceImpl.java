@@ -28,9 +28,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO read(BoardVO searchVo) throws Exception {
+	public BoardVO read(BoardVO searchVO) throws Exception {
 
-		return dao.read(searchVo);
+		return dao.read(searchVO);
 	}
 
 }

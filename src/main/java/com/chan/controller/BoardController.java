@@ -41,7 +41,7 @@ public class BoardController {
 
 // register(CREATE)
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registerGET(BoardVO vo, Model model) throws Exception{
+	public void registerGET(BoardVO boardVO, Model model) throws Exception{
 
 		logger.info("registerGET......");
 	}
@@ -55,6 +55,7 @@ public class BoardController {
 
 	    return "redirect:/board/listPage";
 	}
+
 
 	@RequestMapping(value = "/viewRead", method = RequestMethod.POST)
 	public ModelAndView viewRead(@ModelAttribute BoardVO boardVo) throws Exception{
