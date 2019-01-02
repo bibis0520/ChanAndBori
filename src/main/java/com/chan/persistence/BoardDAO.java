@@ -10,7 +10,7 @@ public interface BoardDAO {
 
 	void create(BoardVO vo) throws Exception;			// 게시물 등록
 
-	BoardVO read(BoardVO searchVO) throws Exception;	// 게시물 조회
+	BoardVO read(Integer bno) throws Exception;			// 게시물 조회
 
 	void update(BoardVO vo) throws Exception;			// 게시물 수정
 

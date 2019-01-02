@@ -3,10 +3,11 @@
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
 
-<h3>READ</h3>
+<h3>MODIFY</h3>
 
 <div class="container">
-	<form name="readForm" class="overflow-a" method="post">
+	<form name="modifyForm" class="overflow-a" method="post">
+
 		<div class="form-group">
 			<label for="bno">Bno</label>
 			<input class="form-control" type="text" value="${boardVO.bno}" readonly/>
@@ -14,12 +15,12 @@
 
 		<div class="form-group">
 			<label for="title">Title</label>
-			<input class="form-control" type="text" name="title" id="title" value="${boardVO.title}" readonly/>
-
+			<input class="form-control" type="text" name="title" id="title" value="${boardVO.title}" />
 		</div>
+
 		<div class="form-group">
 			<label for="content">Content</label>
-			<textarea class="form-control" rows="10" cols="40" name="content" id="content" readonly>${boardVO.content}</textarea>
+			<textarea class="form-control" rows="10" cols="40" name="content" id="content">${boardVO.content}</textarea>
 		</div>
 
 		<div class="form-group">
@@ -28,9 +29,8 @@
 		</div>
 
 		<div class="text-center">
-			<a href="/board/modify?bno=${boardVO.bno}"><button id="btnModify" type="button" class="btn btn-outline-warning m5">수정</button></a>
-			<button id="btnDelete" type="button" class="btn btn-outline-danger m5"       >삭제</button>
-			<button id="btnListPage" type="button" class="btn btn-outline-secondary m5"  >목록</button>
+			<button id="btnEnter"  type="button" class="btn btn-outline-primary m5"   >확인</button>
+			<button id="btnCancel" type="button" class="btn btn-outline-secondary m5">취소</button>
 		</div>
 	</form>
 </div>
@@ -46,16 +46,23 @@ $(document).ready(function(){
 		$regiUserId = $("#regiUserId").val();
 	console.log("title : " + $title + ", content : " + $content + ", regiUserId : " + $regiUserId);
 
-	//삭제 버튼
-	$("#btnDelete").on("click", () => {
-
+	$("#btnEnter").on("click", () => {
+		if( $title == "" ) {
+			alert("제목을 입력해주세요.");
+			return;
+		}
+		if( $content == "" ) {
+			alert("내용을 입력해주세요.");
+			return;
+		}
+		alert("수정이 완료되었습니다.");
 	});
 
 	//취소 버튼
-	$("#btnListPage").on("click", () => {
+	$("#btnCancel").on("click", () => {
+
 		window.location.href = "/board/listPage";
 	});
-
 });
 </script>
 

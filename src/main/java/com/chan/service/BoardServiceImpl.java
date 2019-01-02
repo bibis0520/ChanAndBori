@@ -28,9 +28,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO read(BoardVO searchVO) throws Exception {
+	public BoardVO read(Integer bno) throws Exception {
 
-		return dao.read(searchVO);
+		return dao.read(bno);
+	}
+
+	@Override
+	public void update(BoardVO vo) throws Exception {
+
+		dao.update(vo);
 	}
 
 }

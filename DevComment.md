@@ -57,9 +57,31 @@ comment by kc
 >>>- 참고 : [Oracle의 NVL함수 & DECODE함수](http://applejara.tistory.com/303)
 
 >##### 2019.01.02
->>** register.jsp :** script 추가
+>>** register.jsp 수정:** script 추가
 >>>- 참고 : [JQuery로 선택한 태그 요소값과 속성을 바꿔보자](http://rongscodinghistory.tistory.com/34)
 >>>- 참고 : [JavaScript onclick Event](https://zetawiki.com/wiki/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8_onclick_%EC%9D%B4%EB%B2%A4%ED%8A%B8)
 >>>- 참고 : [Spring으로 게시판 만들기](https://doublesprogramming.tistory.com/95)
+
+>>** BoardController.java의 조회(Read) 수정 : **
+>>>- 1) /board/viewRead -> /board/read 수정 (uri에 /board/read?bno=36과 같이 읽어올 수 있도록 수정)
+>>>- 2) boardMapper.xml의 read부분, WHERE BOARD_ID = #{boardId} => WHERE BNO = #{bno} ( 1)에서 가져온 bno로 게시물을 조회할 수 있도록 수정)
+>>>- 3) Service~DAO까지 read메서드의 매개변수 변경 : BoardVO searchVo => Integer bno
+
+>>** URI에 BNO값 전달하기 :** http://localhost:8080/board/read => http://localhost:8080/board/read?bno=36
+>>>- 1) listPage.jsp에 input을 없애고 해당 행을 클릭할 경우, table에서 bno를 가져와 uri를 만든다.
+>>>- 2) 그리고 location.href = uri;를 통해 이동.
+>>>- 3) 사실 리스트페이지에서는 bno를 가지고 하는일이 아직 명확하지 않아서 uri만 만들어 이동하도록 했는데 나중에 이부분은 수정이 필요할 것 같다.(아직 링크에 값을 전달하고 하는부분이 잘 이해되지 않은듯...)
+>>>- 4) read.jsp에서는 BoardVO에서 받은 bno를 input[type=hidden]으로 저장해 놓도록 수정했다.(값이 저장되어 있는지 확인함)
+>>>- 참고 : [W3School Location href Property](https://www.w3schools.com/jsref/prop_loc_href.asp)
+
+>>** UPDATE 구현 중 :**
+>>>- 1) BoardController에 UPDATE메서드 추가.(read와 마찬가지로 bno값을 가지고 'board/modify?bno=39'와 수정 실행
+>>>- 2) boardMapper.xml에 UPDATE문 수정. 수정하면 현재 시간을 MODI_DATE컬럼에 넣음(! MODI_USER_ID가 필요한지 여부, 등록한 사람만 수정을 할수 있어야 할거같아서...)
+>>>- 3) 수정할때는 제목과 내용만 수정할 수 있는데 제목이나 내용을 아얘 지우고 확인을 눌르면 수정이 되서, 이 부분 조건문으로 추가해야됨(빈곳으로 focus()되도록 수정)
+
+>>** CSS부분 수정해야될 부분 :**
+>>>- READ, UPDATE부분에 BNO를 보여주기위한 부분을 추가했더니, 아래의 Footer와 겹치는 현상이 발생. 이부분 처리해야됨.
+
+
 
 

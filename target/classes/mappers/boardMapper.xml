@@ -83,7 +83,7 @@
 		FROM
 					TBL_BOARD
 		WHERE
-					BOARD_ID = #{boardId}
+					BNO = #{bno}
 	</select>
 
 <!-- 게시물 수정 -->
@@ -91,7 +91,10 @@
 		UPDATE 		/* com.chan.persistence.BoardDAO.update */
 					TBL_BOARD
 		SET
-					TITLE = #{title}, CONTENT = #{content}
+					TITLE 			= #{title},
+					CONTENT 		= #{content},
+					MODI_USER_ID 	= #{regiUserId},
+					MODI_DATE 		= SYSDATE
 		WHERE
 					BNO = #{bno}
 	</update>

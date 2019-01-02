@@ -26,7 +26,7 @@
 	  <tbody>
 	  <c:forEach items="${list}" var="boardVO">
 		<tr class="boardRow" data-board-id="${boardVO.boardId}">
-			<td>${boardVO.bno}</td>
+			<td class="bno">${boardVO.bno}</td>
 			<td>${boardVO.title}</td>
 			<td>${boardVO.regiUserId}</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regiDate}"/></td>
@@ -37,25 +37,25 @@
 	</table>
 </div>
 
-<form id="pageRedirect" method="post" action="/board/viewRead" style="display:none;">
+<%-- <form role="form" id="pageRedirect" method="post" action="/board/read?bno=${boardVO.bno}">
 	<input id="inpt_boardId" type="hidden" name="boardId" />
-</form>
-
-<a id="gotoRead"></a>
+</form> --%>
 
 <script>
 $(document).ready(function(){
 
 	/* 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동 */
-	$(".boardRow").on('click', function(event){
-		console.info($(this).index());	/* 3 */
-		console.info($(this).children(".bno").text());	/* 404 */
+	$(".boardRow").on('click', function(){
+		/* console.info($(this).index()); */
+		/* console.info($(this).children(".bno").text()); */
+		/* console.info("$(this).data() => ",$(this).data()); */
+		/* console.info("$(this).data('boardId') => ",$(this).data("boardId")); */
+		var bno = $(this).children(".bno").text(),
+		    uri = "/board/read?bno=" + bno;
 
-		console.info("$(this).data() => ",$(this).data());
-		console.info("$(this).data('boardId') => ",$(this).data("boardId"));
-		$("#inpt_boardId").val($(this).data("boardId"));
-		$("#pageRedirect").submit();
+		location.href = uri;
 	});
+
 });
 </script>
 <%@ include file="../include/footer.jsp" %>
