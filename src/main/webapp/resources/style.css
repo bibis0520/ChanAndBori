@@ -13,6 +13,12 @@
 .overflow-a{
 	overflow:auto;
 }
+.overflow-h{
+	overflow:hidden;
+}
+.padding-b40{
+	padding-bottom:40px;
+}
 html{ height : 100%; }
 body {
     width : 100%;

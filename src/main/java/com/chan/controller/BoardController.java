@@ -99,4 +99,10 @@ public class BoardController {
 		return "redirect:/board/read?bno=" + vo.getBno();
 	}
 
+//  DELETE
+	@RequestMapping(value = "/remove", method = RequestMethod.GET)
+	public void removeGET() throws Exception {
+
+	}
+
 }

@@ -4,42 +4,46 @@
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
 
-<h3>Board</h3>
+<div class="contents overflow-h padding-b40">
 
-<div class="m20 overflow-a">
-	<a href="/board/register">
-		<button class="btn btn-primary fr">새글등록</button>
-	</a>
+	<h3>Board</h3>
+
+	<div class="m20 overflow-a">
+		<a href="/board/register">
+			<button class="btn btn-primary fr">새글등록</button>
+		</a>
+	</div>
+
+	<div class="container-fluid">
+		<table class="table table-bordered table-hover">
+		  <thead>
+			<tr>
+				<th scope="col" style="width: 5%">BNO</th>
+				<th scope="col" style="width: 50%">TITLE</th>
+				<th scope="col" style="width: 30%">WRITER</th>
+				<th scope="col" style="width: 10%">REGDATE</th>
+				<th scope="col" style="width: 5%">VIEWCNT</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  <c:forEach items="${list}" var="boardVO">
+			<tr class="boardRow" data-board-id="${boardVO.boardId}">
+				<th scope="row" class="bno">${boardVO.bno}</th>
+				<td>${boardVO.title}</td>
+				<td>${boardVO.regiUserId}</td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regiDate}"/></td>
+				<td class="text-center"><span class="badge badge-pill badge-dark">${boardVO.viewCnt}</span></td>
+			</tr>
+		  </c:forEach>
+		  </tbody>
+		</table>
+	</div>
+
+	<%-- <form role="form" id="pageRedirect" method="post" action="/board/read?bno=${boardVO.bno}">
+		<input id="inpt_boardId" type="hidden" name="boardId" />
+	</form> --%>
+
 </div>
-
-<div class="container-fluid" style="padding-bottom:30px">
-	<table class="table table-bordered table-hover">
-	  <thead>
-		<tr>
-			<th style="width: 10px">BNO</th>
-			<th>TITLE</th>
-			<th>WRITER</th>
-			<th>REGDATE</th>
-			<th style="width: 40px">VIEWCNT</th>
-		</tr>
-	  </thead>
-	  <tbody>
-	  <c:forEach items="${list}" var="boardVO">
-		<tr class="boardRow" data-board-id="${boardVO.boardId}">
-			<td class="bno">${boardVO.bno}</td>
-			<td>${boardVO.title}</td>
-			<td>${boardVO.regiUserId}</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regiDate}"/></td>
-			<td><span class="badge badge-pill badge-dark">${boardVO.viewCnt}</span></td>
-		</tr>
-	  </c:forEach>
-	  </tbody>
-	</table>
-</div>
-
-<%-- <form role="form" id="pageRedirect" method="post" action="/board/read?bno=${boardVO.bno}">
-	<input id="inpt_boardId" type="hidden" name="boardId" />
-</form> --%>
 
 <script>
 $(document).ready(function(){

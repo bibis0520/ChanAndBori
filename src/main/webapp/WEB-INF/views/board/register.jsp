@@ -3,32 +3,36 @@
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
 
-<h3>New Board</h3>
+<div class="contents overflow-h padding-b40">
 
-<div class="container">
-	<form name="regiForm" class="overflow-a" method="post">
+	<h3>New Board</h3>
 
-		<div class="form-group">
-			<label for="title">Title</label>
-			<input class="form-control" type="text" name="title" id="title" placeholder="Enter Title..."/>
-		</div>
+	<div class="container">
+		<form name="regiForm" class="overflow-a" method="post">
 
-		<div class="form-group">
-			<label for="content">Content</label>
-			<textarea class="form-control" rows="10" cols="40" name="content" id="content" placeholder="Enter Content..."></textarea>
-		</div>
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input class="form-control" type="text" name="title" id="title" placeholder="Enter Title..."/>
+			</div>
 
-		<div class="form-group">
-			<label for="regiUserId">Writer</label>
-			<input class="form-control" type="text" name="regiUserId" id="regiUserId" placeholder="Enter Writer..."/>
-		</div>
+			<div class="form-group">
+				<label for="content">Content</label>
+				<textarea class="form-control" rows="10" cols="40" name="content" id="content" placeholder="Enter Content..."></textarea>
+			</div>
 
-		<div class="text-center">
-			<button type="button" id="btnRegister"  class="btn btn-outline-primary m5">등록</button>
-			<button type="button" id="btnCancel" 	class="btn btn-outline-danger  m5">취소</button>
-		</div>
+			<div class="form-group">
+				<label for="regiUserId">Writer</label>
+				<input class="form-control" type="text" name="regiUserId" id="regiUserId" placeholder="Enter Writer..."/>
+			</div>
 
-	</form>
+			<div class="text-center">
+				<button type="button" id="btnRegister"  class="btn btn-outline-primary m5">등록</button>
+				<button type="button" id="btnCancel" 	class="btn btn-outline-danger  m5">취소</button>
+			</div>
+
+		</form>
+	</div>
+
 </div>
 
 <script>

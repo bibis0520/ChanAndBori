@@ -4,5 +4,8 @@
 <%@ page session="false" %>
 <%@ include file="include/header.jsp" %>
 
+<div class="contents overflow-h padding-b40">
+
+</div>
 
 <%@ include file="include/footer.jsp" %>

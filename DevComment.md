@@ -80,7 +80,17 @@ comment by kc
 >>>- 3) 수정할때는 제목과 내용만 수정할 수 있는데 제목이나 내용을 아얘 지우고 확인을 눌르면 수정이 되서, 이 부분 조건문으로 추가해야됨(빈곳으로 focus()되도록 수정)
 
 >>** CSS부분 수정해야될 부분 :**
->>>- READ, UPDATE부분에 BNO를 보여주기위한 부분을 추가했더니, 아래의 Footer와 겹치는 현상이 발생. 이부분 처리해야됨.
+>>>- READ, UPDATE부분에 BNO를 보여주기위한 부분을 추가했더니, 아래의 Footer와 겹치는 현상이 발생. 이부분 처리해야됨.(1/3해결)
+
+>##### 2019.01.03
+>>** CSS부분 수정 :**
+>>>- header.jsp와 footer.jsp에 맨 하단과 맨 상단에 들어가있던 <div class="contents overflow-h padding-b40">를 각 jsp에 따로따로 다 추가했다. 페이지별로 디자인이 다를수도 있어서 일단 그렇게 처리하고, 추후에 공통적인 부분은 header.jsp와 footer.jsp에 다시 넣을 예정.
+>>>- 어제 버튼이 Footer영역과 겹치는 현상이 발견되어 그 부분은 Content div에 padding-bottom:40px 을 적용시켜 Contents div에 클래스로 추가했다.
+
+>>** UPDATE 구현 중 :**
+>>>- 1)어제 제목이나 내용란을 빈칸으로 두고 확인을 눌러도 수정이 되는 현상이 발생해, 그부분을 script을 이용해 수정하였다. 처음에 전역 변수로 title, content를 잡아놨더니 이미 값이 저장되어 있었기 때문에 수정후 버튼을 클릭했을때 값이 있던 없던 alert가 발생되지 않았다. 그래서 title과 content의 값을 담는 변수를 function("#btnEnter").on("click", function(){ ... }); 안에 두어 값을 그때 그때 확인하여 빈칸일 경우 다시 그부분으로 focus()하도록 구현하였다.
+
+
 
 
 

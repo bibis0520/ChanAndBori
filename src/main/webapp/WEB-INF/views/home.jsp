@@ -3,8 +3,10 @@
 <%@ page session="false" %>
 <%@ include file="include/header.jsp" %>
 
+<div class="contents overflow-h padding-b40">
+
     <h3>안녕하세요! 보리와 저의 일상을 기록하는 공간입니다!</h3>
-    
+
     <div id="carouselExampleIndicators" class="carousel slide mx-auto align-middle" data-ride="carousel">
     	<ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -31,5 +33,6 @@
             <span class="sr-only">Next</span>
     	</a>
 	</div>
-    
-<%@ include file="include/footer.jsp" %>    
+
+</div>
+<%@ include file="include/footer.jsp" %>

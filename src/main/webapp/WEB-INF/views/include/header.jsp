@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>    
+<%@ page session="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@
 <body>
     <div class="wrapper">
         <div class="header">
-            
+
             <div class="title">
 				<div class="tr">
                     <h1>Chan & Bori's Lifelog</h1>
@@ -40,20 +40,18 @@
 					</div>
 				</div>
             </div><!-- /title -->
-            
+
             <div class="navigation">
                 <ul class="fl">
                     <li><a href="/"><i class="fas fa-home"></i></a></li>
                     <li><a href="/board/listPage"><i class="fas fa-clipboard-list"></i></a></li>
                     <li><a href="/photo"><i class="fas fa-camera-retro"></i></a></li>
                 </ul>
-                
+
                 <ul class="fr">
                     <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
                     <li><a href="/signup"><i class="fas fa-user-plus"></i></a></li>
                 </ul>
             </div><!-- /navigation -->
-        
+
         </div>
-        
-        <div class="contents overflow-a">
