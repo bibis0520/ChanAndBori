@@ -100,8 +100,8 @@
 	</update>
 
 <!-- 게시물 삭제 -->
-	<delete id="delete">
-		DELETE FROM /* com.chan.persistence.BoardDAO.delete */
+	<delete id="remove">
+		DELETE FROM /* com.chan.persistence.BoardDAO.remove */
 					TBL_BOARD
 		WHERE
 					BNO = #{bno}

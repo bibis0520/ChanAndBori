@@ -64,7 +64,7 @@ $(document).ready(function(){
 			return;
 		}
 
-		alert("\"" + $title + "\"이 등록되었습니다.");
+		/* alert("\"" + $title + "\"이 등록되었습니다."); */
 		document.regiForm.submit();
 	});
 

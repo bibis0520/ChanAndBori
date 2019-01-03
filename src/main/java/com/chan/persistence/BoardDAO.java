@@ -14,6 +14,6 @@ public interface BoardDAO {
 
 	void update(BoardVO vo) throws Exception;			// 게시물 수정
 
-	void delete(Integer bno) throws Exception;			// 게시물 삭제
+	void remove(Integer bno) throws Exception;			// 게시물 삭제
 
 }

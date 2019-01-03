@@ -13,4 +13,6 @@ public interface BoardService {
 	BoardVO read(Integer bno) throws Exception;
 
 	void update(BoardVO vo) throws Exception;
+
+	void remove(Integer bno) throws Exception;
 }

@@ -5,6 +5,8 @@
 
 <div class="contents overflow-h padding-b40">
 
+	<div id="modifyOK" class="alert alert-success hidden text-center" role="alert">수정이 완료되었습니다.</div>
+
 	<h3>READ</h3>
 
 	<div class="container">
@@ -31,7 +33,7 @@
 
 			<div class="text-center">
 				<a href="/board/modify?bno=${boardVO.bno}"><button id="btnModify" type="button" class="btn btn-outline-warning m5">수정</button></a>
-				<button id="btnDelete" type="button" class="btn btn-outline-danger m5"       >삭제</button>
+				<a href="/board/remove?bno=${boardVO.bno}"><button id="btnDelete" type="button" class="btn btn-outline-danger m5">삭제</button></a>
 				<button id="btnListPage" type="button" class="btn btn-outline-secondary m5"  >목록</button>
 			</div>
 		</form>
@@ -45,15 +47,12 @@
 
 <script>
 $(document).ready(function(){
-	var $title = $("#title").val(),
-		$content = $("#content").val(),
-		$regiUserId = $("#regiUserId").val();
-	console.log("title : " + $title + ", content : " + $content + ", regiUserId : " + $regiUserId);
 
-	//삭제 버튼
-	$("#btnDelete").on("click", () => {
-
-	});
+	var modifyResult = "${result}";
+	if( modifyResult === "Modify Success!!!" ) {
+		$("#modifyOK").removeClass("hidden");
+		$("#modifyOK").fadeOut(2000);
+	};
 
 	//취소 버튼
 	$("#btnListPage").on("click", () => {

@@ -89,9 +89,9 @@ comment by kc
 
 >>** UPDATE 구현 중 :**
 >>>- 1)어제 제목이나 내용란을 빈칸으로 두고 확인을 눌러도 수정이 되는 현상이 발생해, 그부분을 script을 이용해 수정하였다. 처음에 전역 변수로 title, content를 잡아놨더니 이미 값이 저장되어 있었기 때문에 수정후 버튼을 클릭했을때 값이 있던 없던 alert가 발생되지 않았다. 그래서 title과 content의 값을 담는 변수를 function("#btnEnter").on("click", function(){ ... }); 안에 두어 값을 그때 그때 확인하여 빈칸일 경우 다시 그부분으로 focus()하도록 구현하였다.
+>>>- 2)수정이 완료된 후 BoardController의 update메서드에서 받는 redirect의 addFlashAttribute를 이용하여, 수정이 완료됬을 때 리다이렉트 되는 read페이지에서 그 값을 이용해 alert창이 맨위에 나타나도록 구현
+>>>- 참고 : [[Spring] 17.SpringProject-수정,삭제구현](https://kookyungmin.github.io/server/2018/08/22/spring_17/)
 
-
-
-
-
-
+>>** DELETE 구현 :**
+>>>- 1) BoardController.java에 remove메서드 추가(GET방식, "board/remove?bno=39"와 같은 방식으로 게시물 삭제)
+>>>- 2) 게시물을 등록하거나 삭제할 때, rttr의 addFlashAttribute를 이용하여 listPage가 redirect시에 받는 result메세지를 이용해 맨위에 alert창이 나타나도록 구현

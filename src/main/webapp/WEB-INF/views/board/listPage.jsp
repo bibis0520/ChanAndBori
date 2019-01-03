@@ -6,6 +6,9 @@
 
 <div class="contents overflow-h padding-b40">
 
+	<div id="registerOK" class="alert alert-success hidden text-center" role="alert">새글이 등록되었습니다.</div>
+	<div id="removeOK" class="alert alert-danger hidden text-center" role="alert">글이 삭제되었습니다.</div>
+
 	<h3>Board</h3>
 
 	<div class="m20 overflow-a">
@@ -47,6 +50,18 @@
 
 <script>
 $(document).ready(function(){
+
+	var result = '${result}';
+	$(function(){
+		if(result === "Register Success!!!") {
+			$("#registerOK").removeClass("hidden");
+			$("#registerOK").fadeOut(2000);
+		}
+		if(result === "Remove Success!!!") {
+			$("#removeOK").removeClass("hidden");
+			$("#removeOK").fadeOut(2000);
+		}
+	});
 
 	/* 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동 */
 	$(".boardRow").on('click', function(){

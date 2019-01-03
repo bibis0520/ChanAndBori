@@ -19,6 +19,9 @@
 .padding-b40{
 	padding-bottom:40px;
 }
+.hidden{
+	display:none;
+}
 html{ height : 100%; }
 body {
     width : 100%;

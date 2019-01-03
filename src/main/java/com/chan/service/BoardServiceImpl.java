@@ -39,4 +39,10 @@ public class BoardServiceImpl implements BoardService {
 		dao.update(vo);
 	}
 
+	@Override
+	public void remove(Integer bno) throws Exception {
+
+		dao.remove(bno);
+	}
+
 }

@@ -51,6 +51,7 @@ public class BoardController {
 		logger.info("registerPOST......");
 
 	    service.create(vo);
+	    rttr.addFlashAttribute("result", "Register Success!!!");
 
 	    return "redirect:/board/listPage";
 	}
@@ -94,15 +95,21 @@ public class BoardController {
 		logger.info("modifyPOST......");
 
 		service.update(vo);
-		rttr.addFlashAttribute("result", "Modify Success!");
+		rttr.addFlashAttribute("result", "Modify Success!!!");
 
 		return "redirect:/board/read?bno=" + vo.getBno();
 	}
 
 //  DELETE
 	@RequestMapping(value = "/remove", method = RequestMethod.GET)
-	public void removeGET() throws Exception {
+	public String removeGET(@RequestParam("bno") Integer bno, RedirectAttributes rttr) throws Exception {
 
+		logger.info("removeGET......");
+
+		service.remove(bno);
+		rttr.addFlashAttribute("result", "Remove Success!!!");
+
+		return "redirect:/board/listPage";
 	}
 
 }
