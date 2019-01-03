@@ -95,3 +95,8 @@ comment by kc
 >>** DELETE 구현 :**
 >>>- 1) BoardController.java에 remove메서드 추가(GET방식, "board/remove?bno=39"와 같은 방식으로 게시물 삭제)
 >>>- 2) 게시물을 등록하거나 삭제할 때, rttr의 addFlashAttribute를 이용하여 listPage가 redirect시에 받는 result메세지를 이용해 맨위에 alert창이 나타나도록 구현
+
+>>** 예외 페이지 작성 :** Controller Package안에 CommonExceptionAdvice.java
+>>>- 1) 예외가 발생하면 error_common.jsp를 불러옴.
+>>>- 2) TO-DO 결과는 제대로 불러오는데 <li>요소가 반복될때 값이 하나 찍고 개행되어야 하는데 화면 너비가 남으면 아래의 행이 위에 따라 들어온다. 한줄 찍고 개행하고 한줄찍고 개행하도록 수정해야됨.
+
