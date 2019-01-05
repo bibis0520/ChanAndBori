@@ -58,7 +58,7 @@
 
 	<!-- 게시물의 총 갯수구하는 Query -->
 	<select id="totalCount">
-		SELECT COUNT(*) FROM TBL_BOARD;
+		SELECT COUNT(1) FROM TBL_BOARD;
 	</select>
 
 <!-- CRUD -->
