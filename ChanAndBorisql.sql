@@ -82,6 +82,9 @@ FROM
     )
 WHERE RNUM BETWEEN 0 AND 10;
 
+-- 게시물의 총 개수를 구하는 Query
+SELECT COUNT(*) FROM TBL_BOARD;
+
 ----dummy data 삽입(procedure)
 BEGIN
     FOR i in 1..500 LOOP
