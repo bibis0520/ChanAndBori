@@ -229,8 +229,6 @@
 					<target>1.8</target>
 					<compilerArguments>
 						<compilerArgument>-Xlint:all</compilerArgument>
-						<org.eclipse.jdt.core.compiler.problem.fatalOptionalError>disabled</org.eclipse.jdt.core.compiler.problem.fatalOptionalError>
- 			            <org.eclipse.jdt.core.compiler.problem.forbiddenReference>ignore</org.eclipse.jdt.core.compiler.problem.forbiddenReference>
 					</compilerArguments>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
