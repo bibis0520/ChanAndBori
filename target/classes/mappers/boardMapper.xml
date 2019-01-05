@@ -18,10 +18,10 @@
 		<result column="MODI_USER_ID"   jdbcType="VARCHAR"		property="modiUserId" />
 		<result column="MODI_DATE"      jdbcType="TIMESTAMP"	property="modiDate" />
 	</resultMap>
-
-<!-- 게시물 리스트 조회 -->
-	<select id="listPage" resultMap="resultForBoardVO">
-		SELECT		/* com.chan.persistence.BoardDAO.listPage */
+<!-- LISTPAGE & PAGENATION -->
+	<!-- 게시물 전체 리스트 조회 -->
+	<select id="listAll" resultMap="resultForBoardVO">
+		SELECT		/* com.chan.persistence.BoardDAO.listAll */
 					BOARD_ID,
 					HRANK_BOARD_ID,
 					BNO,
@@ -39,7 +39,30 @@
 					BNO DESC
 	</select>
 
-<!-- 게시물 등록 -->
+	<!-- 페이징 처리된 게시물 리스트 조회 -->
+	<select id="listPage" resultMap="resultForBoardVO">
+		SELECT *	/* com.chan.persistence.BoardDAO.listPage */
+		FROM
+    		(
+    				SELECT ROWNUM RNUM, TBL_BOARD.*
+    				FROM
+        				(
+						        SELECT *
+						        FROM TBL_BOARD
+						        ORDER BY BNO DESC
+				        )
+        				TBL_BOARD
+    		)
+		WHERE RNUM BETWEEN #{page} AND #{page}+10;
+	</select>
+
+	<!-- 게시물의 총 갯수구하는 Query -->
+	<select id="totalCount">
+		SELECT COUNT(*) FROM TBL_BOARD;
+	</select>
+
+<!-- CRUD -->
+	<!-- 게시물 등록 -->
 	<insert id="create">
 		INSERT INTO	/* com.chan.persistence.BoardDAO.create */
 		TBL_BOARD
@@ -66,7 +89,7 @@
 				)
 	</insert>
 
-<!-- 게시물 조회 -->
+	<!-- 게시물 조회 -->
 	<select id="read" resultMap="resultForBoardVO">
 		SELECT		/* com.chan.persistence.BoardDAO.read */
 					BOARD_ID,
@@ -86,7 +109,7 @@
 					BNO = #{bno}
 	</select>
 
-<!-- 게시물 수정 -->
+	<!-- 게시물 수정 -->
 	<update id="update">
 		UPDATE 		/* com.chan.persistence.BoardDAO.update */
 					TBL_BOARD
@@ -99,7 +122,7 @@
 					BNO = #{bno}
 	</update>
 
-<!-- 게시물 삭제 -->
+	<!-- 게시물 삭제 -->
 	<delete id="remove">
 		DELETE FROM /* com.chan.persistence.BoardDAO.remove */
 					TBL_BOARD

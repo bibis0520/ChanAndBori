@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.chan.domain.BoardVO;
+import com.chan.domain.PagingVO;
 import com.chan.persistence.BoardDAO;
 
 @Service
@@ -16,9 +17,21 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO dao;
 
 	@Override
-	public List<BoardVO> listPage() throws Exception {
+	public List<BoardVO> listAll() throws Exception {
 
-		return dao.listPage();
+		return dao.listAll();
+	}
+
+	@Override
+	public List<BoardVO> listPage(PagingVO vo) throws Exception {
+
+
+//		if( page <= 0 ) {
+//			page = 1;
+//		}
+//
+//		int start = page - 1;
+		return null;
 	}
 
 	@Override
@@ -44,5 +57,4 @@ public class BoardServiceImpl implements BoardService {
 
 		dao.remove(bno);
 	}
-
 }

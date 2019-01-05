@@ -73,6 +73,10 @@ $(document).ready(function(){
 		window.location.href = "/board/listPage";
 	});
 
+	$("#content").on("keydown",function(){
+		console.error($(this).val().length)
+		if($(this).val().length > 10){return false;}
+	})
 });
 </script>
 

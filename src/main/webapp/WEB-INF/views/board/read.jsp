@@ -54,7 +54,7 @@ $(document).ready(function(){
 		$("#modifyOK").fadeOut(2000);
 	};
 
-	//취소 버튼
+	// 목록가기 버튼
 	$("#btnListPage").on("click", () => {
 		window.location.href = "/board/listPage";
 	});

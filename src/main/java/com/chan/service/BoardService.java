@@ -3,10 +3,13 @@ package com.chan.service;
 import java.util.List;
 
 import com.chan.domain.BoardVO;
+import com.chan.domain.PagingVO;
 
 public interface BoardService {
 
-	List<BoardVO> listPage() throws Exception;
+	List<BoardVO> listAll() throws Exception;
+
+	List<BoardVO> listPage(PagingVO vo) throws Exception;
 
 	void create(BoardVO vo) throws Exception;
 

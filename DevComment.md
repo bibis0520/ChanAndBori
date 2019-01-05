@@ -20,6 +20,11 @@ comment by hsm
 - board테이블의 view_cnt값 및 who컬럼의 일시컬럼 default값 추가
 - 테이블, 컬럼 comment 추가
 
+>##### 2019.01.04
+>>**bno :** bno컬럼의 역할에대한 명확한 설계사항이 필요함
+
+>>**프로젝트는 test포함 에러가 없는상태로 유지 : ** 새로운 사람이 checkout 받아도 이상없이 서버를 구동하며 Project Explorer에서 에러표시가 안뜨도록 상태를 유지하는 습관이 필요함
+
 comment by kc
 -----------
 >##### 2018.12.31
@@ -96,7 +101,22 @@ comment by kc
 >>>- 1) BoardController.java에 remove메서드 추가(GET방식, "board/remove?bno=39"와 같은 방식으로 게시물 삭제)
 >>>- 2) 게시물을 등록하거나 삭제할 때, rttr의 addFlashAttribute를 이용하여 listPage가 redirect시에 받는 result메세지를 이용해 맨위에 alert창이 나타나도록 구현
 
+>>>>** - DELETE의 경우 url공유가 필요한 항목이 아니며 주소를 이용한 게시물 무단삭제를 미약하게나마 방지하기 위해 POST방식으로 처리될것을 추천 (향후 권한처리구현으로 좀더 defensive하게 처리) **
+>>>> remove메서드 POST방식으로 변경.
+
 >>** 예외 페이지 작성 :** Controller Package안에 CommonExceptionAdvice.java
 >>>- 1) 예외가 발생하면 error_common.jsp를 불러옴.
 >>>- 2) TO-DO 결과는 제대로 불러오는데 <li>요소가 반복될때 값이 하나 찍고 개행되어야 하는데 화면 너비가 남으면 아래의 행이 위에 따라 들어온다. 한줄 찍고 개행하고 한줄찍고 개행하도록 수정해야됨.
+
+>##### 2019.01.04
+>>** 페이징 처리에 필요한 쿼리 boardMapper.xml에 추가 **
+>>>- BNO순으로 최신 게시물부터 10개의 글만 조회하는 Query
+>>>- 참고 : [Oracle 10개의 행만 Select](https://m.blog.naver.com/PostView.nhn?blogId=nomadgee&logNo=220854618303&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+>>>- 참고 : [Oracle 원하는 갯수의 행만 Select](https://blog.naver.com/giragi/46357666)
+>>>- 참고 : [spring paging 공통모듈](https://handcoding.tistory.com/15)
+
+
+
+
+
 

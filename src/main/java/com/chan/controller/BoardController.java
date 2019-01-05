@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chan.domain.BoardVO;
+import com.chan.domain.PagingVO;
 import com.chan.service.BoardService;
 
 @Controller
@@ -23,9 +24,9 @@ public class BoardController {
 	@Inject
 	private BoardService service;
 
-//  LISTPAGE
-	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void listPage(Model model) throws Exception {
+//  LIST
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public void listAll(Model model) throws Exception {
 
 		logger.info("listPageGET......Show Board's List");
 	//		List<BoardVO> rtn = service.listPage();
@@ -35,7 +36,13 @@ public class BoardController {
 	//			System.out.println(ToStringBuilder.reflectionToString(p,ToStringStyle.MULTI_LINE_STYLE));
 	//		}
 	//		System.out.println("");
-		model.addAttribute("list", service.listPage());
+		model.addAttribute("list", service.listAll());
+	}
+
+	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	public void listPage(PagingVO vo, Model model) throws Exception {
+
+
 	}
 
 //  CREATE
@@ -101,15 +108,22 @@ public class BoardController {
 	}
 
 //  DELETE
-	@RequestMapping(value = "/remove", method = RequestMethod.GET)
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String removeGET(@RequestParam("bno") Integer bno, RedirectAttributes rttr) throws Exception {
 
-		logger.info("removeGET......");
+		logger.info("removePOST......");
 
 		service.remove(bno);
 		rttr.addFlashAttribute("result", "Remove Success!!!");
 
 		return "redirect:/board/listPage";
+	}
+
+
+
+	@RequestMapping(value = "/temp", method = RequestMethod.GET)
+	public void tempGET() throws Exception {
+
 	}
 
 }
