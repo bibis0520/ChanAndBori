@@ -21,6 +21,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../../../resources/favicon.ico" />
+    <!-- NaverSmartEditer -->
+	<script type="text/javascript" src="../../../resources/plugins/naverSmartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 
 <body>

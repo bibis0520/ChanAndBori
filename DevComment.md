@@ -115,8 +115,22 @@ comment by kc
 >>>- 참고 : [Oracle 원하는 갯수의 행만 Select](https://blog.naver.com/giragi/46357666)
 >>>- 참고 : [spring paging 공통모듈](https://handcoding.tistory.com/15)
 
+>##### 2019.01.05
+>>** 서버 주소 업데이트(WAS서버 재생성)
+>>>- WAS(tomcat) 		: 35.243.121.113
+>>>- JENKINS(jenkins) 	: 35.200.93.8
+>>>- Oracle & SVN 		: 35.200.69.237
 
+>>** 배포 테스트 진행
 
+>##### 2019.01.06
+>>** NaverSmartEditor 적용 중
+>>>- register.jsp에서 Content(textarea)부분 유효화 작업중
+>>> - 해결	: 초기상태(아무것도 입력안했을때), Enter만 여러번 친 공백상태,
+>>> - 미해결	: 스페이스바만 반복 입력
+>>>- 참고 : [[Javascript & jQuery] 공백 여부 & 특수 문자 여부 & 비밀번호 패턴 체크](http://holybell87.tistory.com/30#.XDECpM8zbyg)
+
+>>** Pagenation 적용
 
 
 
