@@ -148,6 +148,8 @@ comment by kc
 >>-** TO-DO 공통 스크립트 부분 작성해야 함... **
 
 >>** Pagenation 작업 **
+>>>- 참고 : [[spring/게시판] #6 게시판 페이징 처리하기](http://gangnam-americano.tistory.com/m/18)
+
 
 
 

@@ -26,21 +26,39 @@ public class BoardController {
 
 //  LIST
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public void listAll(Model model) throws Exception {
+	public void listAllGET(Model model) throws Exception {
 
-		logger.info("listPageGET......Show Board's List");
-	//		List<BoardVO> rtn = service.listPage();
-	//		System.out.println("");
-	//		System.out.println(rtn);
-	//		for(BoardVO p : rtn) {
-	//			System.out.println(ToStringBuilder.reflectionToString(p,ToStringStyle.MULTI_LINE_STYLE));
-	//		}
-	//		System.out.println("");
+		logger.info("listAllGET......Show Board's List");
+
 		model.addAttribute("list", service.listAll());
 	}
 
-	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void listPage(PagingVO vo, Model model) throws Exception {
+//	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+//	public void listPageGET(
+//							@ModelAttribute("boardVO") BoardVO boardVO,
+//						 	@RequestParam(defaultValue = "1") int curPage,
+//						 	Model model
+//						   ) throws Exception {
+//
+//		logger.info("listPageGET......Show Paging Board's List");
+//
+//		int boardCnt = service.boardCnt();
+//		PagingVO pagingVO = new PagingVO(boardCnt, curPage);
+//
+//		boardVO.setStartIndex(pagingVO.getStartIndex());
+//		boardVO.setCntPerPage(pagingVO.getPageSize());
+//
+//		List<BoardVO> list = service.listAll();
+//
+//		model.addAttribute("list", list);
+//		model.addAttribute("boardCnt", boardCnt);
+//		model.addAttribute("pagingVO", pagingVO);
+//	}
+
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void listPage(PagingVO pagingVO, Model model) {
+
+		logger.info("listPageGET......Show Paging Board's List");
 
 
 	}
@@ -118,12 +136,4 @@ public class BoardController {
 
 		return "redirect:/board/listPage";
 	}
-
-
-
-	@RequestMapping(value = "/temp", method = RequestMethod.GET)
-	public void tempGET() throws Exception {
-
-	}
-
 }

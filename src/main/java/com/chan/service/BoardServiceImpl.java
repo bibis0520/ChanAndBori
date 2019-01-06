@@ -23,15 +23,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> listPage(PagingVO vo) throws Exception {
+	public List<BoardVO> listPage(PagingVO pagingVO) throws Exception {
 
+		return dao.listPage(pagingVO);
+	}
 
-//		if( page <= 0 ) {
-//			page = 1;
-//		}
-//
-//		int start = page - 1;
-		return null;
+	@Override
+	public int boardCnt() throws Exception {
+
+		return dao.boardCnt();
 	}
 
 	@Override

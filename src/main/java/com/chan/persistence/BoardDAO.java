@@ -7,16 +7,18 @@ import com.chan.domain.PagingVO;
 
 public interface BoardDAO {
 
-	List<BoardVO> listAll() throws Exception;			// 게시물 전체 리스트 조회
+	List<BoardVO> listAll() throws Exception;						// 게시물 전체 리스트 조회
 
-	List<BoardVO> listPage(PagingVO vo) throws Exception; // 페이징 처리된 게시물 리스트 조회
+	List<BoardVO> listPage(PagingVO pagingVO) throws Exception; 	// 페이징 처리된 게시물 리스트 조회
 
-	void create(BoardVO vo) throws Exception;			// 게시물 등록
+	int boardCnt() throws Exception;								//총 게시물의 갯수
 
-	BoardVO read(Integer bno) throws Exception;			// 게시물 조회
+	void create(BoardVO vo) throws Exception;						// 게시물 등록
 
-	void update(BoardVO vo) throws Exception;			// 게시물 수정
+	BoardVO read(Integer bno) throws Exception;						// 게시물 조회
 
-	void remove(Integer bno) throws Exception;			// 게시물 삭제
+	void update(BoardVO vo) throws Exception;						// 게시물 수정
+
+	void remove(Integer bno) throws Exception;						// 게시물 삭제
 
 }

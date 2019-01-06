@@ -9,7 +9,9 @@ public interface BoardService {
 
 	List<BoardVO> listAll() throws Exception;
 
-	List<BoardVO> listPage(PagingVO vo) throws Exception;
+	List<BoardVO> listPage(PagingVO pagingVO) throws Exception;
+
+	int boardCnt() throws Exception;
 
 	void create(BoardVO vo) throws Exception;
 

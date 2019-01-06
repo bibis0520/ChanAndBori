@@ -18,6 +18,8 @@ public class BoardVO extends BaseVO{
 	private String  content;
 	private Integer viewCnt;
 
+	private int startIndex;
+	private int cntPerPage;
 
 //	CREATE TABLE TBL_BOARD(
 //		    BOARD_ID VARCHAR2(30),

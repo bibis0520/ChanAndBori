@@ -1,5 +1,7 @@
 package com.chan.chanandbori;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Ignore;
@@ -11,10 +13,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chan.domain.BoardVO;
+import com.chan.domain.PagingVO;
 import com.chan.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration( locations = {"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
+@ContextConfiguration( locations = {"file:src/main/webapp/WEB-INF/spring/**/chanSpringContext.xml"})
 public class BoardDAOTest {
 
 	@Inject
@@ -23,7 +26,7 @@ public class BoardDAOTest {
 	private static Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 
 
-	@Test
+	@Ignore @Test
 	public void testCreate() throws Exception{
 
 		BoardVO vo = new BoardVO();
@@ -52,6 +55,24 @@ public class BoardDAOTest {
 	public void testDelete() throws Exception{
 
 		dao.remove(1);
+	}
+
+	@Test
+	public void testListPage() throws Exception {
+
+//		int boardCnt = dao.boardCnt();
+//		logger.info("총 게시물의 수 : " + boardCnt);
+
+		PagingVO pagingVO = new PagingVO();
+
+		pagingVO.setStartPage(0);
+		pagingVO.setEndPage(10);
+
+		List<BoardVO> list = dao.listPage(pagingVO);
+
+		for(BoardVO boardVO : list) {
+			logger.info(boardVO.getBno() + " : " + boardVO.getTitle());
+		}
 	}
 
 }
