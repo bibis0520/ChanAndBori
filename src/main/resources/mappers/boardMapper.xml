@@ -19,10 +19,6 @@
 		<result column="MODI_DATE"      jdbcType="TIMESTAMP"	property="modiDate" />
 	</resultMap>
 
-	<resultMap id="resultForPagingVO" type="com.chan.domain.PagingVO">
-		<result column="BOARD_CNT"      jdbcType="TIMESTAMP"	property="boardCnt" />
-	</resultMap>
-
 <!-- LISTPAGE & PAGENATION -->
 	<!-- 게시물 전체 리스트 조회 -->
 	<select id="listAll" resultMap="resultForBoardVO">
@@ -46,27 +42,38 @@
 
 	<!-- 페이징 처리된 게시물 리스트 조회 -->
 	<select id="listPage" resultMap="resultForBoardVO">
-		SELECT *	/* com.chan.persistence.BoardDAO.listPage */
+		SELECT		/* com.chan.persistence.BoardDAO.listPage */
+					ROWNUM RNUM,
+					BOARD_ID, HRANK_BOARD_ID, BNO, SEQ,	TITLE, CONTENT,
+					REGI_USER_ID, REGI_DATE, MODI_USER_ID, MODI_DATE, VIEW_CNT
 		FROM
-    		(
-    				SELECT ROWNUM RNUM, TBL_BOARD.*
-    				FROM
-        				(
-						        SELECT *
-						        FROM TBL_BOARD
-						        ORDER BY BNO DESC
-				        )
-        				TBL_BOARD
-    		)
-		WHERE RNUM BETWEEN #{startPage} AND #{endPage};
+		    	(
+		    	SELECT
+		    		ROWNUM RNUM,
+		    	   	TBL_BOARD.BOARD_ID,     TBL_BOARD.HRANK_BOARD_ID, TBL_BOARD.BNO,          TBL_BOARD.SEQ,
+		    	   	TBL_BOARD.TITLE,        TBL_BOARD.CONTENT,        TBL_BOARD.REGI_USER_ID, TBL_BOARD.REGI_DATE,
+		    	   	TBL_BOARD.MODI_USER_ID, TBL_BOARD.MODI_DATE,      TBL_BOARD.VIEW_CNT
+				FROM
+		        		(
+		        		SELECT
+								BOARD_ID, HRANK_BOARD_ID, BNO, SEQ, TITLE, CONTENT,
+								REGI_USER_ID, REGI_DATE, MODI_USER_ID, MODI_DATE, VIEW_CNT
+		        		FROM
+		        				TBL_BOARD
+		        		ORDER BY
+		        				BNO DESC)TBL_BOARD
+		    	)
+		WHERE RNUM BETWEEN #{startBoardRownum} AND #{endBoardRownum};
 	</select>
 
 	<!-- 게시물의 총 갯수구하는 Query -->
-	<select id="boardCnt" resultType="resultForPagingVO">
-		SELECT  /* com.chan.persistence.BoardDAO.boardCnt */
-				COUNT(1)
+	<select id="getTotalDataCnt" resultType="int">
+		SELECT  /* com.chan.persistence.BoardDAO.getTotalDataCnt */
+				COUNT(*)
 		FROM
-				TBL_BOARD;
+				TBL_BOARD
+		WHERE
+				BNO > 0
 	</select>
 
 <!-- CRUD -->

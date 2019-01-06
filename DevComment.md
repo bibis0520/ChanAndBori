@@ -149,6 +149,7 @@ comment by kc
 
 >>** Pagenation 작업 **
 >>>- 참고 : [[spring/게시판] #6 게시판 페이징 처리하기](http://gangnam-americano.tistory.com/m/18)
+>>>- 참고 : [웹 개발 페이지 처리(Paging) 방법 - 성능을 고려해보자](https://jeong-pro.tistory.com/88)
 
 
 

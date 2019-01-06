@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chan.domain.BoardVO;
-import com.chan.domain.PagingVO;
+import com.chan.domain.Criteria;
 import com.chan.service.BoardService;
 
 @Controller
@@ -56,9 +56,11 @@ public class BoardController {
 //	}
 
 	@RequestMapping(value="/listPage", method=RequestMethod.GET)
-	public void listPage(PagingVO pagingVO, Model model) {
+	public void listPage(Criteria cri, Model model) throws Exception {
 
 		logger.info("listPageGET......Show Paging Board's List");
+
+
 
 
 	}

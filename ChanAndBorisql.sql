@@ -71,19 +71,54 @@ WHERE RNUM > 0;
 
 ------ 4) 이걸 사용하기로 했다!
 ------ 마지막 행을 WHERE RNUM BETWEEN #{start} AND #{last}
-SELECT *
+SELECT              ROWNUM RNUM,
+                    BOARD_ID,
+					HRANK_BOARD_ID,
+					BNO,
+					SEQ,
+					TITLE,
+					CONTENT,
+					REGI_USER_ID,
+					REGI_DATE,
+					MODI_USER_ID,
+					MODI_DATE,
+					VIEW_CNT
 FROM 
     (
-    SELECT ROWNUM RNUM, TBL_BOARD.*
+    SELECT ROWNUM RNUM, TBL_BOARD.BOARD_ID, TBL_BOARD.HRANK_BOARD_ID, TBL_BOARD.BNO, TBL_BOARD.SEQ, TBL_BOARD.TITLE, TBL_BOARD.CONTENT,
+           TBL_BOARD.REGI_USER_ID, TBL_BOARD.REGI_DATE, TBL_BOARD.MODI_USER_ID, TBL_BOARD.MODI_DATE, TBL_BOARD.VIEW_CNT
     FROM
         (
-        SELECT *
+        SELECT
+                    BOARD_ID,
+					HRANK_BOARD_ID,
+					BNO,
+					SEQ,
+					TITLE,
+					CONTENT,
+					REGI_USER_ID,
+					REGI_DATE,
+					MODI_USER_ID,
+					MODI_DATE,
+					VIEW_CNT
         FROM TBL_BOARD
         ORDER BY BNO DESC
         )
         TBL_BOARD
     )
-WHERE RNUM BETWEEN 0 AND 10;
+WHERE RNUM BETWEEN 1 AND 10;
+------ WHERE RNUM BETWEEN #{page} AND #{perPageNum}  
+
+------ 5) 
+select B.rnum, B.BOARD_ID, B.HRANK_BOARD_ID, B.BNO, B.SEQ, B.TITLE, B.CONTENT, B.REGI_USER_ID, B.REGI_DATE, B.MODI_USER_ID, B.MODI_DATE, B.VIEW_CNT
+from
+    (select rownum as rnum, A.BOARD_ID, A.HRANK_BOARD_ID, A.BNO, A.SEQ, A.TITLE, A.CONTENT, A.REGI_USER_ID, A.REGI_DATE, A.MODI_USER_ID, A.MODI_DATE, A.VIEW_CNT
+    from (
+        select BOARD_ID, HRANK_BOARD_ID, BNO, SEQ, TITLE, CONTENT, REGI_USER_ID, REGI_DATE, MODI_USER_ID, MODI_DATE, VIEW_CNT
+        from TBL_BOARD
+        order by bno desc)A
+    where rownum <= 10 )B
+where B.rnum >= 1;
 
 -- 게시물의 총 개수를 구하는 Query
 SELECT COUNT(*) FROM TBL_BOARD;

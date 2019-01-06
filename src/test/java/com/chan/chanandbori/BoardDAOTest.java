@@ -1,7 +1,5 @@
 package com.chan.chanandbori;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.junit.Ignore;
@@ -13,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chan.domain.BoardVO;
-import com.chan.domain.PagingVO;
+import com.chan.domain.Criteria;
 import com.chan.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -58,21 +56,12 @@ public class BoardDAOTest {
 	}
 
 	@Test
-	public void testListPage() throws Exception {
+	public void testGetTotalDataCnt() throws Exception{
 
-//		int boardCnt = dao.boardCnt();
-//		logger.info("총 게시물의 수 : " + boardCnt);
+		Criteria cri = new Criteria();
+		int totalCount = dao.getTotalDataCnt(cri);
 
-		PagingVO pagingVO = new PagingVO();
-
-		pagingVO.setStartPage(0);
-		pagingVO.setEndPage(10);
-
-		List<BoardVO> list = dao.listPage(pagingVO);
-
-		for(BoardVO boardVO : list) {
-			logger.info(boardVO.getBno() + " : " + boardVO.getTitle());
-		}
+		System.out.println("totalCount 테스트 결과 : " + totalCount);
 	}
 
 }
