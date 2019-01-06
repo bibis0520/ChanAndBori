@@ -21,8 +21,8 @@
 			</div>
 
 			<div class="form-group">
-				<label for="content">Content</label>
-				<textarea class="form-control" rows="10" cols="40" name="content" id="content">${boardVO.content}</textarea>
+				<label for="smartEditor">Content</label>
+				<textarea class="form-control" style="width:100%" rows="10" cols="40" name="content" id="smartEditor"></textarea>
 			</div>
 
 			<div class="form-group">
@@ -51,21 +51,54 @@ $(document).ready(function(){
 	    console.log("title : " + $title + ", content : " + $content + ", regiUserId : " + $regiUserId);
 	*/
 
-	$("#btnEnter").on("click", () => {
-		var $title = $("#title").val(),
-			$content = $("#content").val();
+	var content 		= `${boardVO.content}`,
+		editorContent 	= content.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig, "");	//	<p>KimChan</p> ===>  KimChan
+		console.log("editorContent : " + editorContent + ", content : " + content);
 
-		if( $title == "" ) {
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+	    oAppRef: oEditors,
+	    elPlaceHolder: "smartEditor",
+	    sSkinURI: "../../../resources/plugins/naverSmartEditor/SmartEditor2Skin.html",
+	    htParams : {
+	    	// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+	       	bUseToolbar : true,
+	       	// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+	       	bUseVerticalResizer : true,
+	       	// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+	       	bUseModeChanger : true,
+	       	fOnBeforeUnload : function() {
+	       	}
+	    },
+	    fOnAppLoad : function() {
+	       	//기존 저장된 내용의 text 내용을 에디터상에 뿌려주고자 할때 사용
+	       	oEditors.getById["smartEditor"].exec("PASTE_HTML", [ content ]);
+	    },
+	    fCreator: "createSEditor2"
+	});
+
+	//수정 버튼
+	$("#btnEnter").on("click", () => {
+
+		oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
+
+		var title = $("#title").val(),
+			content = $("#smartEditor").val(),
+			editorContent = content.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig, "");	//	<p>KimChan</p> ===>  KimChan
+		console.log("title : " + title + ", content : " + content + ", editorContent : " + editorContent);
+
+		if( title == "" ) {
 			alert("제목을 입력해주세요.");
 			document.modifyForm.title.focus();
 			return;
 		}
 
-		if( $content == "" ) {
-			alert("내용을 입력해주세요.");
-			document.modifyForm.content.focus();
-			return;
-		}
+		if(content == "" || content == null || content == '&nbsp;' || content == '<p>&nbsp;</p>' || content == '<p><br></p>' || editorContent == "" ) {
+            alert("내용을 입력하세요.");
+            oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱
+            return;
+       	}
+
 		/* alert("수정이 완료되었습니다."); */
 		document.modifyForm.submit();
 	});

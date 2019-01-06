@@ -25,6 +25,14 @@ comment by hsm
 
 >>**프로젝트는 test포함 에러가 없는상태로 유지 : ** 새로운 사람이 checkout 받아도 이상없이 서버를 구동하며 Project Explorer에서 에러표시가 안뜨도록 상태를 유지하는 습관이 필요함
 
+>##### 2019.01.06
+>>**- 공통스크립트 :** commonJs.함수명( arguments ); validation, 공통 상수 등 공통적으로 필요한 항목을 위한 스크립트 추가
+
+>>**- 네이버 스마트 에디터 **
+>>> git 	  : <https://github.com/naver/smarteditor2>
+
+>>> guide : <http://naver.github.io/smarteditor2/user_guide/>
+
 comment by kc
 -----------
 >##### 2018.12.31
@@ -124,13 +132,22 @@ comment by kc
 >>** 배포 테스트 진행
 
 >##### 2019.01.06
->>** NaverSmartEditor 적용 중
->>>- register.jsp에서 Content(textarea)부분 유효화 작업중
->>> - 해결	: 초기상태(아무것도 입력안했을때), Enter만 여러번 친 공백상태,
->>> - 미해결	: 스페이스바만 반복 입력
+>>** NaverSmartEditor 적용 중 **
+>>-** register.jsp 작업 **
+>>>- 유효화 작업( Content(textarea)부분 유효화 작업 )
+>>>- 해결	: 초기상태(아무것도 입력안했을때), Enter만 여러번 친 공백상태
+>>>- 미해결	: 스페이스바만 반복 입력
+>>>- DB 등록할때 태그에 정보가 들어간채로 입력된다. 이부분은 네이버스마트에디터에대한 정보를 좀더 찾아보고 해결해야 할 부분.
+>>>- 정보(서체, 폰트크기, 정렬 정보 등등...)를 가지고 DB에 들어가는게 맞는거같긴한데 이부분에대한 처리도 필요할 것 같다.
 >>>- 참고 : [[Javascript & jQuery] 공백 여부 & 특수 문자 여부 & 비밀번호 패턴 체크](http://holybell87.tistory.com/30#.XDECpM8zbyg)
+>>>- 참고 : [[JSP] 네이버의 스마트에디터(SmartEditor) 적용하기](http://blog.naver.com/PostView.nhn?blogId=javaking75&logNo=220249101012&parentCategoryNo=71&categoryNo=&viewDate=&isShowPopularPosts=true&from=search)
+>>-** read.jsp 작업 **
+>>> - TO-DO textarea부분 readonly가 될 수 있도록 처리해야됨 (readonly가 안되면, keydown이 발생할시 바로 리턴하는등의 방법을 쓰면 될것같다는 추측...)
+>>-** modify.jsp 작업 **
+>>>- 제목과 내용의 빈칸인 상태로 등록될 경우의 처리는 read.jsp와 동일하게 처리(이부분도 유효화 작업이 필요함)
+>>-** TO-DO 공통 스크립트 부분 작성해야 함... **
 
->>** Pagenation 적용
+>>** Pagenation 작업 **
 
 
 

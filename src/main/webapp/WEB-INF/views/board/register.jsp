@@ -68,11 +68,10 @@ $(document).ready(function(){
 		oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
 
 		var title = $("#title").val(),
+			content = $("#smartEditor").val(),
 			regiUserId = $("#regiUserId").val(),
-			content = $("#smartEditor").val();
-
-		var editorContent = content.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig, "");	//	<p>KimChan</p> ===>  KimChan
-		console.log("title : " + title + ", content : " + editorContent + ", regiUserId : " + regiUserId);
+			editorContent = content.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig, "");	//	<p>KimChan</p> ===>  KimChan
+		console.log("title : " + title + ", content : " + content + ", regiUserId : " + regiUserId + ", editorContent : " + editorContent);
 
 		if ( title == "" ) {
 			alert("제목을 입력하세요.");
@@ -93,7 +92,7 @@ $(document).ready(function(){
 		}
 
 		try {
-			/* document.regiForm.submit(); */
+			document.regiForm.submit();
 		} catch (e) {
 
 		}
