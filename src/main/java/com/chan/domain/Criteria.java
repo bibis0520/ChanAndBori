@@ -1,5 +1,6 @@
 package com.chan.domain;
 
+import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.Data;
@@ -24,13 +25,21 @@ public class Criteria {
 		return ( this.page - 1 ) * perPageNum;
 	}
 
+	public int getPage() {
+		return this.page;
+	}
+
 	public void setPage(int page) {
 		//만일 page가 0이하라면 1로 설정, 아닐경우 그 값을 대입
 		if ( page <= 0 ) {
 			this.page = 1;
-		} else {
-			this.page = page;
+			return;
 		}
+		this.page = page;
+	}
+
+	public int getPerPageNum() {
+		return this.perPageNum;
 	}
 
 	public void setPerPageNum(int perPageNum) {
@@ -42,13 +51,14 @@ public class Criteria {
 		}
 	}
 
+
 	public String makeQuery() {
 
-		return UriComponentsBuilder.newInstance()
-				                   .queryParam("page", this.page)
-				                   .queryParam("perPageNum", this.perPageNum)
-				                   .build()
-				                   .encode()
-				                   .toString();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				                   						  .queryParam("page", this.page)
+				                   						  .queryParam("perPageNum", this.perPageNum)
+				                   						  .build().encode();
+
+		return uriComponents.toString();
 	}
 }

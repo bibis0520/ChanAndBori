@@ -174,16 +174,30 @@ comment by kc
 >>>- 수정, 목록, 삭제 버튼에서 page, perPageNum을 유지하려고했는데 보니, /board/listPage?page=1&perPageNum=10으로만 되있다. 생성자에서 잘못된건지 이부분 수정해야됨...
 
 >##### 2019.01.08
->>> - 게시물 삭제를 하려니까 post method는 지원하지 않는다는 error message가 떠서보니 register.jsp, read.jsp, modify.jsp에 들어있던 등록, 수정, 삭제, 목록 버튼등이 모두 form태그 안에 들어가있었다. 그래서 그부분을 모두 form태그 밖으로 뺐더니 문제 해결.
->>> - uri에 cri(page, perPageNum)의 값을 넘겨줘야 작업 후 본래 보고있던 페이지로 돌아올 수 있는데 이 부분이 해결되지 않는다.
->>1) register.jsp
->>> - 확인 : 새글 등록후 목록의 1페이지로 오는게 자연스러워서 이부분은 건드리지 않아도 됨.
->>>	- 취소 :
->>2) read.jsp
->>>	- 수정 :
->>>	- 목록 :
->>>	- 삭제 :
->>3) modify.jsp
->>>	- 확인 :
->>>	- 취소 :
+>>- 게시물 삭제를 하려니까 post method는 지원하지 않는다는 error message가 떠서보니 register.jsp, read.jsp, modify.jsp에 들어있던 등록, 수정, 삭제, 목록 버튼등이 모두 form태그 안에 들어가있었다. 그래서 그부분을 모두 form태그 밖으로 뺐더니 문제 해결.
+>>- uri에 cri(page, perPageNum)의 값을 넘겨줘야 작업 후 본래 보고있던 페이지로 돌아올 수 있는데 이 부분이 해결되지 않는다.
+>>- 원인! (listPage에서 해당 행을 아무데나 클릭하면 해당 게시물로 이동했었는데 이부분에 내가 cri(page, perPageNum)를 넘겨줘도 아래의 소스처럼 내가 정해논 uri가 만들어져 들어갔기 때문에 제대로된 값을 받아도 올바른 uri가 만들어져 read.jsp까지 전달되지 못했다. 따라서 read.jsp에서도 당연히 그 값을 받지 못함. 
+>>
+>>> ```
+>>> // 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동
+	$(".boardRow").on('click', function(){
+		var bno = $(this).children(".bno").text(),
+		    uri = "/board/read?bno=" + bno;
+		location.href = uri;
+	});
+	
+>>> ```
+>>> 
+>>> 위의 소스를 아래와같이 수정하니 pageMaker의 makeQuery가 제대로 동작했다. 
+>>>  
+>>> ```
+>>> 	$(".boardRow").on('click', function(){
+		var bno = $(this).children(".bno").text();
+		//pageMaker.cri에 들어가있는 page에 대입되어있는 값을 가지고 makeQuery
+		window.location.href = "/board/read${pageMaker.makeQuery(pageMaker.cri.page)}&bno=" + bno;
+	});
+>>> ```
+>>
+>>- BoardController.register의 POST방식에서 새글등록후에는 자연스레 1페이지로 이동하도록 수정(perPageNum은 cri를 매개변수로 받는 메서드에서 getPerPageNum()을 통해 이미 저장되어있는 값을 그대로 사용)
+
 

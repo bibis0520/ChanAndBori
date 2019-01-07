@@ -31,13 +31,13 @@
 
 		<div class="text-center">
 			<button id="btnEnter"  type="button" class="btn btn-outline-primary m5"  >확인</button>
-			<button id="btnCancel" type="button" class="btn btn-outline-secondary m5">취소</button>
+			<a href="/board/read${cri.makeQuery()}&bno=${boardVO.bno}" class="btn btn-outline-secondary m5">취소</a>
 		</div>
 
 	</div><!-- /.container -->
 
 	<form role="form" method="post">
-		<input type="hidden" name="bno" value="${boardVO.bno}" />
+		<input type="hidden" id="bno" name="bno" value="${boardVO.bno}" />
 	</form>
 
 </div><!-- /.contents -->
@@ -102,11 +102,6 @@ $(document).ready(function(){
 		document.modifyForm.submit();
 	});
 
-	//취소 버튼
-	$("#btnCancel").on("click", () => {
-
-		window.location.href = "/board/listPage";
-	});
 });
 </script>
 

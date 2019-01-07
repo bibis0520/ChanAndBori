@@ -11,7 +11,7 @@
 
 	<div class="m20 overflow-a">
 		<div>
-			<a href="/board/register">
+			<a href="/board/register${pageMaker.makeQuery(pageMaker.cri.page)}">
 				<button class="btn btn-primary fr">새글등록</button>
 			</a>
 		</div>
@@ -29,10 +29,10 @@
 		<table class="table table-bordered table-hover">
 		  <thead>
 			<tr>
-				<th scope="col" style="width: 5%">BNO</th>
-				<th scope="col" style="width: 50%">TITLE</th>
+				<th scope="col" style="width: 10%">BNO</th>
+				<th scope="col" style="width: 40%">TITLE</th>
 				<th scope="col" style="width: 30%">WRITER</th>
-				<th scope="col" style="width: 10%">REGDATE</th>
+				<th scope="col" style="width: 15%">REGDATE</th>
 				<th scope="col" style="width: 5%">VIEWCNT</th>
 			</tr>
 		  </thead>
@@ -40,7 +40,7 @@
 		  <c:forEach items="${list}" var="boardVO">
 			<tr class="boardRow" data-board-id="${boardVO.boardId}">
 				<th scope="row" class="bno">${boardVO.bno}</th>
-				<td>${boardVO.title}</td>
+				<td><a href="/board/read${pageMaker.makeQuery(pageMaker.cri.page)}&bno=${boardVO.bno}">${boardVO.title}</a></td>
 				<td>${boardVO.regiUserId}</td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regiDate}"/></td>
 				<td class="text-center"><span class="badge badge-pill badge-dark">${boardVO.viewCnt}</span></td>
@@ -124,10 +124,9 @@ $(document).ready(function(){
 
 	// 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동
 	$(".boardRow").on('click', function(){
-		var bno = $(this).children(".bno").text(),
-		    uri = "/board/read?bno=" + bno;
-
-		location.href = uri;
+		var bno = $(this).children(".bno").text();
+																//pageMaker.cri에 들어가있는 page에 대입되어있는 값을 가지고 makeQuery
+		window.location.href = "/board/read${pageMaker.makeQuery(pageMaker.cri.page)}&bno=" + bno;
 	});
 
 	// 10개씩, 30개씩...등을 처리하기위한 함수.

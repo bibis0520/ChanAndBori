@@ -26,7 +26,7 @@
 
 		<div class="text-center">
 			<button type="button" id="btnRegister"  class="btn btn-outline-primary m5">등록</button>
-			<button type="button" id="btnCancel" 	class="btn btn-outline-danger  m5">취소</button>
+			<a href="/board/listPage${cri.makeQuery()}" class="btn btn-outline-danger m5">취소</a>
 		</div>
 
 	</div><!-- /.container -->
@@ -92,12 +92,6 @@ $(document).ready(function(){
 		} catch (e) {
 
 		}
-	});
-
-	//취소 버튼
-	$("#btnCancel").on("click", () => {
-
-		window.location.href = "/board/listPage";
 	});
 
 	/* $("#editor_sample01").on("keydown",function(){

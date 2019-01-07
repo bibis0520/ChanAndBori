@@ -58,18 +58,26 @@ public class BoardController {
 
 //  CREATE
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void register(BoardVO boardVO, Model model) throws Exception {
+	public void register(BoardVO boardVO,
+						 @ModelAttribute("cri") Criteria cri,
+					     Model model) throws Exception {
 
 		logger.info("registerGET......");
+
+		model.addAttribute("cri", cri);
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(BoardVO vo, RedirectAttributes rttr) throws Exception {
+	public String register(BoardVO vo,
+			               Criteria cri,
+			               RedirectAttributes rttr) throws Exception {
 
 		logger.info("registerPOST......");
 
 	    service.create(vo);
 	    rttr.addFlashAttribute("result", "Register Success!!!");
+	    rttr.addAttribute("page", 1);
+	    rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
 	    return "redirect:/board/listPage";
 	}
@@ -88,7 +96,9 @@ public class BoardController {
 
 //  UPDATE
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modify(@RequestParam("bno") Integer bno, Model model) throws Exception {
+	public void modify(@RequestParam("bno") Integer bno,
+			           @ModelAttribute("cri") Criteria cri,
+			           Model model) throws Exception {
 		//Update페이지를 불러온다.
 		logger.info("modifyGET......");
 
@@ -98,14 +108,20 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modify(BoardVO vo, RedirectAttributes rttr) throws Exception {
+	public String modify(BoardVO vo,
+						 Criteria cri,
+						 RedirectAttributes rttr) throws Exception {
+
 		//실제로 변경한 값을 넣어 수정 실행.
 		logger.info("modifyPOST......");
 
 		service.update(vo);
 		rttr.addFlashAttribute("result", "Modify Success!!!");
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("bno", vo.getBno());
 
-		return "redirect:/board/read?bno=" + vo.getBno();
+		return "redirect:/board/read";
 	}
 
 //  DELETE
