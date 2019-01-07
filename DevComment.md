@@ -136,19 +136,20 @@ comment by kc
 
 >##### 2019.01.06
 >>** NaverSmartEditor 적용 중 **
->>-** register.jsp 작업 **
+>>
+>>** register.jsp 작업 **
 >>>- 유효화 작업( Content(textarea)부분 유효화 작업 )
->>>- 해결	: 초기상태(아무것도 입력안했을때), Enter만 여러번 친 공백상태
->>>- 미해결	: 스페이스바만 반복 입력
+>>> - 해결	: 초기상태(아무것도 입력안했을때), Enter만 여러번 친 공백상태
+>>> - 미해결	: 스페이스바만 반복 입력
 >>>- DB 등록할때 태그에 정보가 들어간채로 입력된다. 이부분은 네이버스마트에디터에대한 정보를 좀더 찾아보고 해결해야 할 부분.
 >>>- 정보(서체, 폰트크기, 정렬 정보 등등...)를 가지고 DB에 들어가는게 맞는거같긴한데 이부분에대한 처리도 필요할 것 같다.
 >>>- 참고 : [[Javascript & jQuery] 공백 여부 & 특수 문자 여부 & 비밀번호 패턴 체크](http://holybell87.tistory.com/30#.XDECpM8zbyg)
 >>>- 참고 : [[JSP] 네이버의 스마트에디터(SmartEditor) 적용하기](http://blog.naver.com/PostView.nhn?blogId=javaking75&logNo=220249101012&parentCategoryNo=71&categoryNo=&viewDate=&isShowPopularPosts=true&from=search)
->>-** read.jsp 작업 **
+>>** read.jsp 작업 **
 >>> - TO-DO textarea부분 readonly가 될 수 있도록 처리해야됨 (readonly가 안되면, keydown이 발생할시 바로 리턴하는등의 방법을 쓰면 될것같다는 추측...)
->>-** modify.jsp 작업 **
+>>** modify.jsp 작업 **
 >>>- 제목과 내용의 빈칸인 상태로 등록될 경우의 처리는 read.jsp와 동일하게 처리(이부분도 유효화 작업이 필요함)
->>-** TO-DO 공통 스크립트 부분 작성해야 함... **
+>>** TO-DO 공통 스크립트 부분 작성해야 함... **
 
 >>** Pagenation 작업 **
 >>>- 참고 : [ORACLE - ABOUT ROWNUM & TIP(PAGING)](http://greatkim91.tistory.com/52)
@@ -173,16 +174,16 @@ comment by kc
 >>>- 수정, 목록, 삭제 버튼에서 page, perPageNum을 유지하려고했는데 보니, /board/listPage?page=1&perPageNum=10으로만 되있다. 생성자에서 잘못된건지 이부분 수정해야됨...
 
 >##### 2019.01.08
->>>- 게시물 삭제를 하려니까 post method는 지원하지 않는다는 error message가 떠서보니 register.jsp, read.jsp, modify.jsp에 들어있던 등록, 수정, 삭제, 목록 버튼등이 모두 form태그 안에 들어가있었다. 그래서 그부분을 모두 form태그 밖으로 뺐더니 문제 해결.
->>>- uri에 cri(page, perPageNum)의 값을 넘겨줘야 작업 후 본래 보고있던 페이지로 돌아올 수 있는데 이 부분이 해결되지 않는다.
->>>1) register.jsp
+>>> - 게시물 삭제를 하려니까 post method는 지원하지 않는다는 error message가 떠서보니 register.jsp, read.jsp, modify.jsp에 들어있던 등록, 수정, 삭제, 목록 버튼등이 모두 form태그 안에 들어가있었다. 그래서 그부분을 모두 form태그 밖으로 뺐더니 문제 해결.
+>>> - uri에 cri(page, perPageNum)의 값을 넘겨줘야 작업 후 본래 보고있던 페이지로 돌아올 수 있는데 이 부분이 해결되지 않는다.
+>>1) register.jsp
 >>> - 확인 : 새글 등록후 목록의 1페이지로 오는게 자연스러워서 이부분은 건드리지 않아도 됨.
 >>>	- 취소 :
->>>2) read.jsp
+>>2) read.jsp
 >>>	- 수정 :
 >>>	- 목록 :
 >>>	- 삭제 :
->>>3) modify.jsp
+>>3) modify.jsp
 >>>	- 확인 :
 >>>	- 취소 :
 
