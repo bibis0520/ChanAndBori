@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 public class PageMaker {
+																				//페이지 번호를 출력하는 기능을 하는 클래스
 
 	// 데이터베이스에서 계산되는 데이터
 	private int     totalDataCnt;			// 실제 게시물의 총 개수

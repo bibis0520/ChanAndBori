@@ -11,7 +11,7 @@ public interface BoardDAO {
 
 	List<BoardVO> listPage(Criteria cri) throws Exception; 			// 페이징 처리된 게시물 리스트 조회
 
-	int getTotalDataCnt(Criteria cri) throws Exception;							//총 게시물의 갯수
+	int getTotalDataCnt(Criteria cri) throws Exception;				//총 게시물의 갯수
 
 	void create(BoardVO vo) throws Exception;						// 게시물 등록
 

@@ -1,5 +1,7 @@
 package com.chan.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -33,37 +35,14 @@ public class BoardController {
 		model.addAttribute("list", service.listAll());
 	}
 
-//	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-//	public void listPageGET(
-//							@ModelAttribute("boardVO") BoardVO boardVO,
-//						 	@RequestParam(defaultValue = "1") int curPage,
-//						 	Model model
-//						   ) throws Exception {
-//
-//		logger.info("listPageGET......Show Paging Board's List");
-//
-//		int boardCnt = service.boardCnt();
-//		PagingVO pagingVO = new PagingVO(boardCnt, curPage);
-//
-//		boardVO.setStartIndex(pagingVO.getStartIndex());
-//		boardVO.setCntPerPage(pagingVO.getPageSize());
-//
-//		List<BoardVO> list = service.listAll();
-//
-//		model.addAttribute("list", list);
-//		model.addAttribute("boardCnt", boardCnt);
-//		model.addAttribute("pagingVO", pagingVO);
-//	}
-
 	@RequestMapping(value="/listPage", method=RequestMethod.GET)
 	public void listPage(Criteria cri, Model model) throws Exception {
 
-		logger.info("listPageGET......Show Paging Board's List");
+		List<BoardVO> boards = service.listPage(cri);
 
-
-
-
+		model.addAttribute("list", boards);
 	}
+
 
 //  CREATE
 	@RequestMapping(value = "/register", method = RequestMethod.GET)

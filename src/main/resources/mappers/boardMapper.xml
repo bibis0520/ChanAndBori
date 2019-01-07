@@ -63,7 +63,7 @@
 		        		ORDER BY
 		        				BNO DESC)TBL_BOARD
 		    	)
-		WHERE RNUM BETWEEN #{startBoardRownum} AND #{endBoardRownum};
+		WHERE RNUM BETWEEN #{startBoardRowNum} AND #{endBoardRowNum}
 	</select>
 
 	<!-- 게시물의 총 갯수구하는 Query -->

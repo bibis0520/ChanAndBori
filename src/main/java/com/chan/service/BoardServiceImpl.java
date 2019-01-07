@@ -25,6 +25,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> listPage(Criteria cri) throws Exception {
 
+		//mapper에서 사용할 값을 계산...해서 set()을 통해 대입
+		int endBoardRowNum = cri.getPage() * cri.getPerPageNum();
+		int startBoardRowNum = endBoardRowNum - cri.getPerPageNum() + 1;
+
+		cri.setEndBoardRowNum(endBoardRowNum);
+		cri.setStartBoardRowNum(startBoardRowNum);
+
 		return dao.listPage(cri);
 	}
 

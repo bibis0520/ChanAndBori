@@ -42,7 +42,7 @@
 		</table>
 	</div>
 
-	<nav aria-label="Page navigation example">
+	<!-- <nav aria-label="Page navigation example">
   		<ul class="pagination justify-content-center">
     		<li class="page-item disabled">
       			<a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -56,7 +56,7 @@
 		      	<a class="page-link" href="#">Next</a>
 		    </li>
   		</ul>
-	</nav>
+	</nav> -->
 
 	<%-- <form role="form" id="pageRedirect" method="post" action="/board/read?bno=${boardVO.bno}">
 		<input id="inpt_boardId" type="hidden" name="boardId" />

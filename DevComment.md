@@ -148,8 +148,19 @@ comment by kc
 >>-** TO-DO 공통 스크립트 부분 작성해야 함... **
 
 >>** Pagenation 작업 **
+>>>- 참고 : [ORACLE - ABOUT ROWNUM & TIP(PAGING)](http://greatkim91.tistory.com/52)
 >>>- 참고 : [[spring/게시판] #6 게시판 페이징 처리하기](http://gangnam-americano.tistory.com/m/18)
 >>>- 참고 : [웹 개발 페이지 처리(Paging) 방법 - 성능을 고려해보자](https://jeong-pro.tistory.com/88)
+
+>##### 2019.01.07
+>>** Pagenation 작업 **
+>>>- "/board/listPage?page=1&perPageNum=10"으로 조회하기 (DONE)
+>>>- 1. Criteria.java(com.chan.domain)추가
+>>>- 2. BoardServiceImpl.listPage(Criteria cri)에서 필요한 값 계산 (BoardDAOImpl이 없어서 ServiceImpl에서 처리)
+>>>- 3. BoardServiceTest 추가(JUnit4 Test)
+
+
+
 
 
 

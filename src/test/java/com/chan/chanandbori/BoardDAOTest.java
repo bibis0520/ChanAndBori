@@ -55,7 +55,7 @@ public class BoardDAOTest {
 		dao.remove(1);
 	}
 
-	@Test
+	@Ignore @Test
 	public void testGetTotalDataCnt() throws Exception{
 
 		Criteria cri = new Criteria();
@@ -63,5 +63,4 @@ public class BoardDAOTest {
 
 		System.out.println("totalCount 테스트 결과 : " + totalCount);
 	}
-
 }
