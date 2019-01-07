@@ -9,8 +9,6 @@
 	<div id="registerOK" class="alert alert-success hidden text-center" role="alert">새글이 등록되었습니다.</div>
 	<div id="removeOK" class="alert alert-danger hidden text-center" role="alert">글이 삭제되었습니다.</div>
 
-	<h3>Board</h3>
-
 	<div class="m20 overflow-a">
 		<a href="/board/register">
 			<button class="btn btn-primary fr">새글등록</button>

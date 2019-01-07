@@ -125,7 +125,7 @@ SELECT COUNT(*) FROM TBL_BOARD;
 
 ----dummy data 삽입(procedure)
 BEGIN
-    FOR i in 1..500 LOOP
+    FOR i in 1..20 LOOP
     INSERT INTO	
 		TBL_BOARD
 				( BOARD_ID, BNO, TITLE, CONTENT, REGI_USER_ID, REGI_DATE,	VIEW_CNT )

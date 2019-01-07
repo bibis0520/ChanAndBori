@@ -7,9 +7,7 @@
 
 	<div id="modifyOK" class="alert alert-success hidden text-center" role="alert">수정이 완료되었습니다.</div>
 
-	<h3>READ</h3>
-
-	<div class="container">
+	<div class="container padding-t10">
 
 		<form name="readForm" method="post">
 
@@ -34,16 +32,14 @@
 			</div>
 
 			<div class="text-center">
-				<a href="/board/modify?bno=${boardVO.bno}"><button id="btnModify" type="button" class="btn btn-outline-warning m5">수정</button></a>
-				<a href="/board/remove?bno=${boardVO.bno}"><button id="btnDelete" type="button" class="btn btn-outline-danger m5">삭제</button></a>
-				<button id="btnListPage" type="button" class="btn btn-outline-secondary m5"  >목록</button>
+				<a href="/board/modify${cri.makeQuery()}&bno=${boardVO.bno}">
+					<button id="btnModify" type="button" class="btn btn-outline-warning m5">수정</button>
+				</a>
+				<a href="/board/listPage${cri.makeQuery()}" class="btn btn-outline-secondary m5">목록</a>
+				<button id="btnRemove" class="btn btn-outline-danger m5">삭제</button>
 			</div>
 		</form>
 	</div>
-
-	<form role="form" method="post">
-		<input type="hidden" name="bno" value="${boardVO.bno}" />
-	</form>
 
 </div>
 
@@ -82,9 +78,9 @@ $(document).ready(function(){
 		$("#modifyOK").fadeOut(2000);
 	};
 
-	// 목록가기 버튼
-	$("#btnListPage").on("click", () => {
-		window.location.href = "/board/listPage";
+	$("btnRemove").on("click", function(){
+		if(confirm("정말로 삭제하시겠습니까?"))
+			self.location.href = "/board/remove${cri.makeQuery()}&bno=${boardVO.bno}";
 	});
 
 });

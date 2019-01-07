@@ -5,9 +5,7 @@
 
 <div class="contents overflow-h padding-b40">
 
-	<h3>New Board</h3>
-
-	<div class="container">
+	<div class="container padding-t10">
 
 		<form name="regiForm" class="overflow-a" method="post">
 

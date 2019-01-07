@@ -5,9 +5,7 @@
 
 <div class="contents overflow-h padding-b40">
 
-	<h3>MODIFY</h3>
-
-	<div class="container">
+	<div class="container padding-t10">
 		<form name="modifyForm" class="overflow-a" method="post">
 
 			<div class="form-group">

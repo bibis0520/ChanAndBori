@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chan.domain.BoardVO;
 import com.chan.domain.Criteria;
+import com.chan.domain.PageMaker;
 import com.chan.service.BoardService;
 
 @Controller
@@ -38,9 +40,22 @@ public class BoardController {
 	@RequestMapping(value="/listPage", method=RequestMethod.GET)
 	public void listPage(Criteria cri, Model model) throws Exception {
 
+		// cri를 가지로 현재 페이지에 해당하는 게시물들을 조회해온다.
 		List<BoardVO> boards = service.listPage(cri);
 
 		model.addAttribute("list", boards);
+
+		// PageMaker객체 생성
+		PageMaker pageMaker = new PageMaker(cri);
+
+		// 전체 게시물의 수를 구함
+		int totalBoardCount = service.getTotalDataCnt(cri);
+
+		// pageMaker에게 전체 게시물의 수를 전달해주면, pageMaker.calcData()에 의해 페이징처리에 필요한
+		// startPageNum, endPageNum, prev, next가 계산된다.
+		pageMaker.setTotalDataCnt(totalBoardCount);
+
+		model.addAttribute("pageMaker", pageMaker);
 	}
 
 
@@ -64,25 +79,15 @@ public class BoardController {
 
 //  READ
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void readGET(@RequestParam("bno") Integer bno, Model model) throws Exception {
+	public void readGET(@RequestParam("bno") Integer bno,
+						@ModelAttribute("cri") Criteria cri,
+						Model model) throws Exception {
 		//@RequestParam -> 사용자의 요청(request)에서 특정한 파라미터값을 찾아낼때 사용.
 		logger.info("readGET......");
 
 		//URI에서 얻어낸 bno값으로 게시물을 읽어온다.
 		model.addAttribute(service.read(bno));
 	}
-
-	//	@RequestMapping(value = "/read", method = RequestMethod.POST)
-	//	public ModelAndView viewRead(@ModelAttribute BoardVO boardVO) throws Exception {
-	//		//@ModelAttribute -> 해당 객체를 뷰까지 자동으로 전달해주는 Annotation
-	//		logger.info("viewReadPOST......");
-	//
-	//		ModelAndView mav = new ModelAndView("/board/read");
-	//
-	//		mav.addObject("boardVO", service.read(boardVO));
-	//
-	//		return mav;
-	//	}
 
 //  UPDATE
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)

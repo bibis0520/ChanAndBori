@@ -17,6 +17,7 @@ public class PageMaker {
 	private int     endPageNum; 			// 현재 페이지 기준으로 끝 페이지 번호
 	private boolean prev;					// 이전 버튼 활성화 여부
 	private boolean next;					// 다음 버튼 활성화 여부
+	private int     realEndPageNum;			// 실제로 존제하는 총 페이지의 수
 
 	private int 	displayPageCnt = 10;	// 한번에 보여지는 페이지 번호의 수
 
@@ -50,7 +51,7 @@ public class PageMaker {
 		// 게시물이 만일 38개 존재한다면, 한페이지당 10개의 게시물만을 보여줬을때!
 		// 38 / 10은 3.8... 3.8을 올림하면 4.
 		// 따라서 실질적으로 4개의 페이지만 존재하면 된다.
-		int realEndPageNum = (int)( Math.ceil(totalDataCnt / (double)perPageNum) );
+		realEndPageNum = (int)( Math.ceil(totalDataCnt / (double)perPageNum) );
 
 		// 만약 위에서 계산된 endPageNum보다 실제로 존재해야할 페이지의 수인 realEndPageNum이 작다면!
 		// 이전에 계산된 값을 버리고, realEndPageNum을 대입한다.(실제로 4페이지까지만 있으면 되는데 10페이지까지 표시할 이유가 없기 때문에)

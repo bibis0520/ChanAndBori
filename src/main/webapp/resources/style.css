@@ -16,6 +16,9 @@
 .overflow-h{
 	overflow:hidden;
 }
+.padding-t10{
+	padding-top:10px;
+}
 .padding-b40{
 	padding-bottom:40px;
 }

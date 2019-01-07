@@ -45,8 +45,8 @@ public class Criteria {
 	public String makeQuery() {
 
 		return UriComponentsBuilder.newInstance()
-				                   .queryParam("page", page)
-				                   .queryParam("perPageNum", perPageNum)
+				                   .queryParam("page", this.page)
+				                   .queryParam("perPageNum", this.perPageNum)
 				                   .build()
 				                   .encode()
 				                   .toString();

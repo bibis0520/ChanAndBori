@@ -153,13 +153,21 @@ comment by kc
 >>>- 참고 : [웹 개발 페이지 처리(Paging) 방법 - 성능을 고려해보자](https://jeong-pro.tistory.com/88)
 
 >##### 2019.01.07
->>** Pagenation 작업 **
->>>- "/board/listPage?page=1&perPageNum=10"으로 조회하기 (DONE)
+>>** Pagenation 작업 (Criteria, Uri작업) **
+>>>- "/board/listPage?page=1&perPageNum=10"으로 조회하기
 >>>- 1. Criteria.java(com.chan.domain)추가
 >>>- 2. BoardServiceImpl.listPage(Criteria cri)에서 필요한 값 계산 (BoardDAOImpl이 없어서 ServiceImpl에서 처리)
 >>>- 3. BoardServiceTest 추가(JUnit4 Test)
 
+>>** Pagenation 작업 (PageMaker, 하단에 Paging버튼 작업) **
+>>>- 참고 : [[Spring] 22.SpringProject-페이징 처리(4)](https://kookyungmin.github.io/server/2018/08/25/spring_22/)
+>>>- 참고 : [Bootstrap Input group](https://getbootstrap.com/docs/4.1/components/input-group/#custom-select)
+>>>- 참고 : [Bootstrap Pagination](https://getbootstrap.com/docs/4.1/components/pagination/)
+>>>- 참고 : [jQuery / Method / .prop() - 속성값을 가져오거나 추가하는 메서드](https://www.codingfactory.net/10341)
 
+>>** Pagenation 작업 ( 등록, 수정, 삭제 후 본래 보고있던 페이지로 돌아가도록 처리하는 작업) **
+>>>- Criteria cri객체를 @ModelAttribute로 컨트롤러의 각 메서드에 매개변수로 줘서 jsp에서 받아 cri.makeQuery() (UriComponentsBuilder사용)로
+>>>- 수정, 목록, 삭제 버튼에서 page, perPageNum을 유지하려고했는데 보니, /board/listPage?page=1&perPageNum=10으로만 되있다. 생성자에서 잘못된건지 이부분 수정해야됨...
 
 
 

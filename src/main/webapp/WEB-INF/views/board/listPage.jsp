@@ -9,12 +9,20 @@
 	<div id="registerOK" class="alert alert-success hidden text-center" role="alert">새글이 등록되었습니다.</div>
 	<div id="removeOK" class="alert alert-danger hidden text-center" role="alert">글이 삭제되었습니다.</div>
 
-	<h3>Board</h3>
-
 	<div class="m20 overflow-a">
-		<a href="/board/register">
-			<button class="btn btn-primary fr">새글등록</button>
-		</a>
+		<div>
+			<a href="/board/register">
+				<button class="btn btn-primary fr">새글등록</button>
+			</a>
+		</div>
+		<div class="input-group col-md-1 fr">
+		  	<select class="custom-select" id="perPageNumSelect" aria-label="Example select with button addon">
+			    <option value="10">10개씩</option>
+			    <option value="30">30개씩</option>
+			    <option value="50">50개씩</option>
+			    <option value="100">100개씩</option>
+		  	</select>
+		</div>
 	</div>
 
 	<div class="container-fluid">
@@ -42,21 +50,29 @@
 		</table>
 	</div>
 
-	<!-- <nav aria-label="Page navigation example">
-  		<ul class="pagination justify-content-center">
-    		<li class="page-item disabled">
-      			<a class="page-link" href="#" tabindex="-1">Previous</a>
-    		</li>
+	<nav aria-label="pagination">
+	  	<ul class="pagination justify-content-center">
+	    	<!-- 이전 버튼 -->
+	    	<li class="page-item" id="page-prev">
+	      		<a class="page-link" href="listPage${pageMaker.makeQuery(pageMaker.startPageNum -1)}">&laquo;</a>
+	      		<span class="sr-only">Previous</span>
+	    	</li>
 
-    		<li class="page-item"><a class="page-link" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+			<c:forEach begin="${pageMaker.startPageNum}" end="${pageMaker.endPageNum}" var="idx">
+		    	<li class="page-item" id="${idx}page">
+		      		<a class="page-link" href="listPage${pageMaker.makeQuery(idx)}">
+		        		${idx}<span class="sr-only">(current)</span>
+		      		</a>
+		    	</li>
+		    </c:forEach>
 
-		    <li class="page-item">
-		      	<a class="page-link" href="#">Next</a>
-		    </li>
-  		</ul>
-	</nav> -->
+			<!-- 다음 버튼 -->
+	    	<li class="page-item" id="page-next">
+	      		<a class="page-link" href="listPage${pageMaker.makeQuery(pageMaker.endPageNum + 1)}">&raquo;</a>
+	      		<span class="sr-only">Next</span>
+	    	</li>
+	  	</ul>
+	</nav>
 
 	<%-- <form role="form" id="pageRedirect" method="post" action="/board/read?bno=${boardVO.bno}">
 		<input id="inpt_boardId" type="hidden" name="boardId" />
@@ -66,6 +82,8 @@
 
 <script>
 $(document).ready(function(){
+
+	setPerPageNumSelect();
 
 	var result = '${result}';
 	$(function(){
@@ -79,17 +97,52 @@ $(document).ready(function(){
 		}
 	});
 
-	/* 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동 */
+	// 1~10페이지에서는 prev버튼이 필요없기때문에 hidden처리
+	var thisPage = "${pageMaker.cri.page}";
+	if ( thisPage <= 10 )
+		$("#page-prev").addClass("hidden");
+
+	// 가장 마지막 페이지가 해당된 블록(range)에서는 next버튼이 필요 없기 때문에 hidden처리
+	var realEndPageNum = "${pageMaker.realEndPageNum}";
+	var lastPagesStartNum = realEndPageNum - (realEndPageNum % 10) + 1;
+	if ( thisPage >= lastPagesStartNum && thisPage <= realEndPageNum ) {
+		$("#page-next").addClass("hidden");
+	}
+
+	// pageMaker에 boolean형의 prev와 next를 가져와서 버튼을 활성화 혹은 비활성화한다.
+	var prevAble = "${pageMaker.prev}";
+	if ( prevAble !== "true" )
+		$("#page-prev").addClass("disabled");
+
+	var nextAble = "${pageMaker.next}";
+	if ( nextAble !== "true")
+		$("#page-next").addClass("disabled");
+
+	// 현재 페이지를 가져와서 어느 페이지를 보고있는지 알려준다.
+	var thisPage = "${pageMaker.cri.page}";
+	$("#" + thisPage + "page").addClass("active");
+
+	// 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동
 	$(".boardRow").on('click', function(){
-		/* console.info($(this).index()); */
-		/* console.info($(this).children(".bno").text()); */
-		/* console.info("$(this).data() => ",$(this).data()); */
-		/* console.info("$(this).data('boardId') => ",$(this).data("boardId")); */
 		var bno = $(this).children(".bno").text(),
 		    uri = "/board/read?bno=" + bno;
 
 		location.href = uri;
 	});
+
+	// 10개씩, 30개씩...등을 처리하기위한 함수.
+	function setPerPageNumSelect(){
+		var perPageNum 			= "${pageMaker.cri.perPageNum}";
+		var	$perPageNumSelect 	= $("#perPageNumSelect");
+		var thisPage 			= "${pageMaker.cri.page}";
+										//selected란 이름에 true란 속성값을 추가한다.
+		$perPageNumSelect.val(perPageNum).prop("selected", true);
+
+		$perPageNumSelect.on("change", function(){
+			/* window.location.href = "listPage?page=1&perPageNum=" + $perPageNumSelect.val(); */
+			window.location.href = "listPage?page=" + thisPage +"&perPageNum=" + $perPageNumSelect.val();
+		});
+	};
 
 });
 </script>
