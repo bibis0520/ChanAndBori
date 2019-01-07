@@ -1,6 +1,9 @@
 TO-DO List
 -----------
 >- CRUD
+>- Pagination
+>- Login
+>- File Upload
 
 comment by hsm
 -----------
@@ -169,7 +172,17 @@ comment by kc
 >>>- Criteria cri객체를 @ModelAttribute로 컨트롤러의 각 메서드에 매개변수로 줘서 jsp에서 받아 cri.makeQuery() (UriComponentsBuilder사용)로
 >>>- 수정, 목록, 삭제 버튼에서 page, perPageNum을 유지하려고했는데 보니, /board/listPage?page=1&perPageNum=10으로만 되있다. 생성자에서 잘못된건지 이부분 수정해야됨...
 
-
-
-
+>##### 2019.01.08
+>>>- 게시물 삭제를 하려니까 post method는 지원하지 않는다는 error message가 떠서보니 register.jsp, read.jsp, modify.jsp에 들어있던 등록, 수정, 삭제, 목록 버튼등이 모두 form태그 안에 들어가있었다. 그래서 그부분을 모두 form태그 밖으로 뺐더니 문제 해결.
+>>>- uri에 cri(page, perPageNum)의 값을 넘겨줘야 작업 후 본래 보고있던 페이지로 돌아올 수 있는데 이 부분이 해결되지 않는다.
+>>>- 	1) register.jsp
+>>>-			- 확인 : 새글 등록후 목록의 1페이지로 오는게 자연스러워서 이부분은 건드리지 않아도 됨.
+>>>-			- 취소 :
+>>>- 	2) read.jsp
+>>>-			- 수정 :
+>>>-			- 목록 :
+>>>-			- 삭제 :
+>>>- 	2) modify.jsp
+>>>-			- 확인 :
+>>>-			- 취소 :
 

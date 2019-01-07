@@ -23,14 +23,14 @@ import com.chan.service.BoardService;
 @RequestMapping("/board/*")
 public class BoardController {
 
-	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Inject
 	private BoardService service;
 
 //  LIST
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public void listAllGET(Model model) throws Exception {
+	public void listAll(Model model) throws Exception {
 
 		logger.info("listAllGET......Show Board's List");
 
@@ -40,19 +40,16 @@ public class BoardController {
 	@RequestMapping(value="/listPage", method=RequestMethod.GET)
 	public void listPage(Criteria cri, Model model) throws Exception {
 
-		// cri를 가지로 현재 페이지에 해당하는 게시물들을 조회해온다.
+		System.out.println("현재 " + cri.getPage() + "페이지를 조회하였고, 한 페이지당 " + cri.getPerPageNum() + "개의 게시물을 조회중...");
+
 		List<BoardVO> boards = service.listPage(cri);
 
 		model.addAttribute("list", boards);
 
-		// PageMaker객체 생성
-		PageMaker pageMaker = new PageMaker(cri);
-
-		// 전체 게시물의 수를 구함
 		int totalBoardCount = service.getTotalDataCnt(cri);
 
-		// pageMaker에게 전체 게시물의 수를 전달해주면, pageMaker.calcData()에 의해 페이징처리에 필요한
-		// startPageNum, endPageNum, prev, next가 계산된다.
+		PageMaker pageMaker = new PageMaker(cri);
+
 		pageMaker.setTotalDataCnt(totalBoardCount);
 
 		model.addAttribute("pageMaker", pageMaker);
@@ -61,13 +58,13 @@ public class BoardController {
 
 //  CREATE
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registerGET(BoardVO boardVO, Model model) throws Exception {
+	public void register(BoardVO boardVO, Model model) throws Exception {
 
 		logger.info("registerGET......");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPOST(BoardVO vo, RedirectAttributes rttr) throws Exception {
+	public String register(BoardVO vo, RedirectAttributes rttr) throws Exception {
 
 		logger.info("registerPOST......");
 
@@ -79,9 +76,9 @@ public class BoardController {
 
 //  READ
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void readGET(@RequestParam("bno") Integer bno,
-						@ModelAttribute("cri") Criteria cri,
-						Model model) throws Exception {
+	public void read(@RequestParam("bno") Integer bno,
+				 	 @ModelAttribute("cri") Criteria cri,
+					 Model model) throws Exception {
 		//@RequestParam -> 사용자의 요청(request)에서 특정한 파라미터값을 찾아낼때 사용.
 		logger.info("readGET......");
 
@@ -91,7 +88,7 @@ public class BoardController {
 
 //  UPDATE
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modifyGET(@RequestParam("bno") Integer bno, Model model) throws Exception {
+	public void modify(@RequestParam("bno") Integer bno, Model model) throws Exception {
 		//Update페이지를 불러온다.
 		logger.info("modifyGET......");
 
@@ -101,7 +98,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(BoardVO vo, RedirectAttributes rttr) throws Exception {
+	public String modify(BoardVO vo, RedirectAttributes rttr) throws Exception {
 		//실제로 변경한 값을 넣어 수정 실행.
 		logger.info("modifyPOST......");
 
@@ -112,13 +109,17 @@ public class BoardController {
 	}
 
 //  DELETE
-	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public String removeGET(@RequestParam("bno") Integer bno, RedirectAttributes rttr) throws Exception {
+	@RequestMapping(value = "/remove", method = RequestMethod.GET)
+	public String remove(@RequestParam("bno") Integer bno,
+			             Criteria cri,
+			             RedirectAttributes rttr) throws Exception {
 
-		logger.info("removePOST......");
+		logger.info("remove......");
 
 		service.remove(bno);
 		rttr.addFlashAttribute("result", "Remove Success!!!");
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
 		return "redirect:/board/listPage";
 	}

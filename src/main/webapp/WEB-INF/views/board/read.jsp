@@ -10,7 +10,6 @@
 	<div class="container padding-t10">
 
 		<form name="readForm" method="post">
-
 			<div class="form-group">
 				<label for="bno">Bno</label>
 				<input class="form-control" type="text" value="${boardVO.bno}" readonly/>
@@ -30,18 +29,17 @@
 				<label for="writer">Writer</label>
 				<input class="form-control" type="text" name="regiUserId" id="regiUserId" value="${boardVO.regiUserId}" readonly/>
 			</div>
-
-			<div class="text-center">
-				<a href="/board/modify${cri.makeQuery()}&bno=${boardVO.bno}">
-					<button id="btnModify" type="button" class="btn btn-outline-warning m5">수정</button>
-				</a>
-				<a href="/board/listPage${cri.makeQuery()}" class="btn btn-outline-secondary m5">목록</a>
-				<button id="btnRemove" class="btn btn-outline-danger m5">삭제</button>
-			</div>
 		</form>
-	</div>
 
-</div>
+		<div class="text-center">
+			<a href="/board/modify${cri.makeQuery()}&bno=${boardVO.bno}" class="btn btn-outline-warning m5">수정</a>
+			<a href="/board/listPage${cri.makeQuery()}" class="btn btn-outline-secondary m5">목록</a>
+			<button id="btnRemove" class="btn btn-outline-danger m5">삭제</button>
+		</div>
+
+	</div><!-- /.container -->
+
+</div><!-- /.contents -->
 
 <script>
 $(document).ready(function(){
@@ -78,7 +76,7 @@ $(document).ready(function(){
 		$("#modifyOK").fadeOut(2000);
 	};
 
-	$("btnRemove").on("click", function(){
+	$("#btnRemove").on("click", function(){
 		if(confirm("정말로 삭제하시겠습니까?"))
 			self.location.href = "/board/remove${cri.makeQuery()}&bno=${boardVO.bno}";
 	});

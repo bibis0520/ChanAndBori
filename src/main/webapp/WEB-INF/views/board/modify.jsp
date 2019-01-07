@@ -6,8 +6,8 @@
 <div class="contents overflow-h padding-b40">
 
 	<div class="container padding-t10">
-		<form name="modifyForm" class="overflow-a" method="post">
 
+		<form name="modifyForm" class="overflow-a" method="post">
 			<div class="form-group">
 				<label for="bno">Bno</label>
 				<input class="form-control" type="text" value="${boardVO.bno}" readonly/>
@@ -27,19 +27,20 @@
 				<label for="writer">Writer</label>
 				<input class="form-control" type="text" name="regiUserId" id="regiUserId" value="${boardVO.regiUserId}" readonly/>
 			</div>
-
-			<div class="text-center">
-				<button id="btnEnter"  type="button" class="btn btn-outline-primary m5"  >확인</button>
-				<button id="btnCancel" type="button" class="btn btn-outline-secondary m5">취소</button>
-			</div>
 		</form>
-	</div>
+
+		<div class="text-center">
+			<button id="btnEnter"  type="button" class="btn btn-outline-primary m5"  >확인</button>
+			<button id="btnCancel" type="button" class="btn btn-outline-secondary m5">취소</button>
+		</div>
+
+	</div><!-- /.container -->
 
 	<form role="form" method="post">
 		<input type="hidden" name="bno" value="${boardVO.bno}" />
 	</form>
 
-</div>
+</div><!-- /.contents -->
 
 <script>
 $(document).ready(function(){

@@ -8,7 +8,6 @@
 	<div class="container padding-t10">
 
 		<form name="regiForm" class="overflow-a" method="post">
-
 			<div class="form-group">
 				<label for="title">Title</label>
 				<input class="form-control" type="text" name="title" id="title" placeholder="Enter Title..."/>
@@ -23,17 +22,16 @@
 				<label for="regiUserId">Writer</label>
 				<input class="form-control" type="text" name="regiUserId" id="regiUserId" placeholder="Enter Writer..."/>
 			</div>
-
-			<div class="text-center">
-				<button type="button" id="btnRegister"  class="btn btn-outline-primary m5">등록</button>
-				<button type="button" id="btnCancel" 	class="btn btn-outline-danger  m5">취소</button>
-			</div>
-
 		</form>
 
-	</div>
+		<div class="text-center">
+			<button type="button" id="btnRegister"  class="btn btn-outline-primary m5">등록</button>
+			<button type="button" id="btnCancel" 	class="btn btn-outline-danger  m5">취소</button>
+		</div>
 
-</div>
+	</div><!-- /.container -->
+
+</div><!-- /.contents -->
 
 <script>
 $(document).ready(function(){
