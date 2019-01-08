@@ -19,16 +19,19 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- bootstrap CDN -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+	<!-- common.js -->
     <script type="text/javascript" src="../../../../resources/common/common.js" ></script>
     <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../../../resources/favicon.ico" />
     <!-- NaverSmartEditer -->
 	<script type="text/javascript" src="../../../resources/plugins/naverSmartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+	<!-- naverSmartEditor.js -->
+	<script type="text/javascript" src="../../../resources/naverSmartEditor.js"></script>
 </head>
 
 <body>
     <div class="wrapper">
+
         <div class="header">
 
             <div class="title">
@@ -54,7 +57,7 @@
 
                 <ul class="fr">
                     <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
-                    <li><a href="/signup"><i class="fas fa-user-plus"></i></a></li>
+                    <!-- <li><a href="/signup"><i class="fas fa-user-plus"></i></a></li> -->
                 </ul>
             </div><!-- /navigation -->
 

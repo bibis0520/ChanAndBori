@@ -28,34 +28,6 @@ public class BoardController {
 	@Inject
 	private BoardService service;
 
-//  LIST
-	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public void listAll(Model model) throws Exception {
-
-		logger.info("listAllGET......Show Board's List");
-
-		model.addAttribute("list", service.listAll());
-	}
-
-	@RequestMapping(value="/listPage", method=RequestMethod.GET)
-	public void listPage(Criteria cri, Model model) throws Exception {
-
-		System.out.println("현재 " + cri.getPage() + "페이지를 조회하였고, 한 페이지당 " + cri.getPerPageNum() + "개의 게시물을 조회중...");
-
-		List<BoardVO> boards = service.listPage(cri);
-
-		model.addAttribute("list", boards);
-
-		int totalBoardCount = service.getTotalDataCnt(cri);
-
-		PageMaker pageMaker = new PageMaker(cri);
-
-		pageMaker.setTotalDataCnt(totalBoardCount);
-
-		model.addAttribute("pageMaker", pageMaker);
-	}
-
-
 //  CREATE
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void register(BoardVO boardVO,
@@ -139,4 +111,33 @@ public class BoardController {
 
 		return "redirect:/board/listPage";
 	}
+
+//  LIST-ALL
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public void listAll(Model model) throws Exception {
+
+		logger.info("listAllGET......Show Board's List");
+
+		model.addAttribute("list", service.listAll());
+	}
+
+//  LIST by Pagination
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void listPage(Criteria cri, Model model) throws Exception {
+
+		System.out.println("현재 " + cri.getPage() + "페이지를 조회하였고, 한 페이지당 " + cri.getPerPageNum() + "개의 게시물을 조회중...");
+
+		List<BoardVO> boards = service.listPage(cri);
+
+		model.addAttribute("list", boards);
+
+		int totalBoardCount = service.getTotalDataCnt(cri);
+
+		PageMaker pageMaker = new PageMaker(cri);
+
+		pageMaker.setTotalDataCnt(totalBoardCount);
+
+		model.addAttribute("pageMaker", pageMaker);
+	}
+
 }

@@ -74,9 +74,6 @@
 	  	</ul>
 	</nav>
 
-	<%-- <form role="form" id="pageRedirect" method="post" action="/board/read?bno=${boardVO.bno}">
-		<input id="inpt_boardId" type="hidden" name="boardId" />
-	</form> --%>
 
 </div>
 

@@ -19,65 +19,9 @@
 		<result column="MODI_DATE"      jdbcType="TIMESTAMP"	property="modiDate" />
 	</resultMap>
 
-<!-- LISTPAGE & PAGENATION -->
-	<!-- 게시물 전체 리스트 조회 -->
-	<select id="listAll" resultMap="resultForBoardVO">
-		SELECT		/* com.chan.persistence.BoardDAO.listAll */
-					BOARD_ID,
-					HRANK_BOARD_ID,
-					BNO,
-					SEQ,
-					TITLE,
-					CONTENT,
-					REGI_USER_ID,
-					REGI_DATE,
-					MODI_USER_ID,
-					MODI_DATE,
-					VIEW_CNT
-		FROM
-					TBL_BOARD
-		ORDER BY
-					BNO DESC
-	</select>
+<!-- CRUD .............................................................................................................-->
 
-	<!-- 페이징 처리된 게시물 리스트 조회 -->
-	<select id="listPage" resultMap="resultForBoardVO">
-		SELECT		/* com.chan.persistence.BoardDAO.listPage */
-					ROWNUM RNUM,
-					BOARD_ID, HRANK_BOARD_ID, BNO, SEQ,	TITLE, CONTENT,
-					REGI_USER_ID, REGI_DATE, MODI_USER_ID, MODI_DATE, VIEW_CNT
-		FROM
-		    	(
-		    	SELECT
-		    		ROWNUM RNUM,
-		    	   	TBL_BOARD.BOARD_ID,     TBL_BOARD.HRANK_BOARD_ID, TBL_BOARD.BNO,          TBL_BOARD.SEQ,
-		    	   	TBL_BOARD.TITLE,        TBL_BOARD.CONTENT,        TBL_BOARD.REGI_USER_ID, TBL_BOARD.REGI_DATE,
-		    	   	TBL_BOARD.MODI_USER_ID, TBL_BOARD.MODI_DATE,      TBL_BOARD.VIEW_CNT
-				FROM
-		        		(
-		        		SELECT
-								BOARD_ID, HRANK_BOARD_ID, BNO, SEQ, TITLE, CONTENT,
-								REGI_USER_ID, REGI_DATE, MODI_USER_ID, MODI_DATE, VIEW_CNT
-		        		FROM
-		        				TBL_BOARD
-		        		ORDER BY
-		        				BNO DESC)TBL_BOARD
-		    	)
-		WHERE RNUM BETWEEN #{startBoardRowNum} AND #{endBoardRowNum}
-	</select>
-
-	<!-- 게시물의 총 갯수구하는 Query -->
-	<select id="getTotalDataCnt" resultType="int">
-		SELECT  /* com.chan.persistence.BoardDAO.getTotalDataCnt */
-				COUNT(*)
-		FROM
-				TBL_BOARD
-		WHERE
-				BNO > 0
-	</select>
-
-<!-- CRUD -->
-	<!-- 게시물 등록 -->
+	<!-- CREATE -->
 	<insert id="create">
 		INSERT INTO	/* com.chan.persistence.BoardDAO.create */
 		TBL_BOARD
@@ -104,7 +48,7 @@
 				)
 	</insert>
 
-	<!-- 게시물 조회 -->
+	<!-- READ -->
 	<select id="read" resultMap="resultForBoardVO">
 		SELECT		/* com.chan.persistence.BoardDAO.read */
 					BOARD_ID,
@@ -124,7 +68,7 @@
 					BNO = #{bno}
 	</select>
 
-	<!-- 게시물 수정 -->
+	<!-- UPDATE -->
 	<update id="update">
 		UPDATE 		/* com.chan.persistence.BoardDAO.update */
 					TBL_BOARD
@@ -137,13 +81,73 @@
 					BNO = #{bno}
 	</update>
 
-	<!-- 게시물 삭제 -->
+	<!-- DELETE -->
 	<delete id="remove">
 		DELETE FROM /* com.chan.persistence.BoardDAO.remove */
 					TBL_BOARD
 		WHERE
 					BNO = #{bno}
 	</delete>
+
+<!-- LISTPAGE & PAGENATION............................................................................................ -->
+
+	<!-- (LIST ALL)게시물 전체 리스트 조회 -->
+	<select id="listAll" resultMap="resultForBoardVO">
+		SELECT		/* com.chan.persistence.BoardDAO.listAll */
+					BOARD_ID,
+					HRANK_BOARD_ID,
+					BNO,
+					SEQ,
+					TITLE,
+					CONTENT,
+					REGI_USER_ID,
+					REGI_DATE,
+					MODI_USER_ID,
+					MODI_DATE,
+					VIEW_CNT
+		FROM
+					TBL_BOARD
+		ORDER BY
+					BNO DESC
+	</select>
+
+	<!-- LIST by Pagination(페이징 처리된 게시물 리스트 조회) -->
+	<select id="listPage" resultMap="resultForBoardVO">
+		SELECT		/* com.chan.persistence.BoardDAO.listPage */
+					ROWNUM RNUM,
+					BOARD_ID, HRANK_BOARD_ID, BNO, SEQ,	TITLE, CONTENT,
+					REGI_USER_ID, REGI_DATE, MODI_USER_ID, MODI_DATE, VIEW_CNT
+		FROM
+		    	(
+		    	SELECT
+		    		ROWNUM RNUM,
+		    	   	TBL_BOARD.BOARD_ID,     TBL_BOARD.HRANK_BOARD_ID, TBL_BOARD.BNO,          TBL_BOARD.SEQ,
+		    	   	TBL_BOARD.TITLE,        TBL_BOARD.CONTENT,        TBL_BOARD.REGI_USER_ID, TBL_BOARD.REGI_DATE,
+		    	   	TBL_BOARD.MODI_USER_ID, TBL_BOARD.MODI_DATE,      TBL_BOARD.VIEW_CNT
+				FROM
+		        		(
+		        		SELECT
+								BOARD_ID, HRANK_BOARD_ID, BNO, SEQ, TITLE, CONTENT,
+								REGI_USER_ID, REGI_DATE, MODI_USER_ID, MODI_DATE, VIEW_CNT
+		        		FROM
+		        				TBL_BOARD
+		        		ORDER BY
+		        				BNO DESC)TBL_BOARD
+		    	)
+		WHERE RNUM BETWEEN #{startBoardRowNum} AND #{endBoardRowNum}
+	</select>
+
+<!-- GET DATA Query................................................................................................... -->
+
+	<!-- 게시물의 총 갯수구하는 Query -->
+	<select id="getTotalDataCnt" resultType="int">
+		SELECT  	/* com.chan.persistence.BoardDAO.getTotalDataCnt */
+					COUNT(*)
+		FROM
+					TBL_BOARD
+		WHERE
+					BNO > 0
+	</select>
 
 </mapper>
 

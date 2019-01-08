@@ -17,31 +17,6 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO dao;
 
 	@Override
-	public List<BoardVO> listAll() throws Exception {
-
-		return dao.listAll();
-	}
-
-	@Override
-	public List<BoardVO> listPage(Criteria cri) throws Exception {
-
-		//mapper에서 사용할 값을 계산...해서 set()을 통해 대입
-		int endBoardRowNum = cri.getPage() * cri.getPerPageNum();
-		int startBoardRowNum = endBoardRowNum - cri.getPerPageNum() + 1;
-
-		cri.setEndBoardRowNum(endBoardRowNum);
-		cri.setStartBoardRowNum(startBoardRowNum);
-
-		return dao.listPage(cri);
-	}
-
-	@Override
-	public int getTotalDataCnt(Criteria cri) throws Exception {
-
-		return dao.getTotalDataCnt(cri);
-	}
-
-	@Override
 	public void create(BoardVO vo) throws Exception {
 
 		dao.create(vo);
@@ -64,4 +39,29 @@ public class BoardServiceImpl implements BoardService {
 
 		dao.remove(bno);
 	}
+
+	@Override
+	public List<BoardVO> listAll() throws Exception {
+
+		return dao.listAll();
+	}
+
+	@Override
+	public List<BoardVO> listPage(Criteria cri) throws Exception {
+
+		int endBoardRowNum = cri.getPage() * cri.getPerPageNum();
+		int startBoardRowNum = endBoardRowNum - cri.getPerPageNum() + 1;
+
+		cri.setEndBoardRowNum(endBoardRowNum);
+		cri.setStartBoardRowNum(startBoardRowNum);
+
+		return dao.listPage(cri);
+	}
+
+	@Override
+	public int getTotalDataCnt(Criteria cri) throws Exception {
+
+		return dao.getTotalDataCnt(cri);
+	}
+
 }

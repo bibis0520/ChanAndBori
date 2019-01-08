@@ -6,7 +6,7 @@
 
 <div class="contents overflow-h padding-b40">
 
-	<div class="container">
+	<div class="container padding-t10 col-md-4">
 		<form>
 		  	<div class="form-group">
 		    	<label for="exampleInputId1">ID</label>
@@ -23,13 +23,16 @@
 		    	<label class="form-check-label" for="exampleCheck1">Remember Me</label>
 		  	</div>
 
-			<div class="text-center">
-			  	<button type="submit" class="btn btn-primary m5">Login</button>
-			  	<button class="btn btn-danger m5">Cancel</button>
-		  	</div>
 		</form>
-	</div>
 
-</div>
+		<div class="text-center">
+		  	<button type="button" class="btn btn-primary m5">Login</button>
+		  	<button type="button" class="btn btn-danger m5">Cancel</button>
+			<a href="/signup" class="btn btn-success m5">SignUp</a>
+		</div>
+
+	</div><!-- /.container -->
+
+</div><!-- /.contents -->
 
 <%@ include file="include/footer.jsp" %>
