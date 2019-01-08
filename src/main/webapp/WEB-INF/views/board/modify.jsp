@@ -51,7 +51,7 @@ $(document).ready(function(){
 
 	naverSmartEditorModify(content);
 
-	//수정 버튼
+	//수정 확인 버튼
 	$("#btnEnter").on("click", () => {
 
 		oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);

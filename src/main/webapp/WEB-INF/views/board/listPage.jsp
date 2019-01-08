@@ -10,6 +10,33 @@
 	<div id="removeOK" class="alert alert-danger hidden text-center" role="alert">글이 삭제되었습니다.</div>
 
 	<div class="m20 overflow-a">
+
+		<div class="input-group col-md-4 padding-0 fl">
+			<div class="input-group-prepend">
+		    	<button type="button" class="btn btn-outline-secondary">검색</button>
+		    	<button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		      		<span class="sr-only">Toggle Dropdown</span>
+		    	</button>
+		    	<div class="dropdown-menu">
+		    		<h6 class="dropdown-header">검색조건을 선택하세요.</h6>
+			      	<a class="dropdown-item" href="#">TITLE</a>
+			      	<div role="separator" class="dropdown-divider"></div>
+			      	<a class="dropdown-item" href="#">CONTENT</a>
+			      	<div role="separator" class="dropdown-divider"></div>
+			      	<a class="dropdown-item" href="#">Writer</a>
+			      	<div role="separator" class="dropdown-divider"></div>
+			      	<a class="dropdown-item" href="#">TITLE or CONTENT</a>
+			      	<div role="separator" class="dropdown-divider"></div>
+			      	<a class="dropdown-item" href="#">CONTENT or WRITER</a>
+			      	<div role="separator" class="dropdown-divider"></div>
+			      	<a class="dropdown-item" href="#">TITLE or CONTENT or WRITER</a>
+		    	</div>
+			</div>
+		  	<input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+		</div>
+
+
+
 		<div>
 			<a href="/board/register${pageMaker.makeQuery(pageMaker.cri.page)}">
 				<button class="btn btn-primary fr">새글등록</button>
@@ -86,11 +113,11 @@ $(document).ready(function(){
 	$(function(){
 		if(result === "Register Success!!!") {
 			$("#registerOK").removeClass("hidden");
-			$("#registerOK").fadeOut(2000);
+			$("#registerOK").fadeOut(3000);
 		}
 		if(result === "Remove Success!!!") {
 			$("#removeOK").removeClass("hidden");
-			$("#removeOK").fadeOut(2000);
+			$("#removeOK").fadeOut(3000);
 		}
 	});
 

@@ -16,6 +16,9 @@
 .overflow-h{
 	overflow:hidden;
 }
+.padding-0{
+	padding:0px;
+}
 .padding-t10{
 	padding-top:10px;
 }

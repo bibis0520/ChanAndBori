@@ -73,7 +73,7 @@ $(document).ready(function(){
 	var modifyResult = "${result}";
 	if( modifyResult === "Modify Success!!!" ) {
 		$("#modifyOK").removeClass("hidden");
-		$("#modifyOK").fadeOut(2000);
+		$("#modifyOK").fadeOut(3000);
 	};
 
 	$("#btnRemove").on("click", function(){
