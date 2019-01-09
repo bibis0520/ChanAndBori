@@ -20,6 +20,9 @@
 - 회원가입 및 로그인 처리 구현
 - 사진 파일 업로드 구현
 
+### 설명
+[프로젝트 PPT](https://docs.google.com/presentation/d/1GTGuS3r8J0-6fGjc3UiBZvmKHfC_84ud0r6STxm-mg8/edit?usp=sharing)
+
 ## 웹 페이지 구성
 
 - "/"
