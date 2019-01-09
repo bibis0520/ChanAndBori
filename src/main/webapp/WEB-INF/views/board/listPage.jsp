@@ -11,7 +11,7 @@
 
 	<div class="m20 overflow-a">
 
-		<div class="input-group col-md-4 padding-0 fl">
+		<!-- <div class="input-group col-md-4 padding-0 fl">
 			<div class="input-group-prepend">
 		    	<button type="button" class="btn btn-outline-secondary">검색</button>
 		    	<button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -33,9 +33,7 @@
 		    	</div>
 			</div>
 		  	<input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
-		</div>
-
-
+		</div> -->
 
 		<div>
 			<a href="/board/register${pageMaker.makeQuery(pageMaker.cri.page)}">
