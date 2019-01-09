@@ -67,11 +67,7 @@ $(document).ready(function(){
 			return;
 		}
 
-		try {
-			document.regiForm.submit();
-		} catch (e) {
-
-		}
+		document.regiForm.submit();
 	});
 
 	/* $("#editor_sample01").on("keydown",function(){

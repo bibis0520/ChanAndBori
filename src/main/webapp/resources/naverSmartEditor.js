@@ -30,7 +30,7 @@ function naverSmartEditorRegister(){
 };
 
 // Used in modify.jsp
-function naverSmartEditorModify(content){
+function naverSmartEditorReadModify(content){
 	oEditors = [];
 
 	nhn.husky.EZCreator.createInIFrame({

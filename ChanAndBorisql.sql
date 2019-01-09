@@ -65,28 +65,28 @@ FROM
         ORDER BY BNO DESC
         )
         TBL_BOARD
-    WHERE ROWNUM <= 10
+    WHERE ROWNUM <= 
     )
-WHERE RNUM > 0;
+WHERE RNUM >= 11;
 
 ------ 4) 이걸 사용하기로 했다!
 ------ 마지막 행을 WHERE RNUM BETWEEN #{start} AND #{last}
 SELECT              ROWNUM RNUM,
-                    BOARD_ID,
-					HRANK_BOARD_ID,
-					BNO,
-					SEQ,
-					TITLE,
-					CONTENT,
-					REGI_USER_ID,
-					REGI_DATE,
-					MODI_USER_ID,
-					MODI_DATE,
-					VIEW_CNT
+                    B.BOARD_ID,
+					B.HRANK_BOARD_ID,
+					B.BNO,
+					B.SEQ,
+					B.TITLE,
+					B.CONTENT,
+					B.REGI_USER_ID,
+					B.REGI_DATE,
+					B.MODI_USER_ID,
+					B.MODI_DATE,
+					B.VIEW_CNT
 FROM 
     (
-    SELECT ROWNUM RNUM, TBL_BOARD.BOARD_ID, TBL_BOARD.HRANK_BOARD_ID, TBL_BOARD.BNO, TBL_BOARD.SEQ, TBL_BOARD.TITLE, TBL_BOARD.CONTENT,
-           TBL_BOARD.REGI_USER_ID, TBL_BOARD.REGI_DATE, TBL_BOARD.MODI_USER_ID, TBL_BOARD.MODI_DATE, TBL_BOARD.VIEW_CNT
+    SELECT ROWNUM RNUM, A.BOARD_ID, A.HRANK_BOARD_ID, A.BNO, A.SEQ, A.TITLE, A.CONTENT,
+           A.REGI_USER_ID, A.REGI_DATE, A.MODI_USER_ID, A.MODI_DATE, A.VIEW_CNT
     FROM
         (
         SELECT
@@ -103,10 +103,35 @@ FROM
 					VIEW_CNT
         FROM TBL_BOARD
         ORDER BY BNO DESC
-        )
-        TBL_BOARD
-    )
+        )A
+    )B
 WHERE RNUM BETWEEN 1 AND 10;
+
+SELECT		/* com.chan.persistence.BoardDAO.listPage */
+					ROWNUM RNUM,
+					B.BOARD_ID, 	B.HRANK_BOARD_ID, 	B.BNO, 			B.SEQ,
+					B.TITLE, 		B.CONTENT,			B.REGI_USER_ID, B.REGI_DATE,
+					B.MODI_USER_ID, B.MODI_DATE, 		B.VIEW_CNT
+		FROM
+		    	(
+		    	SELECT
+                            ROWNUM RNUM,
+				    	   	A.BOARD_ID,     A.HRANK_BOARD_ID, A.BNO,          A.SEQ,
+				    	   	A.TITLE,        A.CONTENT,        A.REGI_USER_ID, A.REGI_DATE,
+				    	   	A.MODI_USER_ID, A.MODI_DATE,      A.VIEW_CNT
+				FROM
+		        		(
+		        		SELECT
+									BOARD_ID, 		HRANK_BOARD_ID, 	BNO, 			SEQ,
+									TITLE, 			CONTENT,			REGI_USER_ID, 	REGI_DATE,
+									MODI_USER_ID, 	MODI_DATE, 			VIEW_CNT
+		        		FROM
+		        					TBL_BOARD
+		        		ORDER BY
+		        					BNO DESC
+		        		)A
+		    	)B
+		WHERE RNUM BETWEEN 1 AND 10;
 ------ WHERE RNUM BETWEEN #{page} AND #{perPageNum}  
 
 ------ 5) 
@@ -170,3 +195,4 @@ BEGIN
 END;
 
 SELECT FUNC_GET_SEQ_30() FROM DUAL;
+---- 2019 01 09 21 36 01(14) + 00625 + PFHEPVRGFGE(11)

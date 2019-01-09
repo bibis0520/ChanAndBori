@@ -131,15 +131,6 @@ $(document).ready(function(){
 		$("#page-next").addClass("hidden");
 	}
 
-	// pageMaker에 boolean형의 prev와 next를 가져와서 버튼을 활성화 혹은 비활성화한다.
-	var prevAble = "${pageMaker.prev}";
-	if ( prevAble !== "true" )
-		$("#page-prev").addClass("disabled");
-
-	var nextAble = "${pageMaker.next}";
-	if ( nextAble !== "true")
-		$("#page-next").addClass("disabled");
-
 	// 현재 페이지를 가져와서 어느 페이지를 보고있는지 알려준다.
 	var thisPage = "${pageMaker.cri.page}";
 	$("#" + thisPage + "page").addClass("active");

@@ -49,7 +49,7 @@ $(document).ready(function(){
 		editorContent 	= content.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig, "");	//	<p>KimChan</p> ===>  KimChan
 		console.log("editorContent : " + editorContent + ", content : " + content);
 
-	naverSmartEditorModify(content);
+	naverSmartEditorReadModify(content);
 
 	//수정 확인 버튼
 	$("#btnEnter").on("click", () => {
