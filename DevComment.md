@@ -272,7 +272,9 @@ private String keyword;
 >>> ```
 >>> 2.listPage.jsp에 검색조건(searchType) 선택하는 부분과 검색어(keyword) 입력란 만들기 
 >>>
->>> - 
+>>> - 검색조건 선택란 + 검색어 입력란 + 검색 버튼
+>>> 
+>>> 
 
 
  
