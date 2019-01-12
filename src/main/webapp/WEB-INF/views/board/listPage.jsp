@@ -11,35 +11,26 @@
 
 	<div class="m20 overflow-a">
 
-		<!-- <div class="input-group col-md-4 padding-0 fl">
-			<div class="input-group-prepend">
-		    	<button type="button" class="btn btn-outline-secondary">검색</button>
-		    	<button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-		      		<span class="sr-only">Toggle Dropdown</span>
-		    	</button>
-		    	<div class="dropdown-menu">
-		    		<h6 class="dropdown-header">검색조건을 선택하세요.</h6>
-			      	<a class="dropdown-item" href="#">TITLE</a>
-			      	<div role="separator" class="dropdown-divider"></div>
-			      	<a class="dropdown-item" href="#">CONTENT</a>
-			      	<div role="separator" class="dropdown-divider"></div>
-			      	<a class="dropdown-item" href="#">Writer</a>
-			      	<div role="separator" class="dropdown-divider"></div>
-			      	<a class="dropdown-item" href="#">TITLE or CONTENT</a>
-			      	<div role="separator" class="dropdown-divider"></div>
-			      	<a class="dropdown-item" href="#">CONTENT or WRITER</a>
-			      	<div role="separator" class="dropdown-divider"></div>
-			      	<a class="dropdown-item" href="#">TITLE or CONTENT or WRITER</a>
-		    	</div>
-			</div>
-		  	<input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
-		</div> -->
+		<div class="input-group col-md-4 padding-0 fl">
+	  		<select class="custom-select mr5" id="searchType">
+			    <option value="n" 	<c:out value="${cri.searchType == null  ? 'selected' : '' }"/>>---</option>
+			    <option value="t" 	<c:out value="${cri.searchType eq 't'   ? 'selected' : '' }"/>>Title</option>
+			    <option value="c" 	<c:out value="${cri.searchType eq 'c'   ? 'selected' : '' }"/>>Content</option>
+			    <option value="w" 	<c:out value="${cri.searchType eq 'w'   ? 'selected' : '' }"/>>Writer</option>
+			    <option value="tc"	<c:out value="${cri.searchType eq 'tc'  ? 'selected' : '' }"/>>Title or Content</option>
+			    <option value="cw"	<c:out value="${cri.searchType eq 'cw'  ? 'selected' : '' }"/>>Content or Writer</option>
+			    <option value="tcw" <c:out value="${cri.searchType eq 'tcw' ? 'selected' : '' }"/>>Title or Content or Writer</option>
+	  		</select>
+	  		<input class="col-md-6 mr5" type="text" id="searchKeyword" value="${cri.keyword}"/>
+	  		<button class="btn btn-success" type="button" id="searchBtn">Search</button>
+		</div>
 
 		<div>
 			<a href="/board/register${pageMaker.makeQuery(pageMaker.cri.page)}">
 				<button class="btn btn-primary fr">새글등록</button>
 			</a>
 		</div>
+
 		<div class="input-group col-md-1 fr">
 		  	<select class="custom-select" id="perPageNumSelect" aria-label="Example select with button addon">
 			    <option value="10">10개씩</option>

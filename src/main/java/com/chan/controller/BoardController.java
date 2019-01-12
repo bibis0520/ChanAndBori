@@ -1,7 +1,5 @@
 package com.chan.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -123,19 +121,15 @@ public class BoardController {
 
 //  LIST by Pagination
 	@RequestMapping(value="/listPage", method=RequestMethod.GET)
-	public void listPage(Criteria cri, Model model) throws Exception {
+	public void listPage(@ModelAttribute("cri") Criteria cri,
+						 Model model) throws Exception {
 
-		System.out.println("현재 " + cri.getPage() + "페이지를 조회하였고, 한 페이지당 " + cri.getPerPageNum() + "개의 게시물을 조회중...");
+		model.addAttribute("list", service.listPage(cri));
 
-		List<BoardVO> boards = service.listPage(cri);
+		PageMaker pageMaker = new PageMaker();
 
-		model.addAttribute("list", boards);
-
-		int totalBoardCount = service.getTotalDataCnt(cri);
-
-		PageMaker pageMaker = new PageMaker(cri);
-
-		pageMaker.setTotalDataCnt(totalBoardCount);
+		pageMaker.setCri(cri);
+		pageMaker.setTotalDataCnt(service.getTotalDataCnt(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
 	}

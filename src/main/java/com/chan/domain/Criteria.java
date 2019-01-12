@@ -1,6 +1,5 @@
 package com.chan.domain;
 
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.Data;
@@ -14,6 +13,10 @@ public class Criteria {
 
 	private int startBoardRowNum;
 	private int endBoardRowNum;
+
+	//for 검색처리
+	private String searchType;
+	private String keyword;
 
 	public Criteria() {
 		this.page = 1;
@@ -53,12 +56,11 @@ public class Criteria {
 
 
 	public String makeQuery() {
-
-		UriComponents uriComponents = UriComponentsBuilder.newInstance()
-				                   						  .queryParam("page", this.page)
-				                   						  .queryParam("perPageNum", this.perPageNum)
-				                   						  .build().encode();
-
-		return uriComponents.toString();
+		return UriComponentsBuilder.newInstance()
+				                   .queryParam("page", this.page)
+				                   .queryParam("perPageNum", this.getPerPageNum())
+				                   .queryParam("keyword", this.getKeyword())
+				                   .queryParam("searchType", this.getSearchType())
+				                   .build().encode().toString();
 	}
 }

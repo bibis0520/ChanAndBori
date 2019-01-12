@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../../../../resources/style.css">
 	<!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <!-- bootstrap CDN -->
+    <!-- Bootstrap CDN -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<!-- common.js -->
     <script type="text/javascript" src="../../../../resources/common/common.js" ></script>
@@ -51,14 +51,13 @@
             <div class="navigation">
                 <ul class="fl">
                     <li><a href="/"><i class="fas fa-home"></i></a></li>
-                    <li><a href="/board/listPage"><i class="fas fa-clipboard-list"></i></a></li>
+                    <li><a href="/board/listPage${cri.makeQuery()}"><i class="fas fa-clipboard-list"></i></a></li>
                     <li><a href="/photo"><i class="fas fa-camera-retro"></i></a></li>
                 </ul>
 
                 <ul class="fr">
                     <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
-                    <!-- <li><a href="/signup"><i class="fas fa-user-plus"></i></a></li> -->
                 </ul>
-            </div><!-- /navigation -->
+            </div><!-- /navigation bar-->
 
         </div>

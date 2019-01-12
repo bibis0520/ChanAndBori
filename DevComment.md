@@ -258,4 +258,21 @@ comment by kc
 
 >>`6` DevComment.md파일 정리 
 
+<hr>
+
+>##### 2019.01.12
+
+>>`1` 검색조건 기능 추가 중...
+>>> 1.검색조건을 구현하기 위해 페이지 정보(page, perPageNum)를 가지고 있는 Criteria에 keyword(검색 키워드)와 searchType(검색 조건)을 추가
+>>> 
+>>> ```
+>>> //for 검색처리
+private String searchType;
+private String keyword;
+>>> ```
+>>> 2.listPage.jsp에 검색조건(searchType) 선택하는 부분과 검색어(keyword) 입력란 만들기 
+>>>
+>>> - 
+
+
  
