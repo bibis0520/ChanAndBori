@@ -264,17 +264,45 @@ comment by kc
 
 >>`1` 검색조건 기능 추가 중...
 >>> 1.검색조건을 구현하기 위해 페이지 정보(page, perPageNum)를 가지고 있는 Criteria에 keyword(검색 키워드)와 searchType(검색 조건)을 추가
->>> 
+
 >>> ```
 >>> //for 검색처리
 private String searchType;
 private String keyword;
 >>> ```
+
 >>> 2.listPage.jsp에 검색조건(searchType) 선택하는 부분과 검색어(keyword) 입력란 만들기 
 >>>
 >>> - 검색조건 선택란 + 검색어 입력란 + 검색 버튼
->>> 
->>> 
 
+>##### 2019.01.13
 
+>>`1` 상단 메뉴바에서 게시판 버튼 누르면 "board/listPage?page=1&perPageNum=10&searchType=&keyword="이 나오도록... 수정해야됨
+>>> 이부분은 /board/listPage?page=1&perPageNum=10 로 하기로했다. 사실 게시판 버튼을 누른다는건 검색조건이나 이전에 유지하던 값들을 초기화 시킨다는 의미가 크기 때문에...
+>>
+>>`2` 검색조건 추가중...
+>>> 1. src/test/java내의 URIComponentBuildTest에 searchType, keyword를 추가한 테스트 하나 추가 
+>>> 2. listPage에서 검색(search)버튼을 누를경우 발생하는 이벤트 추가.
+>>> 
+>>>> - PageMaker의 makeQuery메서드를 수정, 매개변수에 int page외에 boolean형의 needSearch를 받도록 했다.
+>>>> - 이유는 검색조건이 처리되지 않은 경우, page번호의 li요소에는 링크값으로 searchType과 keyword를 유지하지 못했다. 따라서  UriComponentsBuilder로 만든 uri에 searchType과 keyword를 추가해 주기위해, pageMaker의 makeQuery메서드에 int page만 넘겨질 경우, makeQuery(page, true)가 return되어 자동으로 uri마지막에 searchType과 keyword가 추가된다. 
+>>>> - listPage에 searchBtn을 클릭할 경우에는 makeQuery(1, false)를 호출해 uri를 만들었는데, 클라이언트가 브라우저에서 검색조건과 검색어를 입력하고 검색 버튼을 누를 경우에 그 값을 가져와 uri를 만들어야 하기 때문이다. 
+>>>> - 그 부분에 true를 준다면, 
+>>>> `/board/listPage?page=1&perPageNum=10&searchType&keyword&searchType=t&keyword=chan`과 같이 searchType과 keyword가 두번 만들어진 것을 볼 수 있다. 따라서 false를 주어야 한다. 
  
+>>`3` 버튼을 눌렀을 경우, 예를들어 검색조건은 "제목"에서 "찬"이라는 내용을 가지고 검색을 한다면!
+>>> 내가 원하는 검색결과는 page번호의 li에 링크가 다음과 같이 붙어야한다.
+>>> ```
+>>> listPage?page=1&perPageNum=10&searchType=t&keyword=찬
+>>> ```
+>>> 
+>>> 하지만 결과는...
+>>> 
+>>> ```
+>>> listPage?page=1&perPageNum=10&searchType=c&keyword=%EC%B0%AC
+>>> ```
+>>> 
+>>> "찬"이란 string값이 인코딩되지 않은채로 li의 href에 출력된다. 찾아본 결과 javascript에서 제공하는 메서드에 encodeURIComponent라는게 있어서 encodeURIComponent(searchKeywordVal)이렇게 출력해 주었는데도 저런 결과가 나온다. 이부분은 해결해야됨. 일단 페이지 이동시에 검색조건과 키워드는 유지된다.(일단 진행하기로...)
+
+>>`4` MyBatis 동적 SQL
+>>> 

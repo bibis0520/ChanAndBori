@@ -51,7 +51,7 @@
             <div class="navigation">
                 <ul class="fl">
                     <li><a href="/"><i class="fas fa-home"></i></a></li>
-                    <li><a href="/board/listPage${cri.makeQuery()}"><i class="fas fa-clipboard-list"></i></a></li>
+                    <li><a href="/board/listPage?page=1&perPageNum=10"><i class="fas fa-clipboard-list"></i></a></li>
                     <li><a href="/photo"><i class="fas fa-camera-retro"></i></a></li>
                 </ul>
 

@@ -110,6 +110,44 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#searchBtn").on("click", function(event){
+		event.preventDefault();
+
+		var $searchType = $("#searchType"),
+			$searchKeyword = $("#searchKeyword");
+
+		var searchTypeVal = $searchType.val(),
+			searchKeywordVal = $searchKeyword.val();
+
+		console.log("searchTypeVal = " + searchTypeVal + ", searchKeywordVal = " + searchKeywordVal);
+
+		//검색조건과 검색어가 존재하지 않을 경우! alert창이 뜨고 해당 입력한으로 focus
+		if ( searchTypeVal == "n" ) {
+			alert("검색조건을 선택해주세요.");
+			$searchType.focus();
+			return;
+		} else if ( searchKeywordVal == "" ) {
+			alert("검색어를 입력해주세요.");
+			$searchKeyword.focus();
+			return;
+		}
+
+		/*
+		검색조건과 검색어 입력뒤 이동할 경로는 pageMaker의 makeQuery로 URL을 만드는데,
+		검색버튼을 누른 뒤에는 검색결과의 1페이지로 이동해야 되기 때문에 queryParam의 page부분에 1을 주는 것이고,
+		false를 주는 이유는 위에서 searchTypeVal과 searchKeywordVal을 구해서 직접 URL을 만들어야 하기 때문에 그렇다.
+		true를 주면, /board/listPage?page=1&perPageNum=10&searchType&keyword&searchType=t&keyword=chan과 같이 만들어진다.
+		*/
+		var url = "/board/listPage${pageMaker.makeQuery(1, false)}"
+				  + "&searchType=" + searchTypeVal
+				  + "&keyword=" + encodeURIComponent(searchKeywordVal);
+
+		console.log("Search URL : " + url);
+
+		//그리고 위에서 만들어진 url로 이동.
+		window.location.href = url;
+	});
+
 	// 1~10페이지에서는 prev버튼이 필요없기때문에 hidden처리
 	var thisPage = "${pageMaker.cri.page}";
 	if ( thisPage <= 10 )

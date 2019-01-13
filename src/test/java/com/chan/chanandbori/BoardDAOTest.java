@@ -1,5 +1,7 @@
 package com.chan.chanandbori;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Ignore;
@@ -62,5 +64,29 @@ public class BoardDAOTest {
 		int totalCount = dao.getTotalDataCnt(cri);
 
 		System.out.println("totalCount 테스트 결과 : " + totalCount);
+	}
+
+	@Ignore @Test
+	public void testMyBatisDynamicSQL() throws Exception{
+
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		cri.setSearchType("w");
+		cri.setKeyword("재성");
+
+		logger.info(cri.toString());
+		logger.info("====================================");
+
+		List<BoardVO> list = dao.listPage(cri);
+
+		int count = 0;
+		for(int i = 0; i <= list.size(); i++ ) {
+			System.out.println(count++);
+		}
+
+		logger.info("====================================");
+
+		logger.info("Selected Count : " + dao.getTotalDataCnt(cri));
 	}
 }

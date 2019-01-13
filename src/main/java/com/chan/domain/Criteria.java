@@ -11,25 +11,18 @@ public class Criteria {
 	private int page;
 	private int perPageNum;
 
+	//BoardServiceImpl.listPage(Criteria cri)에서 연산을 통해 입력받는 값, mapper에서도 사용되는 값.
 	private int startBoardRowNum;
 	private int endBoardRowNum;
 
-	//for 검색처리
+	//for 검색처리를 위해서 추가
 	private String searchType;
 	private String keyword;
 
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public Criteria() {
 		this.page = 1;
 		this.perPageNum = 10;
-	}
-
-	// *** 한번에 보여지는 페이지 중 시작 페이지 번호
-	public int getRangeStart() {
-		return ( this.page - 1 ) * perPageNum;
-	}
-
-	public int getPage() {
-		return this.page;
 	}
 
 	public void setPage(int page) {
@@ -41,10 +34,6 @@ public class Criteria {
 		this.page = page;
 	}
 
-	public int getPerPageNum() {
-		return this.perPageNum;
-	}
-
 	public void setPerPageNum(int perPageNum) {
 		//만일 perPageNum이 0보다 작거나 100보다 크다면 10으로 설정, 아닐경우 그 값을 대입
 		if ( perPageNum <= 0 || perPageNum > 100 ) {
@@ -54,7 +43,6 @@ public class Criteria {
 		}
 	}
 
-
 	public String makeQuery() {
 		return UriComponentsBuilder.newInstance()
 				                   .queryParam("page", this.page)
@@ -63,4 +51,5 @@ public class Criteria {
 				                   .queryParam("searchType", this.getSearchType())
 				                   .build().encode().toString();
 	}
+
 }
