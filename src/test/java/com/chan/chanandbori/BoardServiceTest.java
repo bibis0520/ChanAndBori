@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chan.domain.BoardVO;
-import com.chan.domain.Criteria;
+import com.chan.search.BoardSO;
 import com.chan.service.BoardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,13 +27,11 @@ public class BoardServiceTest {
 	@Test
 	public void testListPage() throws Exception {
 
-		logger.info("BoardService.listPage() Test...");
+		logger.info("BoardService.listPage(boardSO) Test...");
 
-		Criteria cri = new Criteria();
-		cri.setPage(1);
-		cri.setPerPageNum(5);
+		BoardSO boardSO = new BoardSO();
 
-		List<BoardVO> list = service.listPage(cri);
+		List<BoardVO> list = service.listPage(boardSO);
 
 		for(BoardVO board : list)
 			logger.info(board.getBno() + " : " + board.getTitle());

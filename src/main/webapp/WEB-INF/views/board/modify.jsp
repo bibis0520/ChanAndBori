@@ -30,15 +30,11 @@
 		</form>
 
 		<div class="text-center">
-			<button id="btnEnter"  type="button" class="btn btn-outline-primary m5">확인</button>
-			<a href="/board/read${cri.makeQuery()}&bno=${boardVO.bno}" class="btn btn-outline-secondary m5">취소</a>
+			<button id="btnEnter" type="button" class="btn btn-outline-primary m5">확인</button>
+			<a href="/board/read?boardId=${boardVO.boardId}" class="btn btn-outline-secondary m5">취소</a>
 		</div>
 
 	</div><!-- /.container -->
-
-	<form role="form" method="post">
-		<input type="hidden" id="bno" name="bno" value="${boardVO.bno}" />
-	</form>
 
 </div><!-- /.contents -->
 

@@ -5,20 +5,20 @@ import org.springframework.web.util.UriComponentsBuilder;
 import lombok.Data;
 
 @Data
-public class PageMaker {
+public class PageMakerBackUp {
 
 	// 외부에서 입력되는 데이터
-	private Criteria cri;					// page(현재 페이지), perPageNum(페이지당 보여질 게시물의 개수)
+	private CriteriaBackUp cri;					// page(현재 페이지), perPageNum(페이지당 보여질 게시물의 개수)
 
 	// 데이터베이스에서 계산되는 데이터
 	private int     totalDataCnt;			// 실제 게시물의 총 개수
 
 	// 계산을 통해 만들어지는 데이터
-	private int     startPageNum;			// 현재 페이지 기준으로 시작 페이지 번호
-	private int     endPageNum; 			// 현재 페이지 기준으로 끝 페이지 번호
+	private int     startRangeNum;			// 현재 페이지 기준으로 만들어지는 페이징 범위의 시작 번호
+	private int     endRangeNum; 			// 현재 페이지 기준으로 만들어지는 페이징 범위의 끝 번호
 	private boolean prev;					// 이전 버튼 활성화 여부
 	private boolean next;					// 다음 버튼 활성화 여부
-	private int     realEndPageNum;			// 실제로 존제하는 총 페이지의 수
+	private int     realEndPageNum;			// 실제로 존재하는 총 페이지의 수
 
 	private int 	displayPageCnt = 10;	// 한번에 보여지는 페이지 번호의 수
 
@@ -41,8 +41,8 @@ public class PageMaker {
 			endPageNum은 2 / 10 = 0.2... 올림하면 1, 거기에 10을 곱해주면 10(endPageNum), startPageNum을 구하는 공식은 위와 동일.
 		*/
 
-		this.endPageNum   = (int)( Math.ceil(page / (double)displayPageCnt) ) * displayPageCnt;
-		this.startPageNum = (endPageNum - displayPageCnt) + 1;
+		this.endRangeNum   = (int)( Math.ceil(page / (double)displayPageCnt) ) * displayPageCnt;
+		this.startRangeNum = (endRangeNum - displayPageCnt) + 1;
 
 		/*
 			실제로 존재하는 페이지의 수는...
@@ -56,15 +56,15 @@ public class PageMaker {
 			만약 위에서 계산된 endPageNum보다 실제로 존재해야할 페이지의 수인 realEndPageNum이 작다면!
 			이전에 계산된 값을 버리고, realEndPageNum을 대입한다.(실제로 4페이지까지만 있으면 되는데 10페이지까지 표시할 이유가 없기 때문에)
 		 */
-		if( this.endPageNum > realEndPageNum ) {
-			this.endPageNum = realEndPageNum;
+		if( this.endRangeNum > realEndPageNum ) {
+			this.endRangeNum = realEndPageNum;
 		}
 
 		//만일 startPageNum이 1이라면 이전버튼 비활성화, 반대라면 활성화
-		prev = startPageNum == 1 ? false : true;
+		prev = startRangeNum == 1 ? false : true;
 
 		//만일 endPageNum * perPageNum이 totalDataCnt보다 크거나 같아진다면, next버튼은 비활성화, 그 반대라면 활성화
-		next = endPageNum * perPageNum >= totalDataCnt ? false : true;
+		next = endRangeNum * perPageNum >= totalDataCnt ? false : true;
 	}
 
 	/*

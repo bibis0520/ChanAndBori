@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chan.paging">
+
+	<sql id="header">
+		SELECT	*
+		FROM	(
+					SELECT	ROWNUM AS RNUM,
+							PAGE_QRY.*,
+							#{pageNum} AS PAGE_NUM,
+							#{perPageNum} AS PER_PAGE_NUM,
+							LAST_VALUE(ROWNUM) OVER(ORDER BY ROWNUM ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS TOTAL_BOARD_CNT
+					FROM	(
+	</sql>
+
+	<sql id="footer">
+		    				) PAGE_QRY
+		    	)
+		WHERE RNUM BETWEEN (#{pageNum} - 1) * #{perPageNum} + 1 AND #{pageNum} * #{perPageNum}
+	</sql>
+
+</mapper>

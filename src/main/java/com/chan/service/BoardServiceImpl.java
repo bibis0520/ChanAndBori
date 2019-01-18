@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.chan.domain.BoardVO;
-import com.chan.domain.Criteria;
 import com.chan.persistence.BoardDAO;
+import com.chan.search.BoardSO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -17,27 +17,27 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO dao;
 
 	@Override
-	public void create(BoardVO vo) throws Exception {
+	public void create(BoardVO boardVO) throws Exception {
 
-		dao.create(vo);
+		dao.create(boardVO);
 	}
 
 	@Override
-	public BoardVO read(Integer bno) throws Exception {
+	public BoardVO read(String boardId) throws Exception {
 
-		return dao.read(bno);
+		return dao.read(boardId);
 	}
 
 	@Override
-	public void update(BoardVO vo) throws Exception {
+	public void update(BoardVO boardVO) throws Exception {
 
-		dao.update(vo);
+		dao.update(boardVO);
 	}
 
 	@Override
-	public void remove(Integer bno) throws Exception {
+	public void remove(String boardId) throws Exception {
 
-		dao.remove(bno);
+		dao.remove(boardId);
 	}
 
 	@Override
@@ -47,21 +47,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> listPage(Criteria cri) throws Exception {
+	public List<BoardVO> listPage(BoardSO boardSO) throws Exception {
 
-		int endBoardRowNum = cri.getPage() * cri.getPerPageNum();
-		int startBoardRowNum = endBoardRowNum - cri.getPerPageNum() + 1;
-
-		cri.setEndBoardRowNum(endBoardRowNum);
-		cri.setStartBoardRowNum(startBoardRowNum);
-
-		return dao.listPage(cri);
+		return dao.listPage(boardSO);
 	}
 
 	@Override
-	public int getTotalDataCnt(Criteria cri) throws Exception {
+	public int getTotalBoardCnt() throws Exception {
 
-		return dao.getTotalDataCnt(cri);
+		return dao.getTotalBoardCnt();
 	}
 
 }

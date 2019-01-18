@@ -26,7 +26,7 @@
 
 		<div class="text-center">
 			<button type="button" id="btnRegister"  class="btn btn-outline-primary m5">등록</button>
-			<a href="/board/listPage${cri.makeQuery()}" class="btn btn-outline-danger m5">취소</a>
+			<a href="/board/listAll" class="btn btn-outline-danger m5">취소</a>
 		</div>
 
 	</div><!-- /.container -->
@@ -70,10 +70,6 @@ $(document).ready(function(){
 		document.regiForm.submit();
 	});
 
-	/* $("#editor_sample01").on("keydown",function(){
-		console.error($(this).val().length)
-		if($(this).val().length > 10){return false;}
-	}) */
 });
 </script>
 

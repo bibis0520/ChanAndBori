@@ -6,17 +6,25 @@
 <mapper namespace="com.chan.persistence.BoardDAO">
 
 	<resultMap id="resultForBoardVO" type="com.chan.domain.BoardVO">
-		<result column="BOARD_ID"       jdbcType="VARCHAR"		property="boardId" />
-		<result column="HRANK_BOARD_ID" jdbcType="VARCHAR"		property="hrankBoardId" />
-		<result column="BNO"            jdbcType="INTEGER"		property="bno" />
-		<result column="SEQ"            jdbcType="INTEGER"		property="seq" />
-		<result column="TITLE"          jdbcType="VARCHAR"		property="title" />
-		<result column="CONTENT"        jdbcType="VARCHAR"		property="content" />
-		<result column="VIEW_CNT"		jdbcType="INTEGER"		property="viewCnt" />
-		<result column="REGI_USER_ID"   jdbcType="VARCHAR"		property="regiUserId" />
-		<result column="REGI_DATE"      jdbcType="TIMESTAMP"	property="regiDate" />
-		<result column="MODI_USER_ID"   jdbcType="VARCHAR"		property="modiUserId" />
-		<result column="MODI_DATE"      jdbcType="TIMESTAMP"	property="modiDate" />
+	  <!-- BaseVO -->
+		<result column="REGI_USER_ID"   	jdbcType="VARCHAR"		property="regiUserId" />
+		<result column="REGI_DATE"      	jdbcType="TIMESTAMP"	property="regiDate" />
+		<result column="MODI_USER_ID"   	jdbcType="VARCHAR"		property="modiUserId" />
+		<result column="MODI_DATE"      	jdbcType="TIMESTAMP"	property="modiDate" />
+		<result column="RNUM"           	jdbcType="INTEGER"		property="rnum" />
+		<result column="TOTAL_BOARD_CNT"	jdbcType="INTEGER"		property="totalBoardCnt" />
+		<result column="PER_PAGE_NUM"   	jdbcType="INTEGER"		property="perPageNum" />
+		<result column="PAGE_NUM"     		jdbcType="INTEGER"		property="pageNum" />
+	  <!-- BoardVO extends BaseVO -->
+		<result column="BOARD_ID"       	jdbcType="VARCHAR"		property="boardId" />
+		<result column="HRANK_BOARD_ID" 	jdbcType="VARCHAR"		property="hrankBoardId" />
+		<result column="BNO"            	jdbcType="INTEGER"		property="bno" />
+		<result column="TITLE"          	jdbcType="VARCHAR"		property="title" />
+		<result column="CONTENT"        	jdbcType="VARCHAR"		property="content" />
+		<result column="VIEW_CNT"			jdbcType="INTEGER"		property="viewCnt" />
+	  <!-- BoardSO extends BoardVO -->
+		<result column="SEARCH_TYPE"		jdbcType="INTEGER"		property="searchType" />
+		<result column="KEYWORD"			jdbcType="INTEGER"		property="keyword" />
 	</resultMap>
 
 <!-- CRUD .............................................................................................................-->
@@ -29,7 +37,6 @@
 					BOARD_ID,
 					HRANK_BOARD_ID,
 					BNO,
-					SEQ,
 					TITLE,
 					CONTENT,
 					REGI_USER_ID,
@@ -40,7 +47,6 @@
 					FUNC_GET_SEQ_30(),
 					#{hrankBoardId},
 					(SELECT NVL(MAX(BNO)+1, 1) FROM TBL_BOARD),
-					#{seq},
 					#{title},
 					#{content},
 					#{regiUserId},
@@ -54,7 +60,6 @@
 					BOARD_ID,
 					HRANK_BOARD_ID,
 					BNO,
-					SEQ,
 					TITLE,
 					CONTENT,
 					REGI_USER_ID,
@@ -65,7 +70,7 @@
 		FROM
 					TBL_BOARD
 		WHERE
-					BNO = #{bno}
+					BOARD_ID = #{boardId}
 	</select>
 
 	<!-- UPDATE -->
@@ -78,7 +83,7 @@
 					MODI_USER_ID 	= #{regiUserId},
 					MODI_DATE 		= SYSDATE
 		WHERE
-					BNO = #{bno}
+					BOARD_ID = #{boardId}
 	</update>
 
 	<!-- DELETE -->
@@ -86,7 +91,7 @@
 		DELETE FROM /* com.chan.persistence.BoardDAO.remove */
 					TBL_BOARD
 		WHERE
-					BNO = #{bno}
+					BOARD_ID = #{boardId}
 	</delete>
 
 <!-- LISTPAGE & PAGENATION............................................................................................ -->
@@ -97,7 +102,6 @@
 					BOARD_ID,
 					HRANK_BOARD_ID,
 					BNO,
-					SEQ,
 					TITLE,
 					CONTENT,
 					REGI_USER_ID,
@@ -108,42 +112,27 @@
 		FROM
 					TBL_BOARD
 		ORDER BY
-					BNO DESC
+					BOARD_ID DESC
 	</select>
 
 	<!-- LIST by Pagination(페이징 처리된 게시물 리스트 조회) -->
 	<select id="listPage" resultMap="resultForBoardVO">
-		SELECT		/* com.chan.persistence.BoardDAO.listPage */
-					ROWNUM RNUM,
-					B.BOARD_ID, 	B.HRANK_BOARD_ID, 	B.BNO, 			B.SEQ,
-					B.TITLE, 		B.CONTENT,			B.REGI_USER_ID, B.REGI_DATE,
-					B.MODI_USER_ID, B.MODI_DATE, 		B.VIEW_CNT
-		FROM
-		    	(
-		    	SELECT
-				    		ROWNUM RNUM,
-				    	   	A.BOARD_ID,     A.HRANK_BOARD_ID, A.BNO,          A.SEQ,
-				    	   	A.TITLE,        A.CONTENT,        A.REGI_USER_ID, A.REGI_DATE,
-				    	   	A.MODI_USER_ID, A.MODI_DATE,      A.VIEW_CNT
-				FROM
-		        		(
-		        		SELECT
-									BOARD_ID, 		HRANK_BOARD_ID, 	BNO, 			SEQ,
-									TITLE, 			CONTENT,			REGI_USER_ID, 	REGI_DATE,
-									MODI_USER_ID, 	MODI_DATE, 			VIEW_CNT
-		        		FROM
-		        					TBL_BOARD
-		        		ORDER BY
-		        					BNO DESC
-		        		)A
-		    	)B
-		WHERE RNUM BETWEEN #{startBoardRowNum} AND #{endBoardRowNum}
+		<include refid="com.chan.paging.header"/>
+       		SELECT		/* com.chan.persistence.BoardDAO.listPage */
+						BOARD_ID, 		HRANK_BOARD_ID, 	BNO,
+						TITLE,			CONTENT,			REGI_USER_ID, 		REGI_DATE,
+						MODI_USER_ID, 	MODI_DATE, 			VIEW_CNT
+       		FROM
+       					TBL_BOARD
+       		ORDER BY
+       					BOARD_ID DESC
+		<include refid="com.chan.paging.footer"/>
 	</select>
 
 <!-- GET DATA Query................................................................................................... -->
 
 	<!-- 게시물의 총 갯수구하는 Query -->
-	<select id="getTotalDataCnt" resultType="int">
+	<select id="getTotalBoardCnt" resultType="int">
 		SELECT  	/* com.chan.persistence.BoardDAO.getTotalDataCnt */
 					COUNT(*)
 		FROM

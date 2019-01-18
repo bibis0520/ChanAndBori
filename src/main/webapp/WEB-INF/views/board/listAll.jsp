@@ -40,26 +40,6 @@
 		</table>
 	</div>
 
-	<nav aria-label="Page navigation example">
-  		<ul class="pagination justify-content-center">
-    		<li class="page-item disabled">
-      			<a class="page-link" href="#" tabindex="-1">Previous</a>
-    		</li>
-
-    		<li class="page-item"><a class="page-link" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
-
-		    <li class="page-item">
-		      	<a class="page-link" href="#">Next</a>
-		    </li>
-  		</ul>
-	</nav>
-
-	<%-- <form role="form" id="pageRedirect" method="post" action="/board/read?bno=${boardVO.bno}">
-		<input id="inpt_boardId" type="hidden" name="boardId" />
-	</form> --%>
-
 </div>
 
 <script>
@@ -77,16 +57,12 @@ $(document).ready(function(){
 		}
 	});
 
-	/* 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동 */
 	$(".boardRow").on('click', function(){
-		/* console.info($(this).index()); */
-		/* console.info($(this).children(".bno").text()); */
-		/* console.info("$(this).data() => ",$(this).data()); */
-		/* console.info("$(this).data('boardId') => ",$(this).data("boardId")); */
-		var bno = $(this).children(".bno").text(),
-		    uri = "/board/read?bno=" + bno;
 
-		location.href = uri;
+		var boardId = $(this).data("boardId"),
+		    uri = "/board/read?boardId=" + boardId;
+
+		window.location.href = uri;
 	});
 
 });

@@ -5,7 +5,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import lombok.Data;
 
 @Data
-public class Criteria {
+public class CriteriaBackUp {
 
 	//uri를 통해서 입력받을 값들 = 외부에서 입력받는 값 (/board/listPage?page=3&perPageNum=10)
 	private int page;
@@ -20,7 +20,7 @@ public class Criteria {
 	private String keyword;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public Criteria() {
+	public CriteriaBackUp() {
 		this.page = 1;
 		this.perPageNum = 10;
 	}

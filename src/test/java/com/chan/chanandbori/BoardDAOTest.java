@@ -1,7 +1,5 @@
 package com.chan.chanandbori;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.junit.Ignore;
@@ -13,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chan.domain.BoardVO;
-import com.chan.domain.Criteria;
 import com.chan.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -54,39 +51,16 @@ public class BoardDAOTest {
 	@Ignore @Test
 	public void testDelete() throws Exception{
 
-		dao.remove(1);
+		String boardId = "2019010719321400604GYGWVFXMPXZ";
+		dao.remove(boardId);
 	}
 
-	@Ignore @Test
+	@Test
 	public void testGetTotalDataCnt() throws Exception{
 
-		Criteria cri = new Criteria();
-		int totalCount = dao.getTotalDataCnt(cri);
+		int totalCount = dao.getTotalBoardCnt();
 
 		System.out.println("totalCount 테스트 결과 : " + totalCount);
 	}
 
-	@Ignore @Test
-	public void testMyBatisDynamicSQL() throws Exception{
-
-		Criteria cri = new Criteria();
-		cri.setPage(1);
-		cri.setPerPageNum(10);
-		cri.setSearchType("w");
-		cri.setKeyword("재성");
-
-		logger.info(cri.toString());
-		logger.info("====================================");
-
-		List<BoardVO> list = dao.listPage(cri);
-
-		int count = 0;
-		for(int i = 0; i <= list.size(); i++ ) {
-			System.out.println(count++);
-		}
-
-		logger.info("====================================");
-
-		logger.info("Selected Count : " + dao.getTotalDataCnt(cri));
-	}
 }
