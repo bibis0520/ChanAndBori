@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,24 +26,27 @@ public class BoardController {
 
 //  CREATE
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void register() throws Exception {
+	public void register(BoardSO boardSO, Model model) throws Exception {
 
-		logger.info("register GET......");
+		logger.info("/board/register, GET");
+
+		model.addAttribute("boardSO", boardSO);
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(BoardVO boardVO, RedirectAttributes rttr) throws Exception {
+	public String register(BoardVO boardVO,
+					       RedirectAttributes rttr) throws Exception {
 
-		logger.info("register POST......");
+		logger.info("/board/register, POST, boardVO : {}", boardVO);
 
 	    service.create(boardVO);
 
 	    rttr.addFlashAttribute("result", "Register Success!!!");
 
-//	    rttr.addAttribute("page", 1);
-//	    rttr.addAttribute("perPageNum", boardVO.getPerPageNum());
+	    rttr.addAttribute("pageNum", 1);
+	    rttr.addAttribute("perPageNum", boardVO.getPerPageNum());
 
-	    return "redirect:/board/listAll";
+	    return "redirect:/board/listPage";
 	}
 
 //  READ
@@ -52,24 +54,26 @@ public class BoardController {
 	public void read(@RequestParam("boardId") String boardId,
 					 Model model) throws Exception {
 
-		logger.info("readGET......");
+		logger.info("/board/read, GET, boardId : {}", boardId);
 
 		model.addAttribute("boardVO", service.read(boardId));
 	}
 
 //  UPDATE
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modify(BoardVO boardVO, Model model) throws Exception {
+	public void modify(@RequestParam("boardId") String boardId,
+			           Model model) throws Exception {
 
-		logger.info("modifyGET......");
+		logger.info("/board/modify, GET, boardId : {}", boardId);
 
-		model.addAttribute("boardVO", service.read(boardVO.getBoardId()));
+		model.addAttribute("boardVO", service.read(boardId));
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modify(BoardVO boardVO, RedirectAttributes rttr) throws Exception {
+	public String modify(BoardVO boardVO,
+						 RedirectAttributes rttr) throws Exception {
 
-		logger.info("modifyPOST......");
+		logger.info("/board/modify, POST, boardVO : {}", boardVO);
 
 		service.update(boardVO);
 
@@ -88,7 +92,7 @@ public class BoardController {
 	public String remove(@RequestParam("boardId") String boardId,
 			             RedirectAttributes rttr) throws Exception {
 
-		logger.info("remove......");
+		logger.info("/board/remove, GET, boardId : {}", boardId);
 
 		service.remove(boardId);
 		rttr.addFlashAttribute("result", "Remove Success!!!");
@@ -104,15 +108,17 @@ public class BoardController {
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
 	public void listAll(Model model) throws Exception {
 
-		logger.info("listAllGET......Show Board's List");
+		logger.info("/board/listAll, GET");
 
 		model.addAttribute("list", service.listAll());
 	}
 
 //  LIST by Pagination
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("boardSO") BoardSO boardSO,
+	public void listPage(BoardSO boardSO,
 						 Model model) throws Exception {
+
+		logger.info("/board/listPage, GET, pageNum : {}, perPageNum : {}", boardSO.getPageNum(), boardSO.getPerPageNum());
 
 		model.addAttribute("list", service.listPage(boardSO));
 

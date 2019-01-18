@@ -23,21 +23,16 @@ public class BaseVO {
 		if(pageNum <= 0) {
 			this.pageNum = 1;
 			return;
-
-		} else {
-
+		}else {
 			this.pageNum = pageNum;
 		}
-
 	}
 
 	public void setPerPageNum(int perPageNum) {
 		if(perPageNum <= 0 || perPageNum > 100) {
 			this.perPageNum = 10;
 			return;
-
-		} else {
-
+		}else {
 			this.perPageNum = perPageNum;
 		}
 	}

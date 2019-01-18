@@ -13,8 +13,8 @@
 		<result column="MODI_DATE"      	jdbcType="TIMESTAMP"	property="modiDate" />
 		<result column="RNUM"           	jdbcType="INTEGER"		property="rnum" />
 		<result column="TOTAL_BOARD_CNT"	jdbcType="INTEGER"		property="totalBoardCnt" />
-		<result column="PER_PAGE_NUM"   	jdbcType="INTEGER"		property="perPageNum" />
 		<result column="PAGE_NUM"     		jdbcType="INTEGER"		property="pageNum" />
+		<result column="PER_PAGE_NUM"   	jdbcType="INTEGER"		property="perPageNum" />
 	  <!-- BoardVO extends BaseVO -->
 		<result column="BOARD_ID"       	jdbcType="VARCHAR"		property="boardId" />
 		<result column="HRANK_BOARD_ID" 	jdbcType="VARCHAR"		property="hrankBoardId" />

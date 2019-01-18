@@ -33,7 +33,7 @@
 
 		<div class="text-center">
 			<a href="/board/modify?boardId=${boardVO.boardId}" class="btn btn-outline-warning m5">수정</a>
-			<a href="/board/listAll" class="btn btn-outline-secondary m5">목록</a>
+			<a href="/board/listPage?pageNum=${boardVO.pageNum}&perPageNum=${boardVO.perPageNum}" class="btn btn-outline-secondary m5">목록</a>
 			<button id="btnRemove" class="btn btn-outline-danger m5">삭제</button>
 		</div>
 
