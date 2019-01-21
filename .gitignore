@@ -1,8 +1,9 @@
 # Created by https://www.gitignore.io/api/web,java,eclipse,java-web
 # Edit at https://www.gitignore.io/?templates=web,java,eclipse,java-web
 
-#Commit.sh ignore
+#찬이 추가한 부분
 commit.sh
+.DS_Store
 
 #about svn
 .svn
