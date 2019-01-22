@@ -317,8 +317,10 @@ private String keyword;
 
 >##### 2019.01.22
 
->> `1` chanSpringContext.xml에 dataSource부분 수정 
->> > - /src/main/resources/jdbc.properties란 파일에 설정값들을 두어 chanSpringContext.xml에서는 값을 가져와 사용하도록 처리 
+>> `1` chanSpringContext.xml에 dataSource부분 수정
+>> > - /src/main/resources/jdbc.properties란 파일에 설정값들을 두어 chanSpringContext.xml에서는 값을 가져와 사용하도록 처리
 >> > - 보안에 더 좋은 방법인듯...
 
->> `2` 
+>> `2` Criteria와 PageMaker를 이용해 페이지값을 유지하는 방식으로 복원 ( .jsp에서 <% %>를 사용해서 하는 방법은 추후에 더할 예정 )
+
+
