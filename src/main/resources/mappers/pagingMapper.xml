@@ -9,6 +9,14 @@
 		SELECT	*
 		FROM	(
 					SELECT	ROWNUM AS RNUM,
+							PAGE_QRY.*
+					FROM	(
+	</sql>
+
+	<sql id="header2">
+		SELECT	*
+		FROM	(
+					SELECT	ROWNUM AS RNUM,
 							PAGE_QRY.*,
 							#{pageNum} AS PAGE_NUM,
 							#{perPageNum} AS PER_PAGE_NUM,

@@ -4,6 +4,7 @@
 #찬이 추가한 부분
 commit.sh
 .DS_Store
+jdbc.properties
 
 #about svn
 .svn

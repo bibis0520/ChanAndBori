@@ -22,9 +22,6 @@
 		<result column="TITLE"          	jdbcType="VARCHAR"		property="title" />
 		<result column="CONTENT"        	jdbcType="VARCHAR"		property="content" />
 		<result column="VIEW_CNT"			jdbcType="INTEGER"		property="viewCnt" />
-	  <!-- BoardSO extends BoardVO -->
-		<result column="SEARCH_TYPE"		jdbcType="INTEGER"		property="searchType" />
-		<result column="KEYWORD"			jdbcType="INTEGER"		property="keyword" />
 	</resultMap>
 
 <!-- CRUD .............................................................................................................-->
@@ -132,7 +129,7 @@
 <!-- GET DATA Query................................................................................................... -->
 
 	<!-- 게시물의 총 갯수구하는 Query -->
-	<select id="getTotalBoardCnt" resultType="int">
+	<select id="getTotalDataCnt" resultType="int">
 		SELECT  	/* com.chan.persistence.BoardDAO.getTotalDataCnt */
 					COUNT(*)
 		FROM

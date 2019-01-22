@@ -3,7 +3,7 @@ package com.chan.service;
 import java.util.List;
 
 import com.chan.domain.BoardVO;
-import com.chan.search.BoardSO;
+import com.chan.domain.Criteria;
 
 public interface BoardService {
 
@@ -19,9 +19,9 @@ public interface BoardService {
 	// LIST
 	List<BoardVO> listAll() throws Exception;
 
-	List<BoardVO> listPage(BoardSO boardSO) throws Exception;
+	List<BoardVO> listPage(Criteria cri) throws Exception;
 
 	// GET_DATA
-	int getTotalBoardCnt() throws Exception;
+	int getTotalDataCnt() throws Exception;
 
 }

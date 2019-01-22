@@ -15,21 +15,4 @@
 		<package name="com.chan.domain"/>
 	</typeAliases>
 
-
-<!-- 기본설정, 쿼리로그를위한 인터셉터
-	<settings>
-		<setting name="lazyLoadingEnabled" 				value="false" />
-		<setting name="defaultStatmentTimeout" 		value="25000" />
-		<setting name="mapUnderscoreToCamelCase" 	value="true" />
-		<setting name="localCacheScope" 					value="STATEMENT" />
-		<setting name="jdbcTypeForNull" 					value="NULL" />
-		<setting name="defaultExecutorType"				value="SIMPLE" />
-		<setting name="logImpl"										value="SLF4J" />
-	</settings>
-
-	<plugins>
-		<plugin interceptor="com.chan.log.MyBatisLogInterceptor" />
-	</plubing>
--->
-
 </configuration>

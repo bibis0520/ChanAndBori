@@ -315,4 +315,10 @@ private String keyword;
 >>> 1. Criteria와 PageMaker => CriteriaBackUp, PageMakerBackUp으로 바꿈
 >>> 2. pageFooter, pageHeader파일 없애고 일단 listPage.jsp에 다 합쳐놈 (추후에 분리할 예정...)
 
->##### 2019.01.19
+>##### 2019.01.22
+
+>> `1` chanSpringContext.xml에 dataSource부분 수정 
+>> > - /src/main/resources/jdbc.properties란 파일에 설정값들을 두어 chanSpringContext.xml에서는 값을 가져와 사용하도록 처리 
+>> > - 보안에 더 좋은 방법인듯...
+
+>> `2` 

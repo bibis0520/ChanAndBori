@@ -32,6 +32,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<!-- UTF-8 한글처리를 위해 추가한 Filter -->
 	<filter>
 		<filter-name>encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

@@ -58,9 +58,9 @@ public class BoardDAOTest {
 	@Test
 	public void testGetTotalDataCnt() throws Exception{
 
-		int totalCount = dao.getTotalBoardCnt();
+		int totalDataCount = dao.getTotalDataCnt();
 
-		System.out.println("totalCount 테스트 결과 : " + totalCount);
+		System.out.println("totalCount 테스트 결과 : " + totalDataCount);
 	}
 
 }

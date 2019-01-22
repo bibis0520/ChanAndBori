@@ -6,13 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chan.domain.BoardVO;
-import com.chan.search.BoardSO;
+import com.chan.domain.Criteria;
+import com.chan.domain.PageMaker;
 import com.chan.service.BoardService;
 
 @Controller
@@ -26,25 +28,27 @@ public class BoardController {
 
 //  CREATE
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void register(BoardSO boardSO, Model model) throws Exception {
+	public void register(BoardVO boardVO,
+						 @ModelAttribute("cri") Criteria cri,
+					     Model model) throws Exception {
 
 		logger.info("/board/register, GET");
 
-		model.addAttribute("boardSO", boardSO);
+		model.addAttribute("cri", cri);
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(BoardVO boardVO,
-					       RedirectAttributes rttr) throws Exception {
+			               Criteria cri,
+			               RedirectAttributes rttr) throws Exception {
 
-		logger.info("/board/register, POST, boardVO : {}", boardVO);
+		logger.info("/board/register, POST");
 
 	    service.create(boardVO);
 
 	    rttr.addFlashAttribute("result", "Register Success!!!");
-
-	    rttr.addAttribute("pageNum", 1);
-	    rttr.addAttribute("perPageNum", boardVO.getPerPageNum());
+	    rttr.addAttribute("page", 1);
+	    rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
 	    return "redirect:/board/listPage";
 	}
@@ -52,37 +56,40 @@ public class BoardController {
 //  READ
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("boardId") String boardId,
+				 	 @ModelAttribute("cri") Criteria cri,
 					 Model model) throws Exception {
 
-		logger.info("/board/read, GET, boardId : {}", boardId);
+		logger.info("/board/read?boardId={}, GET", boardId);
 
-		model.addAttribute("boardVO", service.read(boardId));
+		model.addAttribute(service.read(boardId));
 	}
 
 //  UPDATE
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modify(@RequestParam("boardId") String boardId,
+			           @ModelAttribute("cri") Criteria cri,
 			           Model model) throws Exception {
 
-		logger.info("/board/modify, GET, boardId : {}", boardId);
+		logger.info("/board/modify?boardId={}, GET", boardId);
 
-		model.addAttribute("boardVO", service.read(boardId));
+		BoardVO boardVO = service.read(boardId);
+
+		model.addAttribute("boardVO", boardVO);
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modify(BoardVO boardVO,
+						 Criteria cri,
 						 RedirectAttributes rttr) throws Exception {
 
-		logger.info("/board/modify, POST, boardVO : {}", boardVO);
+		logger.info("/board/modify?boardId={}, POST", boardVO.getBoardId());
 
 		service.update(boardVO);
 
 		rttr.addFlashAttribute("result", "Modify Success!!!");
-
+		rttr.addAttribute("page", cri.getPageNum());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("boardId", boardVO.getBoardId());
-
-//		rttr.addAttribute("page", cri.getPage());
-//		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
 		return "redirect:/board/read";
 	}
@@ -90,19 +97,19 @@ public class BoardController {
 //  DELETE
 	@RequestMapping(value = "/remove", method = RequestMethod.GET)
 	public String remove(@RequestParam("boardId") String boardId,
+			             Criteria cri,
 			             RedirectAttributes rttr) throws Exception {
 
-		logger.info("/board/remove, GET, boardId : {}", boardId);
+		logger.info("/board/remove?boardId={}, POST", boardId);
 
 		service.remove(boardId);
+
 		rttr.addFlashAttribute("result", "Remove Success!!!");
+		rttr.addAttribute("page", cri.getPageNum());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
-//		rttr.addAttribute("page", cri.getPage());
-//		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 	}
-
 
 //  LIST-ALL
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
@@ -114,14 +121,20 @@ public class BoardController {
 	}
 
 //  LIST by Pagination
-	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void listPage(BoardSO boardSO,
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void listPage(@ModelAttribute("cri") Criteria cri,
 						 Model model) throws Exception {
 
-		logger.info("/board/listPage, GET, pageNum : {}, perPageNum : {}", boardSO.getPageNum(), boardSO.getPerPageNum());
+		logger.info("/board/listPage?pageNum={}&perPageNum={}, GET", cri.getPageNum(), cri.getPerPageNum());
 
-		model.addAttribute("list", service.listPage(boardSO));
+		model.addAttribute("list", service.listPage(cri));
 
+		PageMaker pageMaker = new PageMaker();
+
+		pageMaker.setCri(cri);
+		pageMaker.setTotalDataCnt(service.getTotalDataCnt());
+
+		model.addAttribute("pageMaker", pageMaker);
 	}
 
 }

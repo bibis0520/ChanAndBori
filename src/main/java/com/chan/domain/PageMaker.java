@@ -5,10 +5,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import lombok.Data;
 
 @Data
-public class PageMakerBackUp {
+public class PageMaker {
 
 	// 외부에서 입력되는 데이터
-	private CriteriaBackUp cri;					// page(현재 페이지), perPageNum(페이지당 보여질 게시물의 개수)
+	private Criteria cri;				// page(현재 페이지), perPageNum(페이지당 보여질 게시물의 개수)
 
 	// 데이터베이스에서 계산되는 데이터
 	private int     totalDataCnt;			// 실제 게시물의 총 개수
@@ -18,7 +18,7 @@ public class PageMakerBackUp {
 	private int     endRangeNum; 			// 현재 페이지 기준으로 만들어지는 페이징 범위의 끝 번호
 	private boolean prev;					// 이전 버튼 활성화 여부
 	private boolean next;					// 다음 버튼 활성화 여부
-	private int     realEndPageNum;			// 실제로 존재하는 총 페이지의 수
+	private int     totalPageCnt;			// 실제로 존재하는 총 페이지의 수
 
 	private int 	displayPageCnt = 10;	// 한번에 보여지는 페이지 번호의 수
 
@@ -30,7 +30,7 @@ public class PageMakerBackUp {
 	}
 
 	public void calcData() {
-		int page = this.cri.getPage();
+		int page = this.cri.getPageNum();
 		int perPageNum = this.cri.getPerPageNum();
 
 		/*
@@ -50,14 +50,14 @@ public class PageMakerBackUp {
 			38 / 10은 3.8... 3.8을 올림하면 4.
 			따라서 실질적으로 4개의 페이지만 존재하면 된다.
 		*/
-		realEndPageNum = (int)( Math.ceil(totalDataCnt / (double)perPageNum) );
+		totalPageCnt = (int)( Math.ceil(totalDataCnt / (double)perPageNum) );
 
 		/*
 			만약 위에서 계산된 endPageNum보다 실제로 존재해야할 페이지의 수인 realEndPageNum이 작다면!
 			이전에 계산된 값을 버리고, realEndPageNum을 대입한다.(실제로 4페이지까지만 있으면 되는데 10페이지까지 표시할 이유가 없기 때문에)
 		 */
-		if( this.endRangeNum > realEndPageNum ) {
-			this.endRangeNum = realEndPageNum;
+		if( this.endRangeNum > totalPageCnt ) {
+			this.endRangeNum = totalPageCnt;
 		}
 
 		//만일 startPageNum이 1이라면 이전버튼 비활성화, 반대라면 활성화
@@ -73,14 +73,14 @@ public class PageMakerBackUp {
 		makeQuery가 매개변수로 int page만 받을 경우, 자동으로 makeQuery(page, true)를 호출하도록 한다.
 		그렇게 되면, makeQuery(page, needSearch)안의 if문에 의해서 자동적으로 li에 붙는 link 마지막에 searchType과 keyword도 추가해준다.
 	*/
-	public String makeQuery(int page) {
-		return makeQuery(page, true);
+	public String makeQuery(int pageNum) {
+		return makeQuery(pageNum, true);
 	}
 
-	public String makeQuery(int page, boolean needSearch) {
+	public String makeQuery(int pageNum, boolean needSearch) {
 
 		UriComponentsBuilder uriComponentsBuilder  = UriComponentsBuilder.newInstance()
-														  				 .queryParam("page", page)
+														  				 .queryParam("page", pageNum)
 														  				 .queryParam("perPageNum", this.cri.getPerPageNum());
 
 		if ( needSearch == true ) {

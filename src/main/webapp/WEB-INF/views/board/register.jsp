@@ -3,6 +3,7 @@
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/pagingMethod.jsp" %>
+<%@ include file="../include/pagingVariable.jsp" %>
 
 <div class="contents overflow-h padding-b40">
 
@@ -81,7 +82,7 @@ $(document).ready(function(){
 
 		console.log("pageNum : " + pageNum + ", perPageNum : " + perPageNum);
 
-		var uri = "<%=makeURI(pageNum, perPageNum)%>";
+		var uri = `<%=makeURI(pageNum, perPageNum)%>`;
 
 		console.log(uri);
 	});

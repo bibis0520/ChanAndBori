@@ -16,9 +16,10 @@
 		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
 	</properties>
 
+<!-- Added Repositories -->
 	<repositories>
 
-<!-- Oracle -->
+	<!-- Oracle -->
         <repository>
         	<id>codelds</id>
         	<url>https://code.lds.org/nexus/content/groups/main-repo</url>
@@ -26,16 +27,34 @@
 
     </repositories>
 
+<!-- /Added Repositories -->
+
 	<dependencies>
-<!-- Added Dependencies -->
 
-<!-- myBatis -->
+<!-- Added Dependencies ( https://mvnrepository.com/ )-->
+
+	<!-- mybatis -->
 		<dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
-        </dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.4.5</version>
+		</dependency>
 
+	<!-- mybatis-spring -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
+	<!-- spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+	<!-- spring-test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -43,24 +62,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>1.3.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.4.5</version>
-		</dependency>
-
-<!-- Oracle -->
+	<!-- Oracle -->
 		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
 		<dependency>
             <groupId>com.oracle</groupId>
@@ -68,14 +75,14 @@
             <version>11.2.0.3</version>
         </dependency>
 
-<!-- MySQL -->
+	<!-- MySQL -->
 		<!-- <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.41</version>
 		</dependency> -->
 
-<!-- lombok -->
+	<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -83,7 +90,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-<!-- jackson -->
+	<!-- jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -94,12 +101,12 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.8.4</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+
 <!-- /Added Dependencies -->
 
 		<!-- Spring -->

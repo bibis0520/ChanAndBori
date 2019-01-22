@@ -32,8 +32,8 @@
 		</form>
 
 		<div class="text-center">
-			<a href="/board/modify?boardId=${boardVO.boardId}" class="btn btn-outline-warning m5">수정</a>
-			<a href="/board/listPage?pageNum=${boardVO.pageNum}&perPageNum=${boardVO.perPageNum}" class="btn btn-outline-secondary m5">목록</a>
+			<a href="/board/modify${cri.makeQuery()}&boardId=${boardVO.boardId}" class="btn btn-outline-warning m5">수정</a>
+			<a href="/board/listPage${cri.makeQuery()}" class="btn btn-outline-secondary m5">목록</a>
 			<button id="btnRemove" class="btn btn-outline-danger m5">삭제</button>
 		</div>
 
@@ -57,7 +57,7 @@ $(document).ready(function(){
 
 	$("#btnRemove").on("click", function(){
 		if(confirm("정말로 삭제하시겠습니까?"))
-			self.location.href = "/board/remove?boardId=${boardVO.boardId}";
+			self.location.href = "/board/remove${cri.makeQuery()}&boardId=${boardVO.boardId}";
 	});
 
 });

@@ -17,17 +17,18 @@
 		<!-- MySQL 사용시 -->
 		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"></property> -->
 		<!-- <property name="url" value="jdbc:mysql://35.189.158.41:3306/chanwithboridb?useSSL=false"></property>  -->
-		<!-- <property name="url" value="jdbc:mysql://35.200.76.102:3306/chanwithboridb?useSSL=false"></property> -->
 		<!-- MySql Driver 6.0~ -->
 		<!-- <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>  -->
 		<!-- <property name="url" value="jdbc:mysql://35.189.158.41:3306/chanwithboridb?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>  -->
 		<!-- Oracle 사용시 -->
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<!-- <property name="url" value="jdbc:oracle:thin:@35.200.69.237:1521:XE"></property> -->
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
-		<property name="username" value="CHAN"></property>
-		<property name="password" value="1234"></property>
+		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
 	</bean>
+
+	<!-- /src/main/resources에 있는 jdbc.properties의 값을 가져와 위에 넣어줌 -->
+	<context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
@@ -45,4 +46,5 @@
 	</bean>
 
 	<context:component-scan base-package="com.chan.service"/>
+
 </beans>

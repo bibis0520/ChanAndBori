@@ -1,6 +1,12 @@
+// NaverSmartEditor2.0
+
+// https://github.com/naver/smarteditor2에서 설치한 dist파일 -> /src/main/webapp/resources/plugins/naverSmartEditor
+// User Guide -> http://naver.github.io/smarteditor2/user_guide/
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var oEditors = [];
 
-// Used in register.jsp
+// Used in register.jsp (register.jsp에서는 naverSmartEditor가 적용된 textarea에 들어갈 값이 필요없다.)
 function naverSmartEditorRegister(){
 	oEditors = [];
 
@@ -25,7 +31,7 @@ function naverSmartEditorRegister(){
 	});
 };
 
-// Used in modify.jsp
+// Used in modify.jsp (modify.jsp에서는 textarea에 db에서 불러온 기존 값들이 들어가야 하기 때문에 매개변수로 content를 받는다.)
 function naverSmartEditorReadModify(content){
 	oEditors = [];
 
