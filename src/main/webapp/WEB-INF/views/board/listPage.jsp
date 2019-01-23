@@ -131,6 +131,7 @@ $( document ).ready( function() {
 																//pageMaker.cri에 들어가있는 page에 대입되어있는 값을 가지고 makeQuery
 		window.location.href = "/board/read${pageMaker.makeQuery(pageMaker.cri.pageNum)}&boardId=" + boardId;
 	});
+
 	// 10개씩, 30개씩...등을 처리하기위한 함수.
 	function setPerPageNumSelect(){
 		var perPageNum 			= "${pageMaker.cri.perPageNum}";
@@ -143,6 +144,25 @@ $( document ).ready( function() {
 			window.location.href = "listPage?pageNum=" + pageNum + "&perPageNum=" + $perPageNumSelect.val();
 		});
 	};
+
+	$("#searchBtn").on("click", function(event){
+		/* var searchType = $("#searchType").val();				// "w" */
+		var searchType = $("select option:selected").val();		// "w"
+		/* var searchKeyword = $("#searchKeyword").val();			// "김찬" */
+		var searchKeyword = encodeURIComponent($("#searchKeyword").val());
+
+		// 버튼을 누를 때의 searchType과 keyword를 가져와 uri를 만들기 때문에
+		// pageMaker의 makeQuery를 사용할때 pageNum을 1로 주고, boolean형의 매개변수를 false로 준다.
+		window.location.href = "listPage" + "${pageMaker.makeQuery(1, false)}"
+							   + "&searchType=" + searchType + "&keyword=" + searchKeyword;
+
+		/*
+			알아볼 것들...
+
+			window.location.href ?
+			self.location ?
+		*/
+	});
 });
 </script>
 <%@ include file="../include/footer.jsp" %>

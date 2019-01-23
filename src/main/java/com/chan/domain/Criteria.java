@@ -11,10 +11,6 @@ public class Criteria {
 	private int pageNum;
 	private int perPageNum;
 
-	//BoardServiceImpl.listPage(Criteria cri)에서 연산을 통해 입력받는 값, mapper에서도 사용되는 값.
-	private int startBoardRowNum;
-	private int endBoardRowNum;
-
 	//for 검색처리를 위해서 추가
 	private String searchType;
 	private String keyword;

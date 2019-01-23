@@ -127,6 +127,8 @@ public class BoardController {
 
 		logger.info("/board/listPage?pageNum={}&perPageNum={}, GET", cri.getPageNum(), cri.getPerPageNum());
 
+		logger.info("cri에 들어있는 값 : {}", cri.toString());
+
 		model.addAttribute("list", service.listPage(cri));
 
 		PageMaker pageMaker = new PageMaker();

@@ -323,4 +323,22 @@ private String keyword;
 
 >> `2` Criteria와 PageMaker를 이용해 페이지값을 유지하는 방식으로 복원 ( .jsp에서 <% %>를 사용해서 하는 방법은 추후에 더할 예정 )
 
+>##### 2019.01.24
+
+>>`1` Criteria.java에서 필요 없는 부분 삭제 ( boardMapper에서 pageNum, perPageNum을 가지고 계산하기 때문에 ) 
+
+>> > ```
+>> > 	//BoardServiceImpl.listPage(Criteria cri)에서 연산을 통해 입력받는 값, mapper에서도 사용되는 값.
+		private int startBoardRowNum;
+		private int endBoardRowNum;
+
+>> > ```
+
+>>`2` 검색조건 마저 작업중...
+
+>>> 1. listPage.jsp하단에 검색( $("#searchBtn") )버튼 눌렀을 때 URI가 searchType과 keyword를 가질 수 있도록.
+
+>>>> - criteria에 위의 네가지 값이 다 있기 때문에 검색조건(searchType, keyword)가 추가된 이후에 페이지를 이동하더라도 URI에 값이 유지되는 것 확인.
+>>>> - 동적 쿼리 만들 예정...
+
 
