@@ -6,22 +6,18 @@
 <mapper namespace="com.chan.persistence.BoardDAO">
 
 	<resultMap id="resultForBoardVO" type="com.chan.domain.BoardVO">
-	  <!-- BaseVO -->
-		<result column="REGI_USER_ID"   	jdbcType="VARCHAR"		property="regiUserId" />
-		<result column="REGI_DATE"      	jdbcType="TIMESTAMP"	property="regiDate" />
-		<result column="MODI_USER_ID"   	jdbcType="VARCHAR"		property="modiUserId" />
-		<result column="MODI_DATE"      	jdbcType="TIMESTAMP"	property="modiDate" />
-		<result column="RNUM"           	jdbcType="INTEGER"		property="rnum" />
-		<result column="TOTAL_BOARD_CNT"	jdbcType="INTEGER"		property="totalBoardCnt" />
-		<result column="PAGE_NUM"     		jdbcType="INTEGER"		property="pageNum" />
-		<result column="PER_PAGE_NUM"   	jdbcType="INTEGER"		property="perPageNum" />
-	  <!-- BoardVO extends BaseVO -->
+
 		<result column="BOARD_ID"       	jdbcType="VARCHAR"		property="boardId" />
 		<result column="HRANK_BOARD_ID" 	jdbcType="VARCHAR"		property="hrankBoardId" />
 		<result column="BNO"            	jdbcType="INTEGER"		property="bno" />
 		<result column="TITLE"          	jdbcType="VARCHAR"		property="title" />
 		<result column="CONTENT"        	jdbcType="VARCHAR"		property="content" />
 		<result column="VIEW_CNT"			jdbcType="INTEGER"		property="viewCnt" />
+		<result column="REGI_USER_ID"   	jdbcType="VARCHAR"		property="regiUserId" />
+		<result column="REGI_DATE"      	jdbcType="TIMESTAMP"	property="regiDate" />
+		<result column="MODI_USER_ID"   	jdbcType="VARCHAR"		property="modiUserId" />
+		<result column="MODI_DATE"      	jdbcType="TIMESTAMP"	property="modiDate" />
+
 	</resultMap>
 
 <!-- CRUD .............................................................................................................-->
@@ -121,8 +117,11 @@
 						MODI_USER_ID, 	MODI_DATE, 			VIEW_CNT
        		FROM
        					TBL_BOARD
+       		WHERE
+       					BOARD_ID IS NOT NULL
+       		<include refid="com.chan.searching.searchCondition"/>
        		ORDER BY
-       					BOARD_ID DESC
+       					BOARD_ID DESC, REGI_DATE DESC
 		<include refid="com.chan.paging.footer"/>
 	</select>
 
@@ -135,7 +134,8 @@
 		FROM
 					TBL_BOARD
 		WHERE
-					BNO > 0
+					BOARD_ID IS NOT NULL
+		<include refid="com.chan.searching.searchCondition"/>
 	</select>
 
 </mapper>

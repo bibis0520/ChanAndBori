@@ -47,7 +47,7 @@ public class BoardController {
 	    service.create(boardVO);
 
 	    rttr.addFlashAttribute("result", "Register Success!!!");
-	    rttr.addAttribute("page", 1);
+	    rttr.addAttribute("pageNum", 1);
 	    rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
 	    return "redirect:/board/listPage";
@@ -87,8 +87,10 @@ public class BoardController {
 		service.update(boardVO);
 
 		rttr.addFlashAttribute("result", "Modify Success!!!");
-		rttr.addAttribute("page", cri.getPageNum());
+		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		rttr.addAttribute("boardId", boardVO.getBoardId());
 
 		return "redirect:/board/read";
@@ -105,8 +107,10 @@ public class BoardController {
 		service.remove(boardId);
 
 		rttr.addFlashAttribute("result", "Remove Success!!!");
-		rttr.addAttribute("page", cri.getPageNum());
+		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 
 		return "redirect:/board/listPage";
 	}
@@ -134,7 +138,7 @@ public class BoardController {
 		PageMaker pageMaker = new PageMaker();
 
 		pageMaker.setCri(cri);
-		pageMaker.setTotalDataCnt(service.getTotalDataCnt());
+		pageMaker.setTotalDataCnt(service.getTotalDataCnt(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
 	}

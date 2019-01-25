@@ -15,10 +15,11 @@ public class Criteria {
 	private String searchType;
 	private String keyword;
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public Criteria() {
 		this.pageNum = 1;
 		this.perPageNum = 10;
+		this.searchType = null;
+		this.keyword = null;
 	}
 
 	public void setPage(int pageNum) {
@@ -40,12 +41,18 @@ public class Criteria {
 	}
 
 	public String makeQuery() {
-		return UriComponentsBuilder.newInstance()
-				                   .queryParam("pageNum", this.pageNum)
-				                   .queryParam("perPageNum", this.getPerPageNum())
-				                   .queryParam("keyword", this.getKeyword())
-				                   .queryParam("searchType", this.getSearchType())
-				                   .build().encode().toString();
+
+		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+				            											.queryParam("pageNum", this.pageNum)
+				            											.queryParam("perPageNum", this.perPageNum);
+
+		if ( searchType != null ) {
+			uriComponentsBuilder.queryParam("searchType", this.searchType)
+								.queryParam("keyword", this.keyword);
+		}
+
+		return uriComponentsBuilder.build().encode().toString();
+
 	}
 
 }

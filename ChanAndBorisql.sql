@@ -148,6 +148,9 @@ from
     where rownum <= 10 )B
 where B.rnum >= 1;
 
+------ 6) 최종
+select * from TBL_BOARD where BOARD_ID is not null and REGI_USER_ID like concat ('%', '재성') or REGI_USER_ID like concat ('재성', '%');
+
 -- 게시물의 총 개수를 구하는 Query
 SELECT COUNT(*) FROM TBL_BOARD;
 

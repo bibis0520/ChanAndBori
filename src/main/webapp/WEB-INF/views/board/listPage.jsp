@@ -21,7 +21,7 @@
 			    <option value="cw"	<c:out value="${cri.searchType eq 'cw'  ? 'selected' : '' }"/>>Content or Writer</option>
 			    <option value="tcw" <c:out value="${cri.searchType eq 'tcw' ? 'selected' : '' }"/>>Title or Content or Writer</option>
 	  		</select>
-	  		<input class="col-md-6 mr5" type="text" id="searchKeyword" value="${cri.keyword}"/>
+	  		<input class="col-md-6 mr5" type="text" id="keyword" name="keyword" value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요..."/>
 	  		<button class="btn btn-success" type="button" id="searchBtn">Search</button>
 		</div>
 
@@ -118,7 +118,7 @@ $( document ).ready( function() {
 	// 가장 마지막 페이지가 해당된 블록(range)에서는 next버튼이 필요 없기 때문에 hidden처리
 	var totalPageCnt = "${pageMaker.totalPageCnt}";
 	var lastPagesStartNum = totalPageCnt - (totalPageCnt % 10) + 1;
-	if ( thisPageNum >= lastPagesStartNum && thisPageNum <= totalPageCnt )
+	if ( thisPageNum >= lastPagesStartNum)
 		$("#page-next").addClass("hidden");
 
 	// 현재 페이지를 가져와서 어느 페이지를 보고있는지 알려준다.
@@ -146,23 +146,32 @@ $( document ).ready( function() {
 	};
 
 	$("#searchBtn").on("click", function(event){
-		/* var searchType = $("#searchType").val();				// "w" */
-		var searchType = $("select option:selected").val();		// "w"
-		/* var searchKeyword = $("#searchKeyword").val();			// "김찬" */
-		var searchKeyword = encodeURIComponent($("#searchKeyword").val());
+
+		/* var searchType = $("#searchType").val();						// "w" */
+		var searchType = $("select option:selected").val();				// "w"
+		/* var searchKeyword = $("#searchKeyword").val();				// "김찬" */
+		var searchKeyword = encodeURIComponent($("#keyword").val());
+
+		console.log("searchType : " + searchType + ", searchKeyword : " + searchKeyword);
+
+		if ( searchType == 'n' ) {
+			alert("검색조건을 선택해주세요.");
+		}
+
+		if ( searchKeyword == '' ) {
+			alert("검색어를 입력해주세요.");
+			$("#keyword").focus();
+		}
 
 		// 버튼을 누를 때의 searchType과 keyword를 가져와 uri를 만들기 때문에
 		// pageMaker의 makeQuery를 사용할때 pageNum을 1로 주고, boolean형의 매개변수를 false로 준다.
-		window.location.href = "listPage" + "${pageMaker.makeQuery(1, false)}"
-							   + "&searchType=" + searchType + "&keyword=" + searchKeyword;
+		var url = "listPage" + "${pageMaker.makeQuery(1, false)}" + "&searchType=" + searchType + "&keyword=" + searchKeyword;
+		console.log(url);
 
-		/*
-			알아볼 것들...
+		window.location.href = url;
 
-			window.location.href ?
-			self.location ?
-		*/
 	});
 });
 </script>
+
 <%@ include file="../include/footer.jsp" %>

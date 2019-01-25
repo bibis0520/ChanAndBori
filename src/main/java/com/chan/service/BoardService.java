@@ -22,6 +22,6 @@ public interface BoardService {
 	List<BoardVO> listPage(Criteria cri) throws Exception;
 
 	// GET_DATA
-	int getTotalDataCnt() throws Exception;
+	int getTotalDataCnt(Criteria cri) throws Exception;
 
 }

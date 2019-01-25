@@ -53,9 +53,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getTotalDataCnt() throws Exception {
+	public int getTotalDataCnt(Criteria cri) throws Exception {
 
-		return dao.getTotalDataCnt();
+		return dao.getTotalDataCnt(cri);
 	}
 
 }

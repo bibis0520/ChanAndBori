@@ -22,7 +22,6 @@ public class PageMaker {
 
 	private int 	displayPageCnt = 10;	// 한번에 보여지는 페이지 번호의 수
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 데이터베이스에서 계산된 값을 가지고 totalDataCnt에 대입한 뒤 calcData() 메서드를 호출한다.
 	public void setTotalDataCnt(int totalDataCnt) {
 		this.totalDataCnt = totalDataCnt;
@@ -80,7 +79,7 @@ public class PageMaker {
 	public String makeQuery(int pageNum, boolean needSearch) {
 
 		UriComponentsBuilder uriComponentsBuilder  = UriComponentsBuilder.newInstance()
-														  				 .queryParam("page", pageNum)
+														  				 .queryParam("pageNum", pageNum)
 														  				 .queryParam("perPageNum", this.cri.getPerPageNum());
 
 		if ( needSearch == true ) {

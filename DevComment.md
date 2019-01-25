@@ -1,7 +1,7 @@
 TO-DO List
 -----------
->- CRUD
->- Pagination
+>- CRUD (Done)
+>- Pagination (Done)
 >- Reply
 >- Login
 >- File Upload
@@ -315,13 +315,17 @@ private String keyword;
 >>> 1. Criteria와 PageMaker => CriteriaBackUp, PageMakerBackUp으로 바꿈
 >>> 2. pageFooter, pageHeader파일 없애고 일단 listPage.jsp에 다 합쳐놈 (추후에 분리할 예정...)
 
+<hr>
+
 >##### 2019.01.22
 
 >> `1` chanSpringContext.xml에 dataSource부분 수정
->> > - /src/main/resources/jdbc.properties란 파일에 설정값들을 두어 chanSpringContext.xml에서는 값을 가져와 사용하도록 처리
->> > - 보안에 더 좋은 방법인듯...
+>> > 1. /src/main/resources/jdbc.properties란 파일에 설정값들을 두어 chanSpringContext.xml에서는 값을 가져와 사용하도록 처리
+>> > 2. 보안에 더 좋은 방법인듯...
 
 >> `2` Criteria와 PageMaker를 이용해 페이지값을 유지하는 방식으로 복원 ( .jsp에서 <% %>를 사용해서 하는 방법은 추후에 더할 예정 )
+
+<hr>
 
 >##### 2019.01.24
 
@@ -340,5 +344,37 @@ private String keyword;
 
 >>>> - criteria에 위의 네가지 값이 다 있기 때문에 검색조건(searchType, keyword)가 추가된 이후에 페이지를 이동하더라도 URI에 값이 유지되는 것 확인.
 >>>> - 동적 쿼리 만들 예정...
+
+<hr>
+
+>##### 2019.01.25
+
+>>`1` Criteria.java의 makeQuery() 수정.
+>>
+>>> 1. searchType의 값이 존재하면, UriComponentsBuilder에 의해 uri끝에 "&searchType=&keyword="를 추가하도록 했다.  
+
+>>`2` boardMapper의 listPage에 동적 SQL추가 ( MyBatis Dynamic SQL )
+>>
+>>> 1.searchType과 keyword는 Criteria 객체에 의해 URI에 전달되어 유지된다. 
+>>> 2.동적 SQL이 이용되어야 하는 부분
+>>> 
+>>>> - 검색처리가 적용된 게시물 list
+>>>> - 검색처리가 적용된 총 게시물의 수 <br>
+>>>>   (위의 두 값을 알아야 검색처리가 완료된 listPage를 그릴 수 있기 때문.)
+
+>>> 3.searchingMapper.xml 추가 ( pagingMapper를 include하는 방식과 동일하게 적용하려고 함 )
+>>> 
+>>>> - concat의 parameter로 2개를 받아야 하는 것 같아서, concat내에 concat을 한번 더 써서 아래와 같이 작성했다. <br>
+>>>> 참고 : [CONCAT(Oracle 호환성 함수)
+](https://docs.aws.amazon.com/ko_kr/redshift/latest/dg/r_CONCAT.html)
+>>>> 
+>>>> ```
+<if test="searchType == 't'.toString()">
+	AND TITLE LIKE CONCAT ( '%',  CONCAT ( #{keyword}, '%' ) )
+</if>
+...
+...	  
+>>>> ```
+
 
 

@@ -2,8 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ include file="../include/header.jsp" %>
-<%@ include file="../include/pagingMethod.jsp" %>
-<%@ include file="../include/pagingVariable.jsp" %>
 
 <div class="contents overflow-h padding-b40">
 
@@ -28,7 +26,7 @@
 
 		<div class="text-center">
 			<button type="button" id="btnRegister"  class="btn btn-outline-primary m5">등록</button>
-			<button type="button" id="btnCancel" class="btn btn-outline-danger m5">안되는 취소</button>
+			<a href="/board/listPage${cri.makeQuery()}" id="btnCancel" class="btn btn-outline-danger m5">취소</a>
 		</div>
 
 	</div><!-- /.container -->
@@ -70,21 +68,6 @@ $(document).ready(function(){
 		}
 
 		document.regiForm.submit();
-	});
-
-	$("#btnCancel").on("click", function(){
-
-		var pageNum = "${boardSO.pageNum}";
-		var perPageNum = "${boardSO.perPageNum}";
-
-		pageNum = parseInt(pageNum);
-		perPageNum = parseInt(perPageNum);
-
-		console.log("pageNum : " + pageNum + ", perPageNum : " + perPageNum);
-
-		var uri = `<%=makeURI(pageNum, perPageNum)%>`;
-
-		console.log(uri);
 	});
 
 });

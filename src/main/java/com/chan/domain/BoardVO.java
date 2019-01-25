@@ -1,13 +1,11 @@
 package com.chan.domain;
 
+import java.util.Date;
+
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
-@ToString(callSuper=true, includeFieldNames=true)
-public class BoardVO extends BaseVO {
+public class BoardVO {
 
 	private String  boardId;
 	private String  hrankBoardId;
@@ -15,5 +13,9 @@ public class BoardVO extends BaseVO {
 	private String  title;
 	private String  content;
 	private Integer viewCnt;
+	private String 	regiUserId;
+	private Date	regiDate;
+	private String 	modiUserId;
+	private Date 	modiDate;
 
 }
