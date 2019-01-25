@@ -14,6 +14,7 @@
 - Tools : Github(back-up), SVN(version control), Jenkins(text & deploy)
 
 ### 세부 구현 내용 :
+- 참고 : [현재까지 진행상황](http://35.243.121.113:8080)
 - 제목, 글 내용, 작성자를 입력하여 게시물 등록
 - 게시물 List Page 구현
 - 각각의 게시물 조회, 수정, 삭제 구현
