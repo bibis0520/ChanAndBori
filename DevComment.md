@@ -376,5 +376,40 @@ private String keyword;
 ...	  
 >>>> ```
 
+<hr>
+
+>##### 2019.01.26
+
+>>`1` File Upload 진행
+>>
+>>> 1. 주된 파일 형식은 이미지 파일(JPG, GIF, PNG)
+>>> 2. 일반 파일인경우는 파일이 자동으로 다운로드 되도록 하고 이미지파일인 경우 확대해서 보여주도록 처리할 예정.
+>>> 3. 파일 업로드하는 곳은 게시물을 등록하거나, 이미 등록된 글을 수정할 때 할 수 있도록 구현할 예정 
+
+>>`2` 파일 업로드를 위한 설정
+>>
+>>> 1.pom.xml
+>>> 
+>>>> - imgscalr-lib
+>>>> - commons-fileupload
+>>> 
+>>> 2.servlet-context.xml(chanServletContext.xml)
+>>> 
+>>>> - `<bean>`설정, multipartResolver
+>>>> - 서버의 파일 저장경로 설정, 일단 프로젝트와 상관없는 경로에 fileUpload란 파일을 하나 만들어서 테스트를 했다. <br>
+>>>>   (파일 경로는 추후에 수정할 필요가 있음)
+
+>>`3` UploadController를 만들어 기본적으로 테스트 진행 ("/uploadForm")
+>>
+>>> 1.servlet-context.xml에 설정해둔 파일 경로를 이용하기 위해서 `@Resource`로 경로를 inject 했다. 
+>>> 
+>>> ```
+>>> @Resource ( name = "uploadPath" )
+>>> private String uploadPath;
+>>> 
+>>> ```
+>>> 
+>>> 2.get방식으로 jsp를 불러와서 post방식으로 파일을 업로드 한다. <br>
+>>>    post방식에서는 파라미터를 업로드할 파일을 받은뒤 logger로 파일의 정보를 출력하도록 하고, 아래 부분에서 uploadFile이란 함수에 의해 파일이 최종적으로 아까 servlet-context.xml에 설정해둔 uploadPath로 업로드 되는 걸 확인.
 
 
