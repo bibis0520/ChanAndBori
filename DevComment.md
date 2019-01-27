@@ -441,4 +441,4 @@ private String keyword;
 >>> - dragenter event : 이동할 데이터를 마우스로 끌어서 드롭 대상에 들어오는 순간 발생하는 이벤트 
 >>> - dragover event : 이동할 데이터를 마우스로 끌어서 드롭 대상에 올려 놓는 동안 계속해서 발생하는 이벤트 
 >>> 
->>> 
+>>> `2` 파일 업로드 관련되 사용되는 static 함수를 가지고 있는 클래스 생성 (com.chan.util/uploadFileUtils)
