@@ -22,6 +22,10 @@ public class PageMaker {
 
 	private int 	displayPageCnt = 10;	// 한번에 보여지는 페이지 번호의 수
 
+	public PageMaker(Criteria cri) {
+		this.cri = cri;
+	}
+
 	// 데이터베이스에서 계산된 값을 가지고 totalDataCnt에 대입한 뒤 calcData() 메서드를 호출한다.
 	public void setTotalDataCnt(int totalDataCnt) {
 		this.totalDataCnt = totalDataCnt;

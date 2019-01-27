@@ -69,13 +69,15 @@
 	<nav aria-label="pagination">
 	  	<ul class="pagination justify-content-center">
 	    	<!-- 이전 버튼 -->
+	      <c:if test="${pageMaker.prev}">
 	    	<li class="page-item" id="page-prev">
 	      		<a class="page-link" href="listPage${pageMaker.makeQuery(pageMaker.startRangeNum -1)}">&laquo;</a>
 	      		<span class="sr-only">Previous</span>
 	    	</li>
+		  </c:if>
 
 			<c:forEach begin="${pageMaker.startRangeNum}" end="${pageMaker.endRangeNum}" var="idx">
-		    	<li class="page-item" id="${idx}pageNum">
+		    	<li <c:out value="${pageMaker.cri.pageNum == idx ? 'class=active' : '' }"/>class="page-item" id="${idx}pageNum">
 		      		<a class="page-link" href="listPage${pageMaker.makeQuery(idx)}">
 		        		${idx}<span class="sr-only">(current)</span>
 		      		</a>
@@ -83,10 +85,12 @@
 		    </c:forEach>
 
 			<!-- 다음 버튼 -->
+		  <c:if test="${pageMaker.next}">
 	    	<li class="page-item" id="page-next">
 	      		<a class="page-link" href="listPage${pageMaker.makeQuery(pageMaker.endRangeNum + 1)}">&raquo;</a>
 	      		<span class="sr-only">Next</span>
 	    	</li>
+	      </c:if>
 	  	</ul>
 	</nav>
 
@@ -110,19 +114,10 @@ $( document ).ready( function() {
 		}
 	});
 
-	// 1~10페이지에서는 prev버튼이 필요없기때문에 hidden처리
 	var thisPageNum = "${pageMaker.cri.pageNum}";
-	if ( thisPageNum <= 10 )
-		$("#page-prev").addClass("hidden");
 
-	// 가장 마지막 페이지가 해당된 블록(range)에서는 next버튼이 필요 없기 때문에 hidden처리
-	var totalPageCnt = "${pageMaker.totalPageCnt}";
-	var lastPagesStartNum = totalPageCnt - (totalPageCnt % 10) + 1;
-	if ( thisPageNum >= lastPagesStartNum)
-		$("#page-next").addClass("hidden");
-
-	// 현재 페이지를 가져와서 어느 페이지를 보고있는지 알려준다.
-	$("#" + thisPageNum + "pageNum").addClass("active");
+	/* // 현재 페이지를 가져와서 어느 페이지를 보고있는지 알려준다.
+	$("#" + thisPageNum + "pageNum").addClass("active"); */
 
 	// 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동
 	$(".boardRow").on('click', function(){

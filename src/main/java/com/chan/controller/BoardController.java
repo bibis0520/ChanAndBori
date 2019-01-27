@@ -126,7 +126,7 @@ public class BoardController {
 
 //  LIST by Pagination
 	@RequestMapping(value="/listPage", method=RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") Criteria cri,
+	public void listPage(Criteria cri,
 						 Model model) throws Exception {
 
 		logger.info("/board/listPage?pageNum={}&perPageNum={}, GET", cri.getPageNum(), cri.getPerPageNum());
@@ -135,9 +135,8 @@ public class BoardController {
 
 		model.addAttribute("list", service.listPage(cri));
 
-		PageMaker pageMaker = new PageMaker();
+		PageMaker pageMaker = new PageMaker(cri);
 
-		pageMaker.setCri(cri);
 		pageMaker.setTotalDataCnt(service.getTotalDataCnt(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
