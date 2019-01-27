@@ -329,7 +329,7 @@ private String keyword;
 
 >##### 2019.01.24
 
->>`1` Criteria.java에서 필요 없는 부분 삭제 ( boardMapper에서 pageNum, perPageNum을 가지고 계산하기 때문에 ) 
+>>`1` Criteria.java에서 필요 없는 부분 삭제 ( boardMapper에서 pageNum, perPageNum을 가지고 계산하기 때문에 )
 
 >> > ```
 >> > 	//BoardServiceImpl.listPage(Criteria cri)에서 연산을 통해 입력받는 값, mapper에서도 사용되는 값.
@@ -351,29 +351,29 @@ private String keyword;
 
 >>`1` Criteria.java의 makeQuery() 수정.
 >>
->>> 1. searchType의 값이 존재하면, UriComponentsBuilder에 의해 uri끝에 "&searchType=&keyword="를 추가하도록 했다.  
+>>> 1. searchType의 값이 존재하면, UriComponentsBuilder에 의해 uri끝에 "&searchType=&keyword="를 추가하도록 했다.
 
 >>`2` boardMapper의 listPage에 동적 SQL추가 ( MyBatis Dynamic SQL )
 >>
->>> 1.searchType과 keyword는 Criteria 객체에 의해 URI에 전달되어 유지된다. 
+>>> 1.searchType과 keyword는 Criteria 객체에 의해 URI에 전달되어 유지된다.
 >>> 2.동적 SQL이 이용되어야 하는 부분
->>> 
+>>>
 >>>> - 검색처리가 적용된 게시물 list
 >>>> - 검색처리가 적용된 총 게시물의 수 <br>
 >>>>   (위의 두 값을 알아야 검색처리가 완료된 listPage를 그릴 수 있기 때문.)
 
 >>> 3.searchingMapper.xml 추가 ( pagingMapper를 include하는 방식과 동일하게 적용하려고 함 )
->>> 
+>>>
 >>>> - concat의 parameter로 2개를 받아야 하는 것 같아서, concat내에 concat을 한번 더 써서 아래와 같이 작성했다. <br>
 >>>> 참고 : [CONCAT(Oracle 호환성 함수)
 ](https://docs.aws.amazon.com/ko_kr/redshift/latest/dg/r_CONCAT.html)
->>>> 
+>>>>
 >>>> ```
 <if test="searchType == 't'.toString()">
 	AND TITLE LIKE CONCAT ( '%',  CONCAT ( #{keyword}, '%' ) )
 </if>
 ...
-...	  
+...
 >>>> ```
 
 <hr>
@@ -384,32 +384,61 @@ private String keyword;
 >>
 >>> 1. 주된 파일 형식은 이미지 파일(JPG, GIF, PNG)
 >>> 2. 일반 파일인경우는 파일이 자동으로 다운로드 되도록 하고 이미지파일인 경우 확대해서 보여주도록 처리할 예정.
->>> 3. 파일 업로드하는 곳은 게시물을 등록하거나, 이미 등록된 글을 수정할 때 할 수 있도록 구현할 예정 
+>>> 3. 파일 업로드하는 곳은 게시물을 등록하거나, 이미 등록된 글을 수정할 때 할 수 있도록 구현할 예정
 
 >>`2` 파일 업로드를 위한 설정
 >>
 >>> 1.pom.xml
->>> 
+>>>
 >>>> - imgscalr-lib
 >>>> - commons-fileupload
->>> 
+>>>
 >>> 2.servlet-context.xml(chanServletContext.xml)
->>> 
+>>>
 >>>> - `<bean>`설정, multipartResolver
 >>>> - 서버의 파일 저장경로 설정, 일단 프로젝트와 상관없는 경로에 fileUpload란 파일을 하나 만들어서 테스트를 했다. <br>
 >>>>   (파일 경로는 추후에 수정할 필요가 있음)
 
 >>`3` UploadController를 만들어 기본적으로 테스트 진행 ("/uploadForm")
 >>
->>> 1.servlet-context.xml에 설정해둔 파일 경로를 이용하기 위해서 `@Resource`로 경로를 inject 했다. 
->>> 
+>>> 1.servlet-context.xml에 설정해둔 파일 경로를 이용하기 위해서 `@Resource`로 경로를 inject 했다.
+>>>
 >>> ```
 >>> @Resource ( name = "uploadPath" )
 >>> private String uploadPath;
->>> 
+>>>
 >>> ```
->>> 
+>>>
 >>> 2.get방식으로 jsp를 불러와서 post방식으로 파일을 업로드 한다. <br>
 >>>    post방식에서는 파라미터를 업로드할 파일을 받은뒤 logger로 파일의 정보를 출력하도록 하고, 아래 부분에서 uploadFile이란 함수에 의해 파일이 최종적으로 아까 servlet-context.xml에 설정해둔 uploadPath로 업로드 되는 걸 확인.
+>>>
+>>>> - 로컬에서 업로드 되는 것은 확인했지만, was에 업로드한 뒤 실행해보니 "Exception ---> /Users/chan/Desktop/Workspace/fileUpload/bebd2281-0ca1-4b20-9661-43ab98945cb4_보리와.jpg (No such file or directory)
+"와 같은 에러가 발생했다 아무래도 서버에선 인식하는 파일 경로가 다른 것 같다. 이부분 수정해야할 듯.
 
+<hr>
 
+>##### 2019.01.27
+
+>>`1` Ajax를 이용한 파일 업로드 공부중
+>>
+>>> - 참고 : [javascript에서 이벤트전파를 중단하는 4가지 방법](https://programmingsummaries.tistory.com/313)
+>>> - 참고 : [Drag & Drop](https://m.mkexdev.net/58)
+>>> - drag & drop을 할 때 function에 event.preventDefault()를 하는 이유!<br>
+>>>   HTML요소들은 기본 값으로 drop을 받아들이고 있지 않기 때문이다. 따라서 drop이 가능하도록 하려면 이벤트의 preventDefault()로 기본값을 취소해놓아야 한다. 
+>>> 
+>>>```
+>>> <script>
+>>>		$("#fileDrop").on("dragenter dragover", function(event){
+>>>			event.preventDefault();
+>>>		});
+>>>
+>>>		$("#fileDrop").on("drop", function(){
+>>>			event.preventDefault();
+>>>		});
+>>>	</script>
+>>>```
+>>>
+>>> - dragenter event : 이동할 데이터를 마우스로 끌어서 드롭 대상에 들어오는 순간 발생하는 이벤트 
+>>> - dragover event : 이동할 데이터를 마우스로 끌어서 드롭 대상에 올려 놓는 동안 계속해서 발생하는 이벤트 
+>>> 
+>>> 
