@@ -150,6 +150,7 @@ where B.rnum >= 1;
 
 ------ 6) 최종
 select * from TBL_BOARD where BOARD_ID is not null and REGI_USER_ID like concat ('%', '재성') or REGI_USER_ID like concat ('재성', '%');
+select * from tbl_board where board_id is not null and regi_user_id like concat ('%', concat('재성', '%'));
 
 -- 게시물의 총 개수를 구하는 Query
 SELECT COUNT(*) FROM TBL_BOARD;
@@ -202,3 +203,6 @@ END;
 
 SELECT FUNC_GET_SEQ_30() FROM DUAL;
 ---- 2019 01 09 21 36 01(14) + 00625 + PFHEPVRGFGE(11)
+
+-- TBL_USER 테이블 (회원 관리 테이블) -----------------------------------------------------------------------------
+DESC TBL_USER;

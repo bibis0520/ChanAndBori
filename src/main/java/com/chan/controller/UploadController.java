@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chan.util.UploadFileUtils;
+
 @Controller
 public class UploadController {
 
@@ -24,23 +26,28 @@ public class UploadController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 
-// Ajax를 이용한 파일 업로드
+// Ajax를 이용한 파일 업로드 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping( value = "/uploadAjax", method = RequestMethod.GET )
 	public void uploadAjax() throws Exception {
+
+		logger.info("/uploadAjax, GET");
 
 	}
 																		//produces부분은 한국어를 정상적으로 전송하기 위한 간단한 설정.
 	@RequestMapping( value = "/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8" )
 	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
 
+		logger.info("/uploadAjax, POST");
+
 		logger.info("originalName : " + file.getOriginalFilename());
 		logger.info("size : " + file.getSize());
 		logger.info("contentType : " + file.getContentType());
 																//HttpStatus.CREATED는 원하는 리소스가 정상적으로 생성되었다는 상태코드(HttpStatus.OK를 사용해도 무방)
-		return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.CREATED);
+		return new ResponseEntity<>( UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes())
+								     , HttpStatus.CREATED );
 	}
 
-//<iframe>을 이용한 파일 업로드
+// <iframe>을 이용한 파일 업로드 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping( value = "/uploadForm", method = RequestMethod.GET )
 	public void uploadForm() throws Exception {
 

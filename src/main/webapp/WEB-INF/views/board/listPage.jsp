@@ -116,8 +116,8 @@ $( document ).ready( function() {
 
 	var thisPageNum = "${pageMaker.cri.pageNum}";
 
-	/* // 현재 페이지를 가져와서 어느 페이지를 보고있는지 알려준다.
-	$("#" + thisPageNum + "pageNum").addClass("active"); */
+	// 현재 페이지를 가져와서 어느 페이지를 보고있는지 알려준다.
+	$("#" + thisPageNum + "pageNum").addClass("active");
 
 	// 테이블의 해당 행을 클릭하면 해당 게시물의 조회(read)페이지로 이동
 	$(".boardRow").on('click', function(){
