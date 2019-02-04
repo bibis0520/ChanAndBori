@@ -424,8 +424,8 @@ private String keyword;
 >>> - 참고 : [javascript에서 이벤트전파를 중단하는 4가지 방법](https://programmingsummaries.tistory.com/313)
 >>> - 참고 : [Drag & Drop](https://m.mkexdev.net/58)
 >>> - drag & drop을 할 때 function에 event.preventDefault()를 하는 이유!<br>
->>>   HTML요소들은 기본 값으로 drop을 받아들이고 있지 않기 때문이다. 따라서 drop이 가능하도록 하려면 이벤트의 preventDefault()로 기본값을 취소해놓아야 한다. 
->>> 
+>>>   HTML요소들은 기본 값으로 drop을 받아들이고 있지 않기 때문이다. 따라서 drop이 가능하도록 하려면 이벤트의 preventDefault()로 기본값을 취소해놓아야 한다.
+>>>
 >>>```
 >>> <script>
 >>>		$("#fileDrop").on("dragenter dragover", function(event){
@@ -438,7 +438,17 @@ private String keyword;
 >>>	</script>
 >>>```
 >>>
->>> - dragenter event : 이동할 데이터를 마우스로 끌어서 드롭 대상에 들어오는 순간 발생하는 이벤트 
->>> - dragover event : 이동할 데이터를 마우스로 끌어서 드롭 대상에 올려 놓는 동안 계속해서 발생하는 이벤트 
->>> 
+>>> - dragenter event : 이동할 데이터를 마우스로 끌어서 드롭 대상에 들어오는 순간 발생하는 이벤트
+>>> - dragover event : 이동할 데이터를 마우스로 끌어서 드롭 대상에 올려 놓는 동안 계속해서 발생하는 이벤트
+>>>
 >>> `2` 파일 업로드 관련되 사용되는 static 함수를 가지고 있는 클래스 생성 (com.chan.util/uploadFileUtils)
+
+<hr>
+
+>##### 2019.02.05
+
+>>`1` File UPload구현중
+>>
+>>> Ajax방식으로 파일 업로드 구현
+>>> 책보면서 실습 형식으로 테스트 해보았는데 막상 이전에 만든 register페이지에 붙이려니까 제대로 안된다.
+>>> 이부분에 대한 이해가 좀더 필요할듯...

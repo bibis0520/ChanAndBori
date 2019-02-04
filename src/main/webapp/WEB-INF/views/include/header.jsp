@@ -28,6 +28,8 @@
 	<script type="text/javascript" src="../../../resources/plugins/naverSmartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 	<!-- naverSmartEditor.js -->
 	<script type="text/javascript" src="../../../resources/naverSmartEditor.js"></script>
+	<!-- handlebars -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <body>
     <div class="wrapper">

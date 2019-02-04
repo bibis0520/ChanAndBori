@@ -206,3 +206,17 @@ SELECT FUNC_GET_SEQ_30() FROM DUAL;
 
 -- TBL_USER 테이블 (회원 관리 테이블) -----------------------------------------------------------------------------
 DESC TBL_USER;
+
+-- TBL_ATTACH 테이블 (업로드 된 파일 관리 테이블) -----------------------------------------------------------------------------
+CREATE TABLE TBL_ATTACH (
+    FULL_NAME VARCHAR2(150) NOT NULL,
+    BOARD_ID VARCHAR2(30) NOT NULL,
+    REGI_DATE DATE,
+    CONSTRAINT ATTACH_PK PRIMARY KEY (FULL_NAME)
+);
+
+DESC TBL_ATTACH;
+
+-- TBL_ATTACH테이블에서 BOARD_ID는 TBL_BOARD의 BOARD_ID컬럼을 참조한다 
+ALTER TABLE TBL_ATTACH ADD CONSTRAINT FK_BOARD_ATTACH FOREIGN KEY (BOARD_ID) REFERENCES TBL_BOARD (BOARD_ID);
+

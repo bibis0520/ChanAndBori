@@ -18,4 +18,6 @@ public class BoardVO {
 	private String 	modiUserId;
 	private Date 	modiDate;
 
+	private String[] files;
+
 }

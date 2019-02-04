@@ -21,4 +21,6 @@ public interface BoardDAO {
 
 	int getTotalDataCnt(Criteria cri) throws Exception;
 
+	public void addAttach(String fullName, String boardId) throws Exception;
+
 }

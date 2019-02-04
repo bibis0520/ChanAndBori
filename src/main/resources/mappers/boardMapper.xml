@@ -25,7 +25,7 @@
 	<!-- CREATE -->
 	<insert id="create">
 		INSERT INTO	/* com.chan.persistence.BoardDAO.create */
-		TBL_BOARD
+				TBL_BOARD
 				(
 					BOARD_ID,
 					HRANK_BOARD_ID,
@@ -137,6 +137,23 @@
 					BOARD_ID IS NOT NULL
 		<include refid="com.chan.searching.searchCondition"/>
 	</select>
+
+<!-- 첨부 파일 관련 ...................................................................................................... -->
+
+	<insert id="addAttach">
+		INSERT INTO
+				TBL_ATTACH
+				(
+					FULL_NAME,
+					BOARD_ID
+				)
+		VALUES
+				(
+					#{fullName},
+					#{boardId}
+				)
+	</insert>
+
 
 </mapper>
 

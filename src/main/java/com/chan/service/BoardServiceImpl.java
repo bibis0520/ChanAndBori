@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chan.domain.BoardVO;
 import com.chan.domain.Criteria;
@@ -16,10 +17,24 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO dao;
 
+	/*
+	 * 게시물을 등록하는 dao.create()를 호출하고나서, 첨부파일의 이름을 배열을 이용해서 각각의 파일의 이름을 데이터베이스에 추가한다.
+	 * @see com.chan.service.BoardService#create(com.chan.domain.BoardVO)
+	 */
+	@Transactional
 	@Override
 	public void create(BoardVO boardVO) throws Exception {
 
 		dao.create(boardVO);
+
+		String[] files = boardVO.getFiles();
+
+		if ( files == null )
+			return;
+
+		for ( String fileName : files ) {
+			dao.addAttach(fileName, boardVO.getBoardId());
+		}
 	}
 
 	@Override
