@@ -141,7 +141,7 @@
 <!-- 첨부 파일 관련 ...................................................................................................... -->
 
 	<insert id="addAttach">
-		INSERT INTO
+		INSERT INTO 	/* com.chan.persistence.BoardDAO.addAttach */
 				TBL_ATTACH
 				(
 					FULL_NAME,
@@ -154,6 +154,4 @@
 				)
 	</insert>
 
-
 </mapper>
-
