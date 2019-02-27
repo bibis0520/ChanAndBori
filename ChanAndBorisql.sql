@@ -208,6 +208,22 @@ SELECT FUNC_GET_SEQ_30() FROM DUAL;
 -- TBL_USER 테이블 (회원 관리 테이블) -----------------------------------------------------------------------------
 DESC TBL_USER;
 
+
+-- TBL_REPLY 테이블 ( 댓글 관리 테이블 )
+CREATE TABLE TBL_REPLY(
+    RNO NUMBER(10) DEFAULT 0,
+    BOARD_ID VARCHAR2(30) NOT NUll,
+    REPLY_TEXT VARCHAR2(1000) NOT NULL,
+    REPLYER VARCHAR2(50) NOT NULL,
+    REGI_DATE DATE DEFAULT SYSDATE,
+    MODI_DATE DATE DEFAULT SYSDATE,
+    CONSTRAINT REPLY_PK PRIMARY KEY (RNO)
+);
+
+DESC TBL_REPLY;
+
+ALTER TABLE TBL_REPLY ADD CONSTRAINT FK_BOARD_REPLY FOREIGN KEY (BOARD_ID) REFERENCES TBL_BOARD (BOARD_ID);
+
 -- TBL_ATTACH 테이블 (업로드 된 파일 관리 테이블) -----------------------------------------------------------------------------
 CREATE TABLE TBL_ATTACH (
     FULL_NAME VARCHAR2(150) NOT NULL,

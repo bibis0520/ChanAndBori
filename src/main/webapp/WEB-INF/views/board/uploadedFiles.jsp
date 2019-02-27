@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <script src="/resources/js/upload.js"></script>
 
 <script id="template" type="text/x-handlebars-template">

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chan.persistence.ReplyDAO">
+
+	<resultMap id="resultForReplyVO" type="com.chan.domain.ReplyVO">
+	<!-- 데이터 베이스 컬럼명                    데이터 타입                    ReplyVO에 선언한 변수명  -->
+		<result column="RNO"       			jdbcType="INTEGER"			property="rno" />
+		<result column="BOARD_ID" 			jdbcType="VARCHAR"			property="boardId" />
+		<result column="REPLY_TEXT"         jdbcType="VARCHAR"			property="replyText" />
+		<result column="REPLYER"          	jdbcType="VARCHAR"			property="replyer" />
+		<result column="REGI_DATE"        	jdbcType="TIMESTAMP"		property="regiDate" />
+		<result column="MODI_DATE"			jdbcType="TIMESTAMP"		property="modiDate" />
+
+	</resultMap>
+
+<!-- CRUD .............................................................................................................-->
+
+	<!-- CREATE -->
+	<insert id="create">
+		INSERT INTO /* com.chan.persistence.ReplyDAO.create */
+				TBL_REPLY
+				(
+					RNO,
+					BOARD_ID,
+					REPLY_TEXT,
+					REPLYER
+				)
+		VALUES
+				(
+					(SELECT NVL( MAX(RNO)+1, 1 ) FROM TBL_REPLY),
+					#{boardId},
+					#{replyText},
+					#{replyer}
+				)
+	</insert>
+
+	<!-- READ -->
+	<select id="list" resultMap="resultForReplyVO">
+		SELECT		/* com.chan.persistence.ReplyDAO.list */
+					*
+		FROM
+					TBL_REPLY
+		WHERE
+					BOARD_ID = #{boardId}
+		ORDER BY
+					RNO DESC
+	</select>
+
+	<!-- UPDATE -->
+	<update id="update">
+		UPDATE 		/* com.chan.persistence.ReplyDAO.update */
+					TBL_BOARD
+		SET
+					REPLY_TEXT = #{replyText},
+					MODI_DATE = SYSDATE
+		WHERE
+					RNO = #{rno}
+	</update>
+
+	<!-- DELETE -->
+	<delete id="remove">
+		DELETE FROM /* com.chan.persistence.ReplyDAO.delete */
+					TBL_REPLY
+		WHERE
+					RNO = #{rno}
+	</delete>
+
+</mapper>

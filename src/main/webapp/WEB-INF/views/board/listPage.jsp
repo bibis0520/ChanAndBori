@@ -77,10 +77,8 @@
 		  </c:if>
 
 			<c:forEach begin="${pageMaker.startRangeNum}" end="${pageMaker.endRangeNum}" var="idx">
-		    	<li <c:out value="${pageMaker.cri.pageNum == idx ? 'class=active' : '' }"/>class="page-item" id="${idx}pageNum">
-		      		<a class="page-link" href="listPage${pageMaker.makeQuery(idx)}">
-		        		${idx}<span class="sr-only">(current)</span>
-		      		</a>
+		    	<li <c:out value="${pageMaker.cri.pageNum == idx ? 'class=active' : '' }"/> >
+		      		<a class="page-link" href="listPage${pageMaker.makeQuery(idx)}">${idx}<span class="sr-only">(current)</span></a>
 		    	</li>
 		    </c:forEach>
 
@@ -115,7 +113,7 @@ $( document ).ready( function() {
 	});
 
 	var thisPageNum = "${pageMaker.cri.pageNum}";
-
+	/* console.log(thisPageNum); */
 	// 현재 페이지를 가져와서 어느 페이지를 보고있는지 알려준다.
 	$("#" + thisPageNum + "pageNum").addClass("active");
 
