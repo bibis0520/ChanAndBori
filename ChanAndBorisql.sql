@@ -14,6 +14,8 @@ CREATE TABLE TBL_BOARD(
     CONSTRAINT BOARD_PK PRIMARY KEY (BOARD_ID)
 );
 
+SELECT * FROM TBL_BOARD;
+
 ---- BoardCtn, 총 게시물의 수를 가져오는 Query
 SELECT COUNT(1) FROM TBL_BOARD;
 
@@ -25,7 +27,6 @@ ALTER TABLE TBL_BOARD DROP COLUMN SEQ;
 
 ---- TBL_BOARD에서 BNO의 역순으로 게시물 불러오기
 SELECT * FROM TBL_BOARD ORDER BY BOARD_ID DESC;
-SELECT * FROM 
 
 ---- TBL_BOARD에 테스트 데이터 집어넣기 
 INSERT INTO	/* com.chan.persistence.BoardDAO.create */
@@ -239,4 +240,12 @@ SELECT * FROM TBL_ATTACH;
 -- TBL_ATTACH테이블에서 BOARD_ID는 TBL_BOARD의 BOARD_ID컬럼을 참조한다 
 ALTER TABLE TBL_ATTACH ADD CONSTRAINT FK_BOARD_ATTACH FOREIGN KEY (BOARD_ID) REFERENCES TBL_BOARD (BOARD_ID);
 
+select sysdate from dual;
+select to_char(sysdate + 9/(24), 'HH24:MI:SS') 현재시간 from dual;
 
+SELECT to_char(SYSDATE -1/(24), 'HH24:MI:SS') 한시간전,
+  to_char(SYSDATE -1/(24*2), 'HH24:MI:SS') 삼십분전,
+  to_char(SYSDATE , 'HH24:MI:SS') 현재시간,
+  to_char(SYSDATE  +1/(24), 'HH24:MI:SS') 삼십분후,
+  to_char(SYSDATE +1/(24), 'HH24:MI:SS') 한시간후
+FROM DUAL;

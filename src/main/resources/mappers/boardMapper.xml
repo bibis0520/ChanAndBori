@@ -33,7 +33,8 @@
 					TITLE,
 					CONTENT,
 					REGI_USER_ID,
-					MODI_USER_ID
+					REGI_DATE,
+					VIEW_CNT
 				)
 		VALUES
 				(
@@ -43,7 +44,8 @@
 					#{title},
 					#{content},
 					#{regiUserId},
-					#{modiUserId}
+					SYSDATE,
+					0
 				)
 	</insert>
 
