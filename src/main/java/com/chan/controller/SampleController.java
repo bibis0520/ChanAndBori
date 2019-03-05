@@ -22,7 +22,7 @@ public class SampleController {
 
 	@RequestMapping("/hello")
 	public String sayHello() {
-
+		logger.info("/hello");
 		return "Hello World";	// text/html
 	}
 
