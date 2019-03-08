@@ -18,26 +18,7 @@
 
 <!-- CRUD .............................................................................................................-->
 
-	<!-- CREATE -->
-	<insert id="create">
-		INSERT INTO /* com.chan.persistence.ReplyDAO.create */
-				TBL_REPLY
-				(
-					RNO,
-					BOARD_ID,
-					REPLY_TEXT,
-					REPLYER
-				)
-		VALUES
-				(
-					(SELECT NVL( MAX(RNO)+1, 1 ) FROM TBL_REPLY),
-					#{boardId},
-					#{replyText},
-					#{replyer}
-				)
-	</insert>
-
-	<!-- READ -->
+	<!-- LIST (댓글 리스트) -->
 	<select id="list" resultMap="resultForReplyVO">
 		SELECT		/* com.chan.persistence.ReplyDAO.list */
 					*
@@ -48,11 +29,32 @@
 		ORDER BY
 					RNO DESC
 	</select>
+	
+	<!-- CREATE (댓글 등록) -->
+	<insert id="create">
+		INSERT INTO /* com.chan.persistence.ReplyDAO.create */
+				TBL_REPLY
+				(
+					RNO,				
+					BOARD_ID,
+					REPLY_TEXT,
+					REPLYER,
+					REGI_DATE
+				)
+		VALUES
+				(
+					(SELECT NVL( MAX(RNO) + 1, 1 ) FROM TBL_REPLY WHERE BOARD_ID = #{boardId}),
+					#{boardId},
+					#{replyText},
+					#{replyer},
+					SYSDATE
+				)
+	</insert>
 
-	<!-- UPDATE -->
+	<!-- UPDATE (댓글 수정) -->
 	<update id="update">
 		UPDATE 		/* com.chan.persistence.ReplyDAO.update */
-					TBL_BOARD
+					TBL_REPLY
 		SET
 					REPLY_TEXT = #{replyText},
 					MODI_DATE = SYSDATE
@@ -60,7 +62,7 @@
 					RNO = #{rno}
 	</update>
 
-	<!-- DELETE -->
+	<!-- DELETE (댓글 삭제) -->
 	<delete id="remove">
 		DELETE FROM /* com.chan.persistence.ReplyDAO.delete */
 					TBL_REPLY
